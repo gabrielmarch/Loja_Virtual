@@ -131,7 +131,7 @@
                             Click="BtnEntrar_Click"
                             Style="{StaticResource BotaoPrincipal}"
                             HorizontalAlignment="Center"
-                            Margin="0,5,0,0"/>
+                            Margin="0,5,0,0" FontWeight="Normal"/>
 
                 </StackPanel>
 

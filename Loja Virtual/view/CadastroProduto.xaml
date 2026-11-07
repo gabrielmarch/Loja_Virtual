@@ -21,19 +21,18 @@
                 Margin="24,61,24,25" 
                 Background="#FFF0F3F9"
                 CornerRadius="12" Grid.RowSpan="2">
-            <Button x:Name="buttonConfirmarCad" Content="Confirmar Cadastro" 
-                    Margin="461,385,149,35"
-                    Width="140" Background="#FF3157A4" Foreground="#FFF7F2F2"/>
+            <Button x:Name="buttonConfirmarCad" Content="CONFIRMAR" 
+                    Margin="461,384,191,32" Background="#FF3157A4" Foreground="#FFF7F2F2"/>
 
         </Border>
-        <TextBox x:Name="txtNomeProduto" TextWrapping="Wrap" Text="" Margin="264,216,264,235" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtPrecoProduto" TextWrapping="Wrap" Text="" Margin="50,294,630,158" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtUnidadeProduto" TextWrapping="Wrap" Text="" Margin="205,294,475,158" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtEstoqueProduto" TextWrapping="Wrap" Text="" Margin="363,294,317,158" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtDescri" TextWrapping="Wrap" Text="" Margin="50,351,506,6" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtCodBarrasProd" TextWrapping="Wrap" Text="" Margin="335,387,193,64" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtFornecedor" TextWrapping="Wrap" Text="" Margin="335,448,345,4" Grid.Row="1" Foreground="#FFABADB3"/>
-        <TextBox x:Name="txtIdProduto" TextWrapping="Wrap" Text="" Margin="50,216,630,236" Grid.Row="1" Foreground="#FFABADB3"/>
+        <TextBox x:Name="txtNomeProduto" TextWrapping="Wrap" Text="" Margin="264,216,264,235" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtPrecoProduto" TextWrapping="Wrap" Text="" Margin="50,294,630,158" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtUnidadeProduto" TextWrapping="Wrap" Text="" Margin="205,294,475,158" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtEstoqueProduto" TextWrapping="Wrap" Text="" Margin="363,294,317,158" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtDescri" TextWrapping="Wrap" Text="" Margin="50,351,506,6" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtCodBarrasProd" TextWrapping="Wrap" Text="" Margin="335,387,193,64" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtFornecedor" TextWrapping="Wrap" Text="" Margin="335,448,345,4" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
+        <TextBox x:Name="txtIdProduto" TextWrapping="Wrap" Text="" Margin="50,216,630,236" Grid.Row="1" Foreground="#FFABADB3" BorderBrush="#FFD5D9E2"/>
         <Label x:Name="labeId" Content="Id:" HorizontalAlignment="Left" Margin="50,190,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label x:Name="labelNome" Content="Nome do produto:" HorizontalAlignment="Left" Margin="265,190,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label x:Name="labelPreco" Content="Preço:" HorizontalAlignment="Left" Margin="50,268,0,0" Grid.Row="1" VerticalAlignment="Top"/>
@@ -43,11 +42,11 @@
         <Label x:Name="labelForne" Content="Fornecedor:" HorizontalAlignment="Left" Margin="335,422,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Descrição:" HorizontalAlignment="Left" Margin="48,325,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Button x:Name="buttonInserirImg" Content="Inserir Imagem" HorizontalAlignment="Left" Margin="584,178,0,0" VerticalAlignment="Top" Height="150" Width="150" Grid.Row="1" Foreground="#FFF1F0F0" Background="#FF9C9C9C" BorderBrush="WhiteSmoke"/>
-        <Button x:Name="buttonLimparImg" Content="" HorizontalAlignment="Left" Margin="708,328,0,0" Grid.Row="1" VerticalAlignment="Top" Width="26" Height="23" BorderBrush="#FFF0F3F9">
+        <Button x:Name="buttonLimparImg" Content="" HorizontalAlignment="Left" Margin="708,330,0,0" Grid.Row="1" VerticalAlignment="Top" Width="26" Height="23" BorderBrush="#FFF0F3F9">
             <Button.Background>
                 <ImageBrush ImageSource="/view/lixeira.png" Stretch="Uniform" TileMode="Tile"/>
             </Button.Background>
         </Button>
-        <Label x:Name="labelCadProduto" Content="Cadastro do Produto" HorizontalAlignment="Left" Margin="203,64,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+        <Label x:Name="labelCadProduto" Content="Cadastro do Produto" HorizontalAlignment="Left" Margin="203,64,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Foreground="#FF263B60"/>
     </Grid>
 </Window>
