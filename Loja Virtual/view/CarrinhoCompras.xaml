@@ -1,0 +1,449 @@
+﻿<Window x:Class="Loja_Virtual.view.CarrinhoCompras"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Meu Carrinho"
+        Height="720"
+        Width="1100"
+        MinHeight="600"
+        MinWidth="850"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9">
+
+    <Window.Resources>
+
+        <!-- Botão principal -->
+        <Style x:Key="BotaoPrincipal" TargetType="Button">
+            <Setter Property="Background" Value="#3157A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Campo de texto -->
+        <Style x:Key="CampoTexto" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#263B60"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Botão de voltar -->
+        <Style x:Key="BotaoVoltar" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#3157A4"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="30">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- CABEÇALHO -->
+        <Grid Grid.Row="0" Margin="0,0,0,25">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+        Style="{StaticResource BotaoVoltar}"
+        Click="Voltar_Click">
+
+                <materialDesign:PackIcon Kind="ArrowLeft"
+                             Width="22"
+                             Height="22"/>
+
+            </Button>
+
+            <StackPanel Grid.Column="1"
+                        Margin="12,0,0,0"
+                        VerticalAlignment="Center">
+
+                <TextBlock Text="Meu carrinho"
+                           FontSize="27"
+                           FontWeight="Bold"
+                           Foreground="#263B60"/>
+
+                <TextBlock Text="Confira os produtos antes de finalizar sua compra"
+                           FontSize="13"
+                           Foreground="#8993A5"
+                           Margin="0,4,0,0"/>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- CABEÇALHO DA LISTA -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="PRODUTO"
+                       FontWeight="SemiBold"
+                       Foreground="#8993A5"
+                       FontSize="12"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="PREÇO"
+                       FontWeight="SemiBold"
+                       Foreground="#8993A5"
+                       FontSize="12"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="2"
+                       Text="QUANTIDADE"
+                       FontWeight="SemiBold"
+                       Foreground="#8993A5"
+                       FontSize="12"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="3"
+                       Text="SUBTOTAL"
+                       FontWeight="SemiBold"
+                       Foreground="#8993A5"
+                       FontSize="12"
+                       HorizontalAlignment="Right"/>
+
+        </Grid>
+
+        <!-- LISTA DE PRODUTOS -->
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <StackPanel>
+
+                <!-- PRODUTO 1 -->
+                <Border x:Name="Produto1"
+                        Background="White"
+                        CornerRadius="12"
+                        Padding="18"
+                        Margin="0,0,0,12"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Informações do produto -->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+
+                            <Border Width="75"
+                                    Height="75"
+                                    Background="#F0F3F9"
+                                    CornerRadius="8"/>
+
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="15,0,0,0">
+
+                                <TextBlock Text="Produto 01"
+                                           FontSize="16"
+                                           FontWeight="SemiBold"
+                                           Foreground="#263B60"/>
+
+                                <TextBlock Text="Descrição do produto"
+                                           FontSize="12"
+                                           Foreground="#8993A5"
+                                           Margin="0,5,0,0"/>
+
+                                <Button x:Name="Remover1"
+                                        Content="Remover"
+                                        Click="RemoverProduto1_Click"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#D95360"
+                                        HorizontalAlignment="Left"
+                                        Padding="0,5"
+                                        FontSize="12"
+                                        Cursor="Hand"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <!-- Preço -->
+                        <TextBlock Grid.Column="1"
+                                   Text="R$ 100,00"
+                                   FontSize="14"
+                                   Foreground="#555F70"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <!-- Quantidade -->
+                        <TextBox x:Name="Quantidade1"
+                                 Grid.Column="2"
+                                 Text="1"
+                                 Style="{StaticResource CampoTexto}"
+                                 Width="55"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 TextChanged="Quantidade_TextChanged"/>
+
+                        <!-- Subtotal -->
+                        <TextBlock x:Name="Subtotal1"
+                                   Grid.Column="3"
+                                   Text="R$ 100,00"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+                </Border>
+
+                <!-- PRODUTO 2 -->
+                <Border x:Name="Produto2"
+                        Background="White"
+                        CornerRadius="12"
+                        Padding="18"
+                        Margin="0,0,0,12"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Informações do produto -->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+
+                            <Border Width="75"
+                                    Height="75"
+                                    Background="#F0F3F9"
+                                    CornerRadius="8"/>
+
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="15,0,0,0">
+
+                                <TextBlock Text="Produto 02"
+                                           FontSize="16"
+                                           FontWeight="SemiBold"
+                                           Foreground="#263B60"/>
+
+                                <TextBlock Text="Descrição do produto"
+                                           FontSize="12"
+                                           Foreground="#8993A5"
+                                           Margin="0,5,0,0"/>
+
+                                <Button x:Name="Remover2"
+                                        Content="Remover"
+                                        Click="RemoverProduto2_Click"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#D95360"
+                                        HorizontalAlignment="Left"
+                                        Padding="0,5"
+                                        FontSize="12"
+                                        Cursor="Hand"/>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Preço -->
+                        <TextBlock Grid.Column="1"
+                                   Text="R$ 100,00"
+                                   FontSize="14"
+                                   Foreground="#555F70"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <!-- Quantidade -->
+                        <TextBox x:Name="Quantidade2"
+                                 Grid.Column="2"
+                                 Text="2"
+                                 Style="{StaticResource CampoTexto}"
+                                 Width="55"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 TextChanged="Quantidade_TextChanged"/>
+
+                        <!-- Subtotal -->
+                        <TextBlock x:Name="Subtotal2"
+                                   Grid.Column="3"
+                                   Text="R$ 200,00"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- RODAPÉ: CUPOM E RESUMO -->
+        <Grid Grid.Row="3" Margin="0,20,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="350"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- CUPOM -->
+            <StackPanel Grid.Column="0"
+                        VerticalAlignment="Top"
+                        Margin="0,0,20,0">
+
+                <TextBlock Text="Cupom de desconto"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="#263B60"
+                           Margin="0,0,0,12"/>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox x:Name="Cupom"
+                             Width="180"
+                             Style="{StaticResource CampoTexto}"
+                             ToolTip="Digite seu cupom"/>
+
+                    <Button x:Name="Aplicar"
+                            Content="Aplicar"
+                            Style="{StaticResource BotaoPrincipal}"
+                            Padding="15,8"
+                            Margin="10,0,0,0"
+                            Click="AplicarCupom_Click"/>
+
+                </StackPanel>
+
+                <TextBlock x:Name="MensagemCupom"
+                           FontSize="12"
+                           Margin="0,8,0,0"
+                           Foreground="#269B70"/>
+
+            </StackPanel>
+
+            <!-- RESUMO DO PEDIDO -->
+            <StackPanel Grid.Column="1">
+
+                <TextBlock Text="Resumo do pedido"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="#263B60"
+                           Margin="0,0,0,12"/>
+
+                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="18"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="Subtotal"
+                                       Foreground="#8993A5"
+                                       FontSize="14"/>
+
+                            <TextBlock x:Name="ValorSubtotal"
+                                       Text="R$ 300,00"
+                                       HorizontalAlignment="Right"
+                                       FontWeight="SemiBold"
+                                       FontSize="14"
+                                       Foreground="#263B60"/>
+
+                        </Grid>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="Desconto"
+                                       Foreground="#8993A5"
+                                       FontSize="14"/>
+
+                            <TextBlock x:Name="ValorDesconto"
+                                       Text="R$ 0,00"
+                                       HorizontalAlignment="Right"
+                                       Foreground="#269B70"
+                                       FontSize="14"/>
+
+                        </Grid>
+
+                        <Border Height="1"
+                                Background="#E0E4EB"
+                                Margin="0,0,0,12"/>
+
+                        <Grid>
+
+                            <TextBlock Text="Total"
+                                       FontWeight="Bold"
+                                       FontSize="17"
+                                       Foreground="#263B60"/>
+
+                            <TextBlock x:Name="ValorTotal"
+                                       Text="R$ 300,00"
+                                       HorizontalAlignment="Right"
+                                       FontWeight="Bold"
+                                       FontSize="18"
+                                       Foreground="#3157A4"/>
+
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+
+                <Button x:Name="Prosseguir"
+                        Content="Prosseguir para pagamento →"
+                        Style="{StaticResource BotaoPrincipal}"
+                        Margin="0,15,0,0"
+                        Click="Pagamento_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Window>
