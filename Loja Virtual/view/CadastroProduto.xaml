@@ -41,7 +41,7 @@
         <Label x:Name="labelCodB" Content="Código de barras:" HorizontalAlignment="Left" Margin="334,361,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label x:Name="labelForne" Content="Fornecedor:" HorizontalAlignment="Left" Margin="335,422,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Descrição:" HorizontalAlignment="Left" Margin="48,325,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button x:Name="buttonInserirImg" Content="Inserir Imagem" HorizontalAlignment="Left" Margin="584,178,0,0" VerticalAlignment="Top" Height="150" Width="150" Grid.Row="1" Foreground="#FFF1F0F0" Background="#FF9C9C9C" BorderBrush="WhiteSmoke"/>
+        <Button x:Name="buttonInserirImg" Content="Inserir Imagem" HorizontalAlignment="Left" Margin="580,178,0,0" VerticalAlignment="Top" Height="150" Width="150" Grid.Row="1" Foreground="#FFF1F0F0" Background="#FF9C9C9C" BorderBrush="WhiteSmoke"/>
         <Button x:Name="buttonLimparImg" Content="" HorizontalAlignment="Left" Margin="708,330,0,0" Grid.Row="1" VerticalAlignment="Top" Width="26" Height="23" BorderBrush="#FFF0F3F9">
             <Button.Background>
                 <ImageBrush ImageSource="/view/lixeira.png" Stretch="Uniform" TileMode="Tile"/>
