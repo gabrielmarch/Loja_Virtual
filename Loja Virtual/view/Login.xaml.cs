@@ -31,8 +31,15 @@ namespace Loja_Virtual.view
                 txtSenha.Password,
                 out string mensagem
             );
+            /// apenas para teste, depois vamos implementar a autenticação
+            TelaPrincipal principal = new TelaPrincipal();
 
-            MessageBox.Show(mensagem);
+            principal.Show();
+
+            this.Close();
+            ///
+
+        MessageBox.Show(mensagem);
 
             if (valido)
             {

@@ -75,7 +75,7 @@
                     <StackPanel VerticalAlignment="Center"
                                 Margin="25">
 
-                        <TextBlock Text="Seja Bem-Vindo"
+                        <TextBlock Text="Seja Bem-Vindo a UVVirtual!"
                                    FontSize="24"
                                    FontWeight="Bold"
                                    Foreground="#263B60"
