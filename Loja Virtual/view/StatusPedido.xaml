@@ -1,0 +1,36 @@
+﻿<Window x:Class="Loja_Virtual.view.StatusPedido"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Loja_Virtual.view"
+        mc:Ignorable="d"
+        Title="Pedido" Height="550" Width="800">
+    <Grid Background="#FFEAEAEA">
+        <StackPanel Margin="30,74,30,172">
+            <Border BorderBrush="Black" BorderThickness="1" Height="181" Width="712" RenderTransformOrigin="0.499,0.51" Background="White"/>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="56,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="664" Height="38" FontSize="28" FontWeight="Bold" Foreground="#FF424242"><Run Language="pt-br" Text="Meu Pedido"/><LineBreak/><Run Language="pt-br"/></TextBlock>
+        <StackPanel
+            Grid.Column="0"
+            Orientation="Horizontal"
+            Margin="47,280,365,82">
+            <Border BorderBrush="#FFE0E0E0" BorderThickness="1" Height="69" Width="76" Background="#FFFBFBFB" CornerRadius="8"/>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="128,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FF171717"><Run Language="pt-br" Text="Produto"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="128,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Foreground="#FF868686"><Run Language="pt-br" Text="Descrição do Produto"/><LineBreak/><Run Language="pt-br"/></TextBlock>
+        <Button x:Name="BotaoVoltar" Content="←" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="41" Width="32" Background="{x:Null}" FontSize="30" BorderBrush="{x:Null}"/>
+        <Ellipse HorizontalAlignment="Left" Height="20" Margin="128,120,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse HorizontalAlignment="Left" Height="20" Margin="298,120,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse HorizontalAlignment="Left" Height="20" Margin="468,120,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse HorizontalAlignment="Left" Height="20" Margin="638,120,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="105,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Language="pt-br" Text="Pedido Feito"/><LineBreak/><Run Language="pt-br"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="267,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Language="pt-br" Text="Pedido enviado"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="432,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Language="pt-br" Text="Saiu para entrega"/><LineBreak/><Run Language="pt-br"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="624,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Language="pt-br" Text="Entregue"/></TextBlock>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="148,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="318,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="488,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+
+    </Grid>
+</Window>
