@@ -1,0 +1,72 @@
+﻿<Window x:Class="LojaVirtual.AdicionarCartao"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Adicionar Cartão" Height="600" Width="900"
+        Background="#F0F0F0">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!-- Barra superior estilo navegador -->
+            <RowDefinition Height="Auto"/>
+            <!-- Área principal de conteúdo -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cabeçalho (Barra Superior / Menu) -->
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1" Padding="15,10">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="☰" FontSize="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="0,0,15,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Cartão central de formulário -->
+        <Border Grid.Row="1" Background="#FFFFFF" Width="500" Margin="40" Padding="30" 
+                CornerRadius="8" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <StackPanel Width="300" HorizontalAlignment="Center">
+                <!-- Título -->
+                <TextBlock Text="Adicionar Cartão de Crédito/Débito" 
+                           FontSize="16" FontWeight="Bold" 
+                           HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+                <!-- Número do Cartão -->
+                <TextBlock Text="Número do Cartão" Foreground="#666666" Margin="0,0,0,5" FontSize="12"/>
+                <TextBox x:Name="TxtNumeroCartao" Height="35" Padding="5" Margin="0,0,0,15" VerticalContentAlignment="Center"/>
+
+                <!-- Nome no Cartão -->
+                <TextBlock Text="Nome no Cartão" Foreground="#666666" Margin="0,0,0,5" FontSize="12"/>
+                <TextBox x:Name="TxtNomeCartao" Height="35" Padding="5" Margin="0,0,0,15" VerticalContentAlignment="Center"/>
+
+                <!-- MM/AA e CVV lado a lado -->
+                <Grid Margin="0,0,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="MM/AA" Foreground="#666666" Margin="0,0,0,5" FontSize="12"/>
+                        <TextBox x:Name="TxtValidade" Height="35" Padding="5" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Cvv" Foreground="#666666" Margin="0,0,0,5" FontSize="12"/>
+                        <TextBox x:Name="TxtCvv" Height="35" Padding="5" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Botão Salvar Cartão -->
+                <Button x:Name="BtnSalvarCartao" Content="Salvar Cartão" 
+                        Background="#3B82F6" Foreground="White" 
+                        Height="40" FontWeight="Bold" Cursor="Hand" BorderThickness="0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
