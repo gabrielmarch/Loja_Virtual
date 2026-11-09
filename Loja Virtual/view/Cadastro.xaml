@@ -41,6 +41,14 @@
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
 
+        
+        <Style x:Key="RotuloCampo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#263B60"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -67,7 +75,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Área de boas-vindas -->
+                
                 <Border Grid.Column="0"
                         Background="#F0F3F9"
                         CornerRadius="12,0,0,12">
@@ -97,7 +105,7 @@
 
                 </Border>
 
-                <!-- Formulário de Cadastro -->
+                
                 <StackPanel Grid.Column="1"
                             Width="310"
                             VerticalAlignment="Center"
@@ -108,28 +116,48 @@
                                FontWeight="Bold"
                                Foreground="#263B60"
                                HorizontalAlignment="Center"
-                               Margin="0,0,0,20"/>
+                               Margin="0,0,0,15"/>
+
+                    
+                    <TextBlock Text="Nome completo"
+                               Style="{StaticResource RotuloCampo}"/>
 
                     <TextBox x:Name="txtNome"
                              Style="{StaticResource CampoTexto}"
-                             ToolTip="Nome completo"/>
+                             ToolTip="Digite seu nome completo"/>
+
+                    
+                    <TextBlock Text="E-mail"
+                               Style="{StaticResource RotuloCampo}"/>
 
                     <TextBox x:Name="txtEmail"
                              Style="{StaticResource CampoTexto}"
-                             ToolTip="E-mail"/>
+                             ToolTip="Digite seu e-mail"/>
+
+                    
+                    <TextBlock Text="CPF ou CNPJ"
+                               Style="{StaticResource RotuloCampo}"/>
 
                     <TextBox x:Name="txtCpfCnpj"
                              Style="{StaticResource CampoTexto}"
                              MaxLength="18"
-                             ToolTip="CPF ou CNPJ"/>
+                             ToolTip="Digite seu CPF ou CNPJ"/>
+
+                    
+                    <TextBlock Text="Senha"
+                               Style="{StaticResource RotuloCampo}"/>
 
                     <PasswordBox x:Name="txtSenha"
                                  Style="{StaticResource CampoSenha}"
-                                 ToolTip="Senha"/>
+                                 ToolTip="Crie uma senha"/>
+
+                    
+                    <TextBlock Text="Confirmar senha"
+                               Style="{StaticResource RotuloCampo}"/>
 
                     <PasswordBox x:Name="txtConfirmarSenha"
                                  Style="{StaticResource CampoSenha}"
-                                 ToolTip="Confirmar senha"/>
+                                 ToolTip="Digite novamente sua senha"/>
 
                     <Button Content="CADASTRAR"
                             Click="BtnCadastrar_Click"

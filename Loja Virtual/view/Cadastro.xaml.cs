@@ -27,7 +27,7 @@ namespace Loja_Virtual.view
 
         private void BtnCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            bool valido = _controller.ValidarCadastro(
+            bool cadastrado = _controller.CadastrarCliente(
                 txtNome.Text,
                 txtEmail.Text,
                 txtCpfCnpj.Text,
@@ -36,12 +36,30 @@ namespace Loja_Virtual.view
                 out string mensagem
             );
 
-            MessageBox.Show(mensagem);
-
-            if (valido)
+            if (!cadastrado)
             {
-                // Posteriormente salvaremos o cliente no banco.
+                MessageBox.Show(
+                    mensagem,
+                    "Cadastro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+
+                return;
             }
+
+            MessageBox.Show(
+                mensagem,
+                "Cadastro",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+
+            Login login = new Login();
+
+            login.Show();
+
+            this.Close();
         }
 
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)

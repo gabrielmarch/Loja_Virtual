@@ -24,28 +24,48 @@ namespace Loja_Virtual.view
             _controller = new LoginController();
         }
 
+
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            bool valido = _controller.ValidarLogin(
+
+            Cadastro cadastro = new Cadastro();
+
+            cadastro.Show();
+
+            this.Close();
+
+            bool autenticado = _controller.Autenticar(
                 txtCpfCnpj.Text,
                 txtSenha.Password,
                 out string mensagem
             );
-            /// apenas para teste, depois vamos implementar a autenticação
+
+            if (!autenticado)
+            {
+                MessageBox.Show(
+                    mensagem,
+                    "Login",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+
+                return;
+            }
+
+            MessageBox.Show(
+                mensagem,
+                "Login",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+
             TelaPrincipal principal = new TelaPrincipal();
 
             principal.Show();
 
             this.Close();
-            ///
-
-        MessageBox.Show(mensagem);
-
-            if (valido)
-            {
-                // Posteriormente implementaremos a autenticação.
-            }
         }
+
 
         private void BtnCriarConta_Click(object sender, RoutedEventArgs e)
         {
