@@ -17,9 +17,7 @@ namespace Loja_Virtual.data
 
         public DbSet<Servico> Servicos { get; set; } = null!;
 
-        public DbSet<Pagamento> Pagamentos { get; set; } = null!;
-
-        public DbSet<Boleto> Boletos { get; set; } = null!; //Olá
+        public DbSet<Boleto> Boletos { get; set; } = null!;
 
         public DbSet<Cupom> cupoms { get; set; } = null!;
 
@@ -28,8 +26,6 @@ namespace Loja_Virtual.data
         public DbSet<Pedido> pedidos { get; set; } = null!;
 
         public DbSet<ItemPedido> itemPedidos { get; set; } = null!;
-
-        public DbSet<Pagamento> pagamentos { get; set; } = null!;
 
         public DbSet<Fornecedor> fornecedores { get; set; } = null!;
 

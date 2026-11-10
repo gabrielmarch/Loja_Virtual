@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    public class Pagamento
+    internal class Pagamento
     {
         
     }

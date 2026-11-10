@@ -8,7 +8,7 @@ namespace Loja_Virtual.model
     {
         public int idProduto { get; set; }
 
-        public Fornecedor idFornecedor { get; set; }
+        public Fornecedor idFornecedor { get; set; } = null!;
 
         public string NomeProduto { get; set; } = string.Empty;
 

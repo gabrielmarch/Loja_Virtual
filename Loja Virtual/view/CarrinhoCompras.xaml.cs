@@ -25,7 +25,6 @@ namespace Loja_Virtual.view
 
         private void RemoverProduto1_Click(object sender, RoutedEventArgs e)
         {
-            ///dfdf
         }
 
         private void RemoverProduto2_Click(object sender, RoutedEventArgs e)
