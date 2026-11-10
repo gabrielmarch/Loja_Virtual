@@ -10,33 +10,52 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Loja_Virtual.view
 {
-    /// <summary>
-    /// Lógica interna para SuporteCliente.xaml
-    /// </summary>
     public partial class SuporteCliente : Window
     {
+        private bool menuVisivel = true;
+
         public SuporteCliente()
         {
             InitializeComponent();
         }
 
-        private void button_IniciarChat_Click(object sender, RoutedEventArgs e)
+        // ABRIR E FECHAR O MENU
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
+            }
+        }
+
+        // ABRIR O CHAT DE SUPORTE
+        private void button_IniciarChat_Click(
+            object sender, RoutedEventArgs e)
         {
             ChatSuporte chat = new ChatSuporte();
-
             chat.Show();
-
             this.Close();
         }
 
-        private void button_AcessarOuvidoria_Click(object sender, RoutedEventArgs e)
+        // ACESSAR OUVIDORIA
+        private void button_AcessarOuvidoria_Click(
+            object sender, RoutedEventArgs e)
         {
             Ouvidoria ouvidoria = new Ouvidoria();
-
             ouvidoria.Show();
             this.Close();
         }
     }
 }
+

@@ -1,0 +1,264 @@
+﻿<UserControl x:Class="Loja_Virtual.components.MenuLateral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             MinWidth="0">
+
+    <UserControl.Resources>
+
+        <!-- MESMO ESTILO DA TELAPRINCIPAL -->
+        <Style x:Key="BotaoMenu" TargetType="Button">
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#344563"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="18,0"/>
+            <Setter Property="Margin" Value="8,2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="Fundo"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#E8EEF9"/>
+                                <Setter Property="Foreground"
+                                        Value="#3157A4"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#DCE5F5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Border Background="White"
+            BorderBrush="#E0E4EB"
+            BorderThickness="0,0,1,0">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="65"/>
+            </Grid.RowDefinitions>
+
+            <!-- LOGOTIPO -->
+            <Border Grid.Row="0"
+                    BorderBrush="#E0E4EB"
+                    BorderThickness="0,0,0,1">
+
+                <TextBlock Text="UVVirtual"
+                           FontSize="15"
+                           FontWeight="Bold"
+                           Foreground="#3157A4"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+
+            <!-- OPÇÕES DO MENU -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+
+                <StackPanel Margin="0,12,0,0">
+
+                    <!-- HOME -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Home"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="HomeOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Home"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- PERFIL -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Perfil"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Perfil"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- CARRINHO -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Carrinho"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CartOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Carrinho"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- PEDIDOS -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Pedidos"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ClipboardListOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Pedidos"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- ANUNCIAR -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Anunciar"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TagOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Anunciar"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- CUPONS -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Cupons"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TicketPercentOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Cupons"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- PRODUTOS -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Produtos"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PackageVariant"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Produtos"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- PAGAMENTO -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Pagamento"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CreditCardOutline"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Pagamento"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- SUPORTE -->
+                    <Button Style="{StaticResource BotaoMenu}"
+                            Tag="Suporte"
+                            Click="NavegarMenu_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Headset"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,6,0"
+                                                     Foreground="#344563"/>
+
+                            <TextBlock Text="Suporte"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+            <!-- RODAPÉ -->
+            <Border Grid.Row="2"
+                    BorderBrush="#E0E4EB"
+                    BorderThickness="0,1,0,0">
+
+                <TextBlock Text="Sistema de Loja"
+                           FontSize="11"
+                           Foreground="#8993A5"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

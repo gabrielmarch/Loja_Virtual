@@ -10,16 +10,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Loja_Virtual.view
 {
-    /// <summary>
-    /// Lógica interna para StatusPedido.xaml
-    /// </summary>
     public partial class StatusPedido : Window
     {
+        private bool menuVisivel = true;
+
         public StatusPedido()
         {
             InitializeComponent();
         }
+
+        // ABRIR E FECHAR O MENU HAMBÚRGUER
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
+            }
+        }
+
     }
 }
+

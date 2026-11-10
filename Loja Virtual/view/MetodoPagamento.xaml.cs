@@ -11,16 +11,49 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Loja_Virtual.view
 {
-    /// <summary>
-    /// Interação lógica para MetodoPagamento.xam
-    /// </summary>
     public partial class MetodoPagamento : Window
     {
+        private bool menuVisivel = true;
+
         public MetodoPagamento()
         {
             InitializeComponent();
         }
+
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
+            }
+        }
+
+        private void BtnIrParaCartao_Click(object sender, RoutedEventArgs e)
+        {
+            AdicionarCartao tela = new AdicionarCartao();
+
+            tela.Show();
+            this.Close();
+        }
+
+        private void BtnIrParaBoleto_Click(object sender, RoutedEventArgs e)
+        {
+            GerarBoleto tela = new GerarBoleto();
+
+            tela.Show();
+            this.Close();
+        }
     }
 }
+

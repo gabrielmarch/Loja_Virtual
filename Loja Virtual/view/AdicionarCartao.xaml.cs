@@ -13,14 +13,31 @@ using System.Windows.Shapes;
 
 namespace Loja_Virtual.view
 {
-    /// <summary>
-    /// Interação lógica para AdicionarCartao.xam
-    /// </summary>
     public partial class AdicionarCartao : Window
     {
+        private bool menuVisivel = true;
+
         public AdicionarCartao()
         {
             InitializeComponent();
         }
+
+        // ABRIR E FECHAR O MENU HAMBÚRGUER
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
+            }
+        }
     }
 }
+

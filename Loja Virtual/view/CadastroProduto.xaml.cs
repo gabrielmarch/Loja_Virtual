@@ -17,9 +17,26 @@ namespace Loja_Virtual.view
     /// </summary>
     public partial class CadastroProduto : Window
     {
+        private bool menuVisivel = true;
         public CadastroProduto()
         {
             InitializeComponent();
+        }
+
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
+            }
         }
     }
 }
