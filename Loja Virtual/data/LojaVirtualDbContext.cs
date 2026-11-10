@@ -19,7 +19,7 @@ namespace Loja_Virtual.data
 
         public DbSet<Pagamento> Pagamentos { get; set; } = null!;
 
-        public DbSet<Boleto> Boletos { get; set; } = null!;
+        public DbSet<Boleto> Boletos { get; set; } = null!; //Olá
 
         public DbSet<Cupom> cupoms { get; set; } = null!;
 
