@@ -1,0 +1,195 @@
+﻿<Window x:Class="Loja_Virtual.view.Ouvidoria"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Ouvidoria"
+        Height="750"
+        Width="1250"
+        MinHeight="600"
+        MinWidth="950"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9">
+
+    <Window.Resources>
+        <!-- Botão do menu -->
+        <Style x:Key="BotaoMenu" TargetType="Button">
+            <Setter Property="Width" Value="42"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- Estilo base para os TextBoxes de entrada -->
+        <Style x:Key="InputForm" TargetType="TextBox">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="12,9"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#263B60"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barra superior -->
+        <Grid Grid.Row="0">
+            <Button Style="{StaticResource BotaoMenu}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="20,0,0,0">
+                <materialDesign:PackIcon Kind="Menu"
+                                         Width="25"
+                                         Height="25"
+                                         Foreground="#263B60"/>
+            </Button>
+        </Grid>
+
+        <!-- Área principal -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <Border Margin="15,0,15,15"
+                    MaxWidth="550"
+                    HorizontalAlignment="Center"
+                    Background="White"
+                    BorderBrush="#E0E4EB"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="35">
+
+                <StackPanel>
+
+                    <!-- Título com ícone de voltar -->
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                Margin="0,0,0,25">
+                        <materialDesign:PackIcon Kind="ArrowLeft" 
+                                                 Width="28" 
+                                                 Height="28" 
+                                                 Foreground="#3157A4" 
+                                                 VerticalAlignment="Center" 
+                                                 Margin="0,0,10,0"/>
+                        <TextBlock Text="Ouvidoria"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="#3157A4"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Card do Formulário -->
+                    <Border Background="#F8FAFC"
+                            BorderBrush="#E0E4EB"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="25"
+                            Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Envie sua Reclamação ou Sugestão"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="#263B60"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Utilize o formulário abaixo para nos enviar sua mensagem. Responderemos o mais breve possível."
+                                       FontSize="13"
+                                       Foreground="#6C7A93"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       Margin="0,0,0,20"/>
+
+                            <!-- Campos do formulário -->
+                            <TextBox Style="{StaticResource InputForm}" 
+                                     Text="Seu Nome"/>
+
+                            <TextBox Style="{StaticResource InputForm}" 
+                                     Text="Seu Email"/>
+
+                            <TextBox Style="{StaticResource InputForm}" 
+                                     Height="110"
+                                     Text="Sua Mensagem"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     VerticalContentAlignment="Top"/>
+
+                            <!-- Botão de Enviar -->
+                            <Button Content="Enviar Mensagem"
+                                    Height="42"
+                                    Background="#3157A4"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="14"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="0,8,0,0">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Card de Outras Formas de Contato -->
+                    <Border Background="#F8FAFC"
+                            BorderBrush="#E0E4EB"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Outras Formas de Contato"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="#263B60"
+                                       Margin="0,0,0,12"/>
+
+                            <!-- Telefone -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <materialDesign:PackIcon Kind="Phone" 
+                                                         Width="18" 
+                                                         Height="18" 
+                                                         Foreground="#3157A4" 
+                                                         Margin="0,0,8,0" 
+                                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="Telefone: (XX) XXXX-XXXX" 
+                                           FontSize="13" 
+                                           Foreground="#263B60"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Email -->
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Email" 
+                                                         Width="18" 
+                                                         Height="18" 
+                                                         Foreground="#3157A4" 
+                                                         Margin="0,0,8,0" 
+                                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="Email: ouvidoria@empresa.com" 
+                                           FontSize="13" 
+                                           Foreground="#263B60"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
+            </Border>
+
+        </ScrollViewer>
+
+    </Grid>
+
+</Window>

@@ -180,7 +180,7 @@
                         </Button>
 
 
-                        <Button Style="{StaticResource BotaoMenu}">
+                        <Button x:Name="button_Carrinho" Style="{StaticResource BotaoMenu}" Click="button_Carrinho_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="CartOutline"
                                                  Width="22"
@@ -194,7 +194,7 @@
                         </Button>
 
 
-                        <Button Style="{StaticResource BotaoMenu}">
+                        <Button x:Name="buttonPedidos" Style="{StaticResource BotaoMenu}" Click="buttonPedidos_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="ClipboardListOutline"
                                                          Width="22"
@@ -236,7 +236,7 @@
                         </Button>
 
 
-                        <Button Style="{StaticResource BotaoMenu}">
+                        <Button x:Name="buttonCriarProdutos" Style="{StaticResource BotaoMenu}" Click="buttonCriarProdutos_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="PackageVariant"
                                                          Width="22"

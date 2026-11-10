@@ -72,6 +72,31 @@ namespace Loja_Virtual.view
                 ColunaMenu.Width = new GridLength(0);
             }
         }
+        ///////////////////
+        private void button_Carrinho_Click(object sender, RoutedEventArgs e)
+        {
+            CarrinhoCompras carrinho = new CarrinhoCompras();
+            carrinho.Show();
+
+            this.Close();
+
+        }
+
+        private void buttonPedidos_Click(object sender, RoutedEventArgs e)
+        {
+            StatusPedido statusPedido = new StatusPedido();
+            statusPedido.Show();
+
+            this.Close();
+        }
+
+        private void buttonCriarProdutos_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroProduto cadastroProdutos = new CadastroProduto();
+            cadastroProdutos.Show();
+
+            this.Close();
+        }
     }
 }
-///////////////////
+

@@ -78,9 +78,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"
-        Style="{StaticResource BotaoVoltar}"
-        Click="Voltar_Click">
+            <Button x:Name="button_VoltarCarHome" Grid.Column="0"
+        Style="{StaticResource BotaoVoltar}" Click="button_VoltarCarHome_Click">
 
                 <materialDesign:PackIcon Kind="ArrowLeft"
                              Width="20"

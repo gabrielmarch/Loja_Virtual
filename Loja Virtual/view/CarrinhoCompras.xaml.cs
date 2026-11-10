@@ -22,9 +22,6 @@ namespace Loja_Virtual.view
             InitializeComponent();
         }
 
-        private void Voltar_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
         private void RemoverProduto1_Click(object sender, RoutedEventArgs e)
         {
@@ -46,5 +43,12 @@ namespace Loja_Virtual.view
         {
         }
 
+        private void button_VoltarCarHome_Click(object sender, RoutedEventArgs e)
+        {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.Show();
+
+            this.Close();
+        }
     }
 }
