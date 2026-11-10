@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Loja Virtual": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}

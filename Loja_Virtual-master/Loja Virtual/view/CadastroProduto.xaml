@@ -1,0 +1,467 @@
+﻿<Window x:Class="Loja_Virtual.view.CadastroProduto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:components="clr-namespace:Loja_Virtual.components"
+        Title="Cadastro de Produto"
+        Height="750"
+        Width="1250"
+        MinHeight="600"
+        MinWidth="950"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9">
+
+    <Window.Resources>
+
+        <!-- BOTÕES DO MENU LATERAL -->
+        <Style x:Key="BotaoMenu" TargetType="Button">
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#344563"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="18,0"/>
+            <Setter Property="Margin" Value="8,2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Fundo"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#E8EEF9"/>
+                                <Setter Property="Foreground"
+                                        Value="#3157A4"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#DCE5F5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- BOTÕES DA BARRA SUPERIOR -->
+        <Style x:Key="BotaoSuperior" TargetType="Button">
+            <Setter Property="Width" Value="42"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#344563"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="Fundo"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#E8EEF9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- CAMPOS DO FORMULÁRIO -->
+        <Style x:Key="CampoTexto" TargetType="TextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#263B60"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,6,0,14"/>
+        </Style>
+
+        <!-- RÓTULOS -->
+        <Style x:Key="LabelCampo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#555F70"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+        </Style>
+
+        <!-- BOTÃO CONFIRMAR -->
+        <Style x:Key="BotaoPrincipal" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Background" Value="#3157A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- BOTÕES DE IMAGEM -->
+        <Style x:Key="BotaoSecundario" TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Background" Value="#E8EEF9"/>
+            <Setter Property="Foreground" Value="#3157A4"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+    </Window.Resources>
+
+    <!-- ESTRUTURA PRINCIPAL -->
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ColunaMenu" Width="165"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ====================================== -->
+        <!-- MENU LATERAL -->
+        <!-- ====================================== -->
+
+        <!-- MENU LATERAL COMPARTILHADO -->
+        <components:MenuLateral x:Name="BarraLateral"
+                        Grid.Column="0"/>
+
+        <!-- ====================================== -->
+        <!-- CONTEÚDO PRINCIPAL -->
+        <!-- ====================================== -->
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- BARRA SUPERIOR -->
+            <Border Grid.Row="0"
+                    Background="White"
+                    BorderBrush="#E0E4EB"
+                    BorderThickness="0,0,0,1">
+
+                <Grid Margin="15,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- BOTÃO HAMBÚRGUER -->
+                    <Button x:Name="buttonMenu"
+                            Grid.Column="0"
+                            Style="{StaticResource BotaoSuperior}"
+                            HorizontalAlignment="Left"
+                            Click="buttonMenu_Click">
+
+                        <materialDesign:PackIcon Kind="Menu"
+                                                 Width="24"
+                                                 Height="24"
+                                                 Foreground="#344563"/>
+                    </Button>
+
+                    <!-- ÍCONES SUPERIORES -->
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+
+                        <Button Style="{StaticResource BotaoSuperior}">
+                            <materialDesign:PackIcon Kind="CogOutline"
+                                                     Width="23"
+                                                     Height="23"
+                                                     Foreground="#344563"/>
+                        </Button>
+
+                        <Button Style="{StaticResource BotaoSuperior}">
+                            <materialDesign:PackIcon Kind="BellOutline"
+                                                     Width="23"
+                                                     Height="23"
+                                                     Foreground="#344563"/>
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+            <!-- ÁREA DE CADASTRO -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto">
+
+                <Grid Margin="25">
+
+                    <Border Background="White"
+                            CornerRadius="12"
+                            BorderBrush="#E0E4EB"
+                            BorderThickness="1"
+                            Padding="30"
+                            MinWidth="550">
+
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20"
+                                              ShadowDepth="3"
+                                              Opacity="0.10"/>
+                        </Border.Effect>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- CABEÇALHO DO FORMULÁRIO -->
+                            <StackPanel Grid.Row="0"
+                                        Margin="0,0,0,25">
+
+                                <TextBlock Text="Cadastro de Produto"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Foreground="#263B60"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Preencha as informações para cadastrar um novo produto."
+                                           FontSize="13"
+                                           Foreground="#8993A5"
+                                           Margin="0,6,0,0"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"/>
+
+                            </StackPanel>
+
+                            <!-- CAMPOS DO PRODUTO -->
+                            <Grid Grid.Row="1">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="180"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- FORMULÁRIO ESQUERDO -->
+                                <Grid Grid.Column="0"
+                                      Margin="0,0,25,0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- ID -->
+                                    <StackPanel Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="0,0,12,0">
+
+                                        <TextBlock Text="ID:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtIdProduto"
+                                                 Style="{StaticResource CampoTexto}"
+                                                 IsReadOnly="True"
+                                                 Background="#F3F5F9"/>
+
+                                    </StackPanel>
+
+                                    <!-- NOME -->
+                                    <StackPanel Grid.Row="0"
+                                                Grid.Column="1"
+                                                Grid.ColumnSpan="2">
+
+                                        <TextBlock Text="Nome do produto:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtNomeProduto"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                    <!-- PREÇO -->
+                                    <StackPanel Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="0,0,12,0">
+
+                                        <TextBlock Text="Preço:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtPrecoProduto"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                    <!-- UNIDADE -->
+                                    <StackPanel Grid.Row="1"
+                                                Grid.Column="1"
+                                                Margin="0,0,12,0">
+
+                                        <TextBlock Text="Unidade:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtUnidadeProduto"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                    <!-- ESTOQUE -->
+                                    <StackPanel Grid.Row="1"
+                                                Grid.Column="2">
+
+                                        <TextBlock Text="Estoque:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtEstoqueProduto"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                    <!-- DESCRIÇÃO -->
+                                    <StackPanel Grid.Row="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3">
+
+                                        <TextBlock Text="Descrição:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtDescri"
+                                                 Height="75"
+                                                 Style="{StaticResource CampoTexto}"
+                                                 TextWrapping="Wrap"
+                                                 AcceptsReturn="True"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 VerticalContentAlignment="Top"/>
+
+                                    </StackPanel>
+
+                                    <!-- CÓDIGO DE BARRAS -->
+                                    <StackPanel Grid.Row="3"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3">
+
+                                        <TextBlock Text="Código de barras:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtCodBarrasProd"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                    <!-- FORNECEDOR -->
+                                    <StackPanel Grid.Row="4"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3">
+
+                                        <TextBlock Text="Fornecedor:"
+                                                   Style="{StaticResource LabelCampo}"/>
+
+                                        <TextBox x:Name="txtFornecedor"
+                                                 Style="{StaticResource CampoTexto}"/>
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <!-- IMAGEM DO PRODUTO -->
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Top">
+
+                                    <TextBlock Text="Imagem do produto"
+                                               Style="{StaticResource LabelCampo}"
+                                               Margin="0,0,0,10"/>
+
+                                    <Border Height="155"
+                                            Background="#F0F3F9"
+                                            BorderBrush="#D5D9E2"
+                                            BorderThickness="1"
+                                            CornerRadius="8">
+
+                                        <TextBlock Text="Nenhuma imagem&#10;selecionada"
+                                                   Foreground="#8993A5"
+                                                   FontSize="12"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Button x:Name="buttonInserirImg"
+                                            Content="Inserir imagem"
+                                            Style="{StaticResource BotaoSecundario}"
+                                            Margin="0,12,0,0"/>
+
+                                    <Button x:Name="buttonLimparImg"
+                                            Content="Remover imagem"
+                                            Style="{StaticResource BotaoSecundario}"
+                                            Margin="0,8,0,0"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <!-- CONFIRMAR CADASTRO -->
+                            <StackPanel Grid.Row="2"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,20,0,0">
+
+                                <Button x:Name="buttonConfirmarCad"
+                                        Content="CONFIRMAR"
+                                        Style="{StaticResource BotaoPrincipal}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
