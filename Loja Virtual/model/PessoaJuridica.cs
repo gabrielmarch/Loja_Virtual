@@ -6,13 +6,15 @@ namespace Loja_Virtual.model
 {
     public class PessoaJuridica : Cliente
     {
-        public string CNPJ { get; set; } = string.Empty;
+        private Cliente idCliente { get; set; }
 
-        public string RazaoSocial { get; set; } = string.Empty;
+        private string CNPJ { get; set; } = string.Empty;
 
-        public string NomeFantasia { get; set; } = string.Empty;
+        private string RazaoSocial { get; set; } = string.Empty;
 
-        public bool ValidarCNPJ()
+        private string NomeFantasia { get; set; } = string.Empty;
+
+        private bool ValidarCNPJ()
         {
             
             return false;
