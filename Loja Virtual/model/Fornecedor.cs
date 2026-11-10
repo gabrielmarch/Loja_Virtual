@@ -4,7 +4,26 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    internal class Fornecedor
+    public class Fornecedor
     {
+
+        public int idFornecedor { get; set; }
+
+        public string NomeFornecedor { get; set; } = string.Empty;
+
+        public string EmailFornecedor { get; set; } = string.Empty;
+
+        public string TelefoneFornecedor { get; set; } = string.Empty;
+
+        public string CNPJFornecedor { get; set; } = string.Empty;
+
+        public Fornecedor(int idFornecedor, string nomeFornecedor, string emailFornecedor, string telefoneFornecedor, string cNPJFornecedor)
+        {
+            this.idFornecedor = idFornecedor;
+            NomeFornecedor = nomeFornecedor;
+            EmailFornecedor = emailFornecedor;
+            TelefoneFornecedor = telefoneFornecedor;
+            CNPJFornecedor = cNPJFornecedor;
+        }
     }
 }
