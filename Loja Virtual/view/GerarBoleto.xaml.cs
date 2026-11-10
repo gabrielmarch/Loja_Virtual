@@ -16,7 +16,7 @@ namespace Loja_Virtual.view
     /// <summary>
     /// Interação lógica para GerarBoleto.xam
     /// </summary>
-    public partial class GerarBoleto : Page
+    public partial class GerarBoleto : Window
     {
         public GerarBoleto()
         {

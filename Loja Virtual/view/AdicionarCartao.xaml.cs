@@ -16,7 +16,7 @@ namespace Loja_Virtual.view
     /// <summary>
     /// Interação lógica para AdicionarCartao.xam
     /// </summary>
-    public partial class AdicionarCartao : Page
+    public partial class AdicionarCartao : Window
     {
         public AdicionarCartao()
         {

@@ -16,7 +16,7 @@ namespace Loja_Virtual.view
     /// <summary>
     /// Interação lógica para MetodoPagamento.xam
     /// </summary>
-    public partial class MetodoPagamento : Page
+    public partial class MetodoPagamento : Window
     {
         public MetodoPagamento()
         {
