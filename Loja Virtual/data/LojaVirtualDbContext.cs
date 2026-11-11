@@ -31,7 +31,7 @@ namespace Loja_Virtual.data
 
         public DbSet<Cartao> cartoes { get; set; } = null!;
 
-        public DbSet<Pagamento> Pagamentos { get; set; } = null!;}
+        public DbSet<Pagamento> Pagamentos { get; set; } = null!;
 
 
 
@@ -54,6 +54,31 @@ namespace Loja_Virtual.data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // CHAVE PRIMÁRIA DE PEDIDO
+            modelBuilder.Entity<Pedido>()
+                .HasKey(p => p.idPedido);
+
+            // CHAVE PRIMÁRIA DE SERVIÇO
+            modelBuilder.Entity<Servico>()
+                .HasKey(s => s.IdServico);
+
+            modelBuilder.Entity<Cupom>(e =>
+            {
+                e.ToTable("Cupons");
+
+                e.HasKey(c => c.idCupom);
+
+                e.Property(c => c.CodigoCupom)
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                e.Property(c => c.Desconto)
+                    .HasColumnType("decimal(18,2)");
+
+                e.HasIndex(c => c.CodigoCupom)
+                    .IsUnique();
+            });
 
 
             modelBuilder.Entity<Cliente>(e =>
@@ -97,6 +122,7 @@ namespace Loja_Virtual.data
                 e.Property(f => f.TelefoneFornecedor).HasMaxLength(20);
                 e.Property(f => f.CNPJFornecedor).HasMaxLength(18).IsRequired();
                 e.HasIndex(f => f.CNPJFornecedor).IsUnique();
+                e.HasKey(f => f.idFornecedor);
             });
                
             modelBuilder.Entity<Produto>(e =>
@@ -104,11 +130,12 @@ namespace Loja_Virtual.data
                 e.ToTable("Produtos");
                 e.Property(p => p.NomeProduto).HasMaxLength(200).IsRequired();
                 e.Property(p => p.Preco).HasColumnType("decimal(18,2)");
-                e.Property(p => p.Peso).HasColumnType("decimal(10,3");
+                e.Property(p => p.Peso).HasColumnType("decimal(10,3)");
                 e.Property(p => p.Unidade).HasMaxLength(50);
                 e.Property(p => p.DescricaoProduto).HasMaxLength(500);
                 e.Property(p => p.CodigoBarras).HasMaxLength(50);
                 e.HasIndex(p => p.CodigoBarras).IsUnique();
+                e.HasKey(p => p.IdProduto);
                 e.HasOne(p => p.Fornecedor)
                     .WithMany(f => f.Produtos)
                     .HasForeignKey(p => p.FornecedorId)

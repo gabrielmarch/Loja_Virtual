@@ -237,7 +237,7 @@
                                         </Border>
 
 
-                                        <TextBlock Text="{Binding Nome}"
+                                        <TextBlock Text="{Binding NomeProduto}"
                                                    FontSize="16"
                                                    FontWeight="SemiBold"
                                                    Foreground="#263B60"

@@ -1,63 +1,66 @@
 ﻿
+using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
+using Loja_Virtual.controll;
+using Loja_Virtual.model;
 
 namespace Loja_Virtual.view
 {
     public partial class TelaPrincipal : Window
     {
-        private ObservableCollection<ProdutoExibicao> produtos =
-            new ObservableCollection<ProdutoExibicao>();
+        private readonly ProdutoController produtoController = new();
+
+        private readonly ObservableCollection<Produto> produtos = new();
 
         private bool menuVisivel = true;
+
         public TelaPrincipal()
         {
             InitializeComponent();
 
-            CarregarProdutos();//
-        }
-
-
-        ///////////////////
-        // Código que carrega os produtos na tela princiapal. Apenas para exemplos - Gabriel
-
-        private void CarregarProdutos()
-        {
-            produtos.Add(new ProdutoExibicao("Mouse", 100.00m));
-            produtos.Add(new ProdutoExibicao("Teclado", 150.00m));
-            produtos.Add(new ProdutoExibicao("Teclado", 200.00m));
-            produtos.Add(new ProdutoExibicao("Mémoria Ram", 600.00m));
-            produtos.Add(new ProdutoExibicao("Pc Gamer", 80000.00m));
-
-            produtos.Add(new ProdutoExibicao("Mouse", 125.00m));
-            produtos.Add(new ProdutoExibicao("Teclado", 180.00m));
-            produtos.Add(new ProdutoExibicao("Notebook", 2900.00m));
-            produtos.Add(new ProdutoExibicao("Fone de Ouvido", 35.00m));
-            produtos.Add(new ProdutoExibicao("Pc Gamer", 4800.00m));
-
-            produtos.Add(new ProdutoExibicao("Webcam", 225.00m));
-            produtos.Add(new ProdutoExibicao("Cadeira Gamer", 320.00m));
-            produtos.Add(new ProdutoExibicao("Mesa Gamer", 290.00m));
-            produtos.Add(new ProdutoExibicao("Gamer Gamer", 240.00m));
-            produtos.Add(new ProdutoExibicao("Fone de Ouvido", 30.00m));
-
             ListaProdutos.ItemsSource = produtos;
+
+            Loaded += TelaPrincipal_Loaded;
         }
 
-        public class ProdutoExibicao
+        private async void TelaPrincipal_Loaded(
+            object sender, RoutedEventArgs e)
         {
-            public string Nome { get; set; }
+            await CarregarProdutosAsync();
+        }
 
-            public decimal Preco { get; set; }
-
-            public ProdutoExibicao(string nome, decimal preco)
+        // CARREGAR PRODUTOS DO BANCO DE DADOS
+        private async Task CarregarProdutosAsync()
+        {
+            try
             {
-                Nome = nome;
-                Preco = preco;
+                // Busca os produtos no banco
+                var produtosBanco =
+                    await produtoController.ListarProdutosAsync();
+
+                // Limpa a lista atual
+                produtos.Clear();
+
+                // Adiciona os produtos encontrados
+                foreach (var produto in produtosBanco)
+                {
+                    produtos.Add(produto);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erro ao carregar os produtos:\n\n" + ex.Message,
+                    "Loja Virtual",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
-        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        private void buttonMenu_Click(
+            object sender, RoutedEventArgs e)
         {
             menuVisivel = !menuVisivel;
 
@@ -72,17 +75,18 @@ namespace Loja_Virtual.view
                 ColunaMenu.Width = new GridLength(0);
             }
         }
-        ///////////////////
-        private void button_Carrinho_Click(object sender, RoutedEventArgs e)
+
+        private void button_Carrinho_Click(
+            object sender, RoutedEventArgs e)
         {
             CarrinhoCompras carrinho = new CarrinhoCompras();
             carrinho.Show();
 
             this.Close();
-
         }
 
-        private void buttonPedidos_Click(object sender, RoutedEventArgs e)
+        private void buttonPedidos_Click(
+            object sender, RoutedEventArgs e)
         {
             StatusPedido statusPedido = new StatusPedido();
             statusPedido.Show();
@@ -90,7 +94,8 @@ namespace Loja_Virtual.view
             this.Close();
         }
 
-        private void buttonCriarProdutos_Click(object sender, RoutedEventArgs e)
+        private void buttonCriarProdutos_Click(
+            object sender, RoutedEventArgs e)
         {
             CadastroProduto cadastroProdutos = new CadastroProduto();
             cadastroProdutos.Show();

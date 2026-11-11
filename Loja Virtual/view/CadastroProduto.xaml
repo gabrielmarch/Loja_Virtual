@@ -397,8 +397,17 @@
                                         <TextBlock Text="Fornecedor:"
                                                    Style="{StaticResource LabelCampo}"/>
 
-                                        <TextBox x:Name="txtFornecedor"
-                                                 Style="{StaticResource CampoTexto}"/>
+
+                                        <ComboBox x:Name="cmbFornecedor"
+                                                  Height="40"
+                                                  Margin="0,6,0,14"
+                                                  Background="White"
+                                                  Foreground="#263B60"
+                                                  BorderBrush="#D5D9E2"
+                                                  BorderThickness="1"
+                                                  DisplayMemberPath="NomeFornecedor"
+                                                  SelectedValuePath="idFornecedor"/>
+
 
                                     </StackPanel>
 
@@ -448,8 +457,9 @@
 
                                 <Button x:Name="buttonConfirmarCad"
                                         Content="CONFIRMAR"
-                                        Style="{StaticResource BotaoPrincipal}"/>
-
+                                        Style="{StaticResource BotaoPrincipal}"
+                                        Click="buttonConfirmarCad_Click"/>
+                                
                             </StackPanel>
 
                         </Grid>
