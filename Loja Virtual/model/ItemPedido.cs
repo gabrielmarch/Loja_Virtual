@@ -7,19 +7,13 @@ namespace Loja_Virtual.model
     public class ItemPedido
     {
  
-        public int Id{ get; set; }
+        public int Id { get; set; }
 
-        public int PedidoId { get; set; }
+        public Pedido idPedido { get; set; }
 
-        public Pedido Pedido { get; set; }
+        public Produto idProduto { get; set; }
 
-        public int? ProdutoId { get; set; }
-
-        public Produto? Produto { get; set; }
-
-        public int? ServicoId { get; set; }
-
-        public Servico? Servico { get; set; }
+        public Servico idServico { get; set; }
 
         public int Quantidade { get; set; }
 

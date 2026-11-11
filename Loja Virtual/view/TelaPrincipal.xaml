@@ -218,7 +218,9 @@
 
                             <DataTemplate>
 
-                                <Border Style="{StaticResource CartaoProduto}">
+                                <Border Style="{StaticResource CartaoProduto}"
+                                    Cursor="Hand"
+                                    MouseLeftButtonUp="Produto_Click">
 
                                     <StackPanel VerticalAlignment="Center">
 

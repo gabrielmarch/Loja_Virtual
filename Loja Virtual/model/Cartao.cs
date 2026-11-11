@@ -4,8 +4,12 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    public class Cartao : Pagamento
+    public class Cartao
     {
+
+        public Pagamento idPagamento { get; set; }
+
+        public int Id { get; set; }
 
         public string NomeTitular { get; set; } = string.Empty;
 

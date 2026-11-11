@@ -7,11 +7,11 @@ namespace Loja_Virtual.model
     public class Cupom
     {
 
-        public int idCupom { get; set; }
+        public int Id { get; set; }
 
         public string CodigoCupom { get; set; } = string.Empty;
 
-        public decimal Desconto { get; set; }
+        public int Desconto { get; set; }
 
         public DateTime DataValidade { get; set; }
 

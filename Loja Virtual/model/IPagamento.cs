@@ -7,7 +7,7 @@ namespace Loja_Virtual.model
     internal class IPagamento
     {
 
-        private int idPagamento { get; set; }
+        private int Id { get; set; }
 
         private decimal ValorPagamento { get; set; }
 

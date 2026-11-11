@@ -15,7 +15,6 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="0,5,0,12"/>
             <Setter Property="BorderBrush" Value="#D5D9E2"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -25,9 +24,9 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="0,5,0,12"/>
             <Setter Property="BorderBrush" Value="#D5D9E2"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="BotaoPrincipal" TargetType="Button">
@@ -110,27 +109,83 @@
                                HorizontalAlignment="Center"
                                Margin="0,0,0,20"/>
 
-                    <TextBox x:Name="txtNome"
-                             Style="{StaticResource CampoTexto}"
-                             ToolTip="Nome completo"/>
+                    <!-- Nome -->
+                    <Grid Height="57">
+                        <TextBox x:Name="txtNome"
+                                 Style="{StaticResource CampoTexto}"
+                                 Margin="0,5,0,12"
+                                 TextChanged="txtNome_TextChanged"/>
 
-                    <TextBox x:Name="txtEmail"
-                             Style="{StaticResource CampoTexto}"
-                             ToolTip="E-mail"/>
+                        <TextBlock Text="Nome completo"
+                                   Foreground="#888888"
+                                   Margin="12,0,0,12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="phNome"/>
+                    </Grid>
 
-                    <TextBox x:Name="txtCpfCnpj"
-                             Style="{StaticResource CampoTexto}"
-                             MaxLength="18"
-                             ToolTip="CPF ou CNPJ"/>
+                    <!-- Email -->
+                    <Grid Height="57">
+                        <TextBox x:Name="txtEmail"
+                                 Style="{StaticResource CampoTexto}"
+                                 Margin="0,5,0,12"
+                                 TextChanged="txtEmail_TextChanged"/>
 
-                    <PasswordBox x:Name="txtSenha"
-                                 Style="{StaticResource CampoSenha}"
-                                 ToolTip="Senha"/>
+                        <TextBlock Text="E-mail"
+                                   Foreground="#888888"
+                                   Margin="12,0,0,12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="phEmail"/>
+                    </Grid>
 
-                    <PasswordBox x:Name="txtConfirmarSenha"
-                                 Style="{StaticResource CampoSenha}"
-                                 ToolTip="Confirmar senha"/>
+                    <!-- CPF/CNPJ -->
+                    <Grid Height="57">
+                        <TextBox x:Name="txtCpfCnpj"
+                                 Style="{StaticResource CampoTexto}"
+                                 Margin="0,5,0,12"
+                                 MaxLength="18"
+                                 TextChanged="txtCpfCnpj_TextChanged"/>
 
+                        <TextBlock Text="CPF ou CNPJ"
+                                   Foreground="#888888"
+                                   Margin="12,0,0,12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="phCpfCnpj"/>
+                    </Grid>
+
+                    <!-- Senha -->
+                    <Grid Height="57">
+                        <PasswordBox x:Name="txtSenha"
+                                     Style="{StaticResource CampoSenha}"
+                                     Margin="0,5,0,12"
+                                     PasswordChanged="txtSenha_PasswordChanged"/>
+
+                        <TextBlock Text="Senha"
+                                   Foreground="#888888"
+                                   Margin="12,0,0,12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="phSenha"/>
+                    </Grid>
+
+                    <!-- Confirmar Senha -->
+                    <Grid Height="57">
+                        <PasswordBox x:Name="txtConfirmarSenha"
+                                     Style="{StaticResource CampoSenha}"
+                                     Margin="0,5,0,12"
+                                     PasswordChanged="txtConfirmarSenha_PasswordChanged"/>
+
+                        <TextBlock Text="Confirmar senha"
+                                   Foreground="#888888"
+                                   Margin="12,0,0,12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="phConfirmarSenha"/>
+                    </Grid>
+
+                    <!-- Botão Cadastrar -->
                     <Button Content="CADASTRAR"
                             Click="BtnCadastrar_Click"
                             Style="{StaticResource BotaoPrincipal}"

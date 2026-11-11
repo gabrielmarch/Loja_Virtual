@@ -12,9 +12,12 @@ namespace Loja_Virtual.model
 
         public string NomeFantasia { get; set; } = string.Empty;
 
+        public PessoaJuridica()
+        {
+        }
+
         public bool ValidarCNPJ()
         {
-            
             return false;
         }
     }

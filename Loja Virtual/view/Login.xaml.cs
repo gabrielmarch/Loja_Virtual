@@ -1,4 +1,5 @@
 ﻿using Loja_Virtual.controll;
+using Loja_Virtual.model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,28 +25,35 @@ namespace Loja_Virtual.view
             _controller = new LoginController();
         }
 
+
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)
         {
             bool valido = _controller.ValidarLogin(
                 txtCpfCnpj.Text,
                 txtSenha.Password,
-                out string mensagem
+                out string mensagem,
+                out int clienteId
             );
-            /// apenas para teste, depois vamos implementar a autenticação
-            TelaPrincipal principal = new TelaPrincipal();
-
-            principal.Show();
-
-            this.Close();
-            ///
-
-        MessageBox.Show(mensagem);
 
             if (valido)
             {
-                // Posteriormente implementaremos a autenticação.
+                SessaoUsuario.ClienteId = clienteId;
+
+                TelaPrincipal principal = new TelaPrincipal(clienteId);
+                principal.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(
+                    mensagem,
+                    "Erro no login",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
             }
         }
+
 
         private void BtnCriarConta_Click(object sender, RoutedEventArgs e)
         {

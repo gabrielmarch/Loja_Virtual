@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Loja_Virtual.model;
 
 using Loja_Virtual.view;
 
@@ -36,7 +37,7 @@ namespace Loja_Virtual.components
             {
                 case "Home":
                     if (janelaAtual is TelaPrincipal) return;
-                    novaTela = new TelaPrincipal();
+                    novaTela = new TelaPrincipal(SessaoUsuario.ClienteId);
                     break;
 
                 case "Carrinho":

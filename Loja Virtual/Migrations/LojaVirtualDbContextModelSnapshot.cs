@@ -22,6 +22,68 @@ namespace Loja_Virtual.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Loja_Virtual.model.Boleto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodigoBarras")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LinhaDigitavel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PagamentoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PagamentoId");
+
+                    b.ToTable("Boletos");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Cartao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("NomeTitular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bandeira")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idPagamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("numeroCartao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("parcelas")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("idPagamentoId");
+
+                    b.ToTable("cartoes");
+                });
+
             modelBuilder.Entity("Loja_Virtual.model.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +132,206 @@ namespace Loja_Virtual.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("Loja_Virtual.model.Cupom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodigoCupom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataValidade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Desconto")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ativo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("cupoms");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Fornecedor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CNPJFornecedor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailFornecedor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeFornecedor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelefoneFornecedor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("fornecedores");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.ItemPedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("PrecoUnitario")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("idPedidoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idServicoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("idPedidoId");
+
+                    b.HasIndex("idProdutoId");
+
+                    b.HasIndex("idServicoId");
+
+                    b.ToTable("itemPedidos");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Pagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pagamento");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataPedido")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Desconto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("idCupomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("idCupomId");
+
+                    b.ToTable("Pedidos");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodigoBarras")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescricaoProduto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstoqueProduto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomeProduto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Peso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("idFornecedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("idFornecedorId");
+
+                    b.ToTable("Produtos");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Servico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DescricaoServico")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TipoServico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Servicos");
+                });
+
             modelBuilder.Entity("Loja_Virtual.model.PessoaFisica", b =>
                 {
                     b.HasBaseType("Loja_Virtual.model.Cliente");
@@ -101,6 +363,83 @@ namespace Loja_Virtual.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("PessoaJuridica");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Boleto", b =>
+                {
+                    b.HasOne("Loja_Virtual.model.Pagamento", "Pagamento")
+                        .WithMany()
+                        .HasForeignKey("PagamentoId");
+
+                    b.Navigation("Pagamento");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Cartao", b =>
+                {
+                    b.HasOne("Loja_Virtual.model.Pagamento", "idPagamento")
+                        .WithMany()
+                        .HasForeignKey("idPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("idPagamento");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.ItemPedido", b =>
+                {
+                    b.HasOne("Loja_Virtual.model.Pedido", "idPedido")
+                        .WithMany()
+                        .HasForeignKey("idPedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Loja_Virtual.model.Produto", "idProduto")
+                        .WithMany()
+                        .HasForeignKey("idProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Loja_Virtual.model.Servico", "idServico")
+                        .WithMany()
+                        .HasForeignKey("idServicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("idPedido");
+
+                    b.Navigation("idProduto");
+
+                    b.Navigation("idServico");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Pedido", b =>
+                {
+                    b.HasOne("Loja_Virtual.model.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Loja_Virtual.model.Cupom", "idCupom")
+                        .WithMany()
+                        .HasForeignKey("idCupomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("idCupom");
+                });
+
+            modelBuilder.Entity("Loja_Virtual.model.Produto", b =>
+                {
+                    b.HasOne("Loja_Virtual.model.Fornecedor", "idFornecedor")
+                        .WithMany()
+                        .HasForeignKey("idFornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("idFornecedor");
                 });
 #pragma warning restore 612, 618
         }

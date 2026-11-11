@@ -6,16 +6,11 @@ namespace Loja_Virtual.model
 {
     public class Produto
     {
-        public int IdProduto { get; set; }
+        public int Id { get; set; }
 
-        public int FornecedorId { get; set; }
-
-        public Fornecedor Fornecedor { get; set; } = null!;
+        public Fornecedor idFornecedor { get; set; } = null!;
 
         public string NomeProduto { get; set; } = string.Empty;
-
-        public decimal Preco { get; set; }
-        public string Unidade { get; set; } = string.Empty;
 
         public int EstoqueProduto { get; set; }
 
@@ -24,7 +19,7 @@ namespace Loja_Virtual.model
         public decimal Peso { get; set; }
 
         public string DescricaoProduto { get; set; } = string.Empty;
-
+        public decimal Preco { get; set; }
 
     }
 }

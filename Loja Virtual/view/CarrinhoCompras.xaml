@@ -278,188 +278,72 @@
                 <!-- LISTA DE PRODUTOS -->
                 <!-- ====================================== -->
 
+
                 <ScrollViewer Grid.Row="2"
-                              VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
 
-                    <StackPanel>
+                    <ItemsControl x:Name="ListaCarrinho">
 
-                        <!-- PRODUTO 1 -->
-                        <Border x:Name="Produto1"
-                                Background="White"
-                                CornerRadius="12"
-                                Padding="18"
-                                Margin="0,0,0,12"
-                                BorderBrush="#E0E4EB"
-                                BorderThickness="1">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-                            <Grid>
+                                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="18"
+                        Margin="0,0,0,12"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1">
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="110"/>
-                                    <ColumnDefinition Width="110"/>
-                                    <ColumnDefinition Width="120"/>
-                                </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="120"/>
+                                        </Grid.ColumnDefinitions>
 
-                                <!-- INFORMAÇÕES -->
-                                <StackPanel Grid.Column="0"
-                                            Orientation="Horizontal">
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding Nome}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#263B60"/>
 
-                                    <Border Width="75"
-                                            Height="75"
-                                            Background="#F0F3F9"
-                                            CornerRadius="8"/>
+                                            <Button Content="Remover"
+                                    Click="RemoverProduto_Click"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Foreground="#D95360"
+                                    HorizontalAlignment="Left"
+                                    Padding="0,5"/>
+                                        </StackPanel>
 
-                                    <StackPanel VerticalAlignment="Center"
-                                                Margin="15,0,0,0">
+                                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Preco, StringFormat='{}{0:C2}', ConverterCulture=pt-BR}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Produto 01"
-                                                   FontSize="16"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#263B60"/>
+                                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Quantidade}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Descrição do produto"
-                                                   FontSize="12"
-                                                   Foreground="#8993A5"
-                                                   Margin="0,5,0,0"/>
+                                        <TextBlock Grid.Column="3"
+                                   Text="{Binding Subtotal, StringFormat='{}{0:C2}', ConverterCulture=pt-BR}"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
 
-                                        <Button x:Name="Remover1"
-                                                Content="Remover"
-                                                Click="RemoverProduto1_Click"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Foreground="#D95360"
-                                                HorizontalAlignment="Left"
-                                                Padding="0,5"
-                                                FontSize="12"
-                                                Cursor="Hand"/>
+                                    </Grid>
+                                </Border>
 
-                                    </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
 
-                                </StackPanel>
-
-                                <!-- PREÇO -->
-                                <TextBlock Grid.Column="1"
-                                           Text="R$ 100,00"
-                                           FontSize="14"
-                                           Foreground="#555F70"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-
-                                <!-- QUANTIDADE -->
-                                <TextBox x:Name="Quantidade1"
-                                         Grid.Column="2"
-                                         Text="1"
-                                         Style="{StaticResource CampoTexto}"
-                                         Width="55"
-                                         HorizontalContentAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         HorizontalAlignment="Center"
-                                         TextChanged="Quantidade_TextChanged"/>
-
-                                <!-- SUBTOTAL -->
-                                <TextBlock x:Name="Subtotal1"
-                                           Grid.Column="3"
-                                           Text="R$ 100,00"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="#263B60"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"/>
-
-                            </Grid>
-                        </Border>
-
-                        <!-- PRODUTO 2 -->
-                        <Border x:Name="Produto2"
-                                Background="White"
-                                CornerRadius="12"
-                                Padding="18"
-                                Margin="0,0,0,12"
-                                BorderBrush="#E0E4EB"
-                                BorderThickness="1">
-
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="110"/>
-                                    <ColumnDefinition Width="110"/>
-                                    <ColumnDefinition Width="120"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- INFORMAÇÕES -->
-                                <StackPanel Grid.Column="0"
-                                            Orientation="Horizontal">
-
-                                    <Border Width="75"
-                                            Height="75"
-                                            Background="#F0F3F9"
-                                            CornerRadius="8"/>
-
-                                    <StackPanel VerticalAlignment="Center"
-                                                Margin="15,0,0,0">
-
-                                        <TextBlock Text="Produto 02"
-                                                   FontSize="16"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#263B60"/>
-
-                                        <TextBlock Text="Descrição do produto"
-                                                   FontSize="12"
-                                                   Foreground="#8993A5"
-                                                   Margin="0,5,0,0"/>
-
-                                        <Button x:Name="Remover2"
-                                                Content="Remover"
-                                                Click="RemoverProduto2_Click"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Foreground="#D95360"
-                                                HorizontalAlignment="Left"
-                                                Padding="0,5"
-                                                FontSize="12"
-                                                Cursor="Hand"/>
-
-                                    </StackPanel>
-
-                                </StackPanel>
-
-                                <!-- PREÇO -->
-                                <TextBlock Grid.Column="1"
-                                           Text="R$ 100,00"
-                                           FontSize="14"
-                                           Foreground="#555F70"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-
-                                <!-- QUANTIDADE -->
-                                <TextBox x:Name="Quantidade2"
-                                         Grid.Column="2"
-                                         Text="2"
-                                         Style="{StaticResource CampoTexto}"
-                                         Width="55"
-                                         HorizontalContentAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         HorizontalAlignment="Center"
-                                         TextChanged="Quantidade_TextChanged"/>
-
-                                <!-- SUBTOTAL -->
-                                <TextBlock x:Name="Subtotal2"
-                                           Grid.Column="3"
-                                           Text="R$ 200,00"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="#263B60"
-                                           HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"/>
-
-                            </Grid>
-                        </Border>
-
-                    </StackPanel>
+                    </ItemsControl>
                 </ScrollViewer>
+
 
                 <!-- ====================================== -->
                 <!-- RODAPÉ: CUPOM E RESUMO -->
