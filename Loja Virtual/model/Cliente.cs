@@ -23,6 +23,8 @@ namespace Loja_Virtual.model
         
         public string SenhaHash { get; set; } = string.Empty;
 
+        public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+
         public void AtualizarDados()
         {
             

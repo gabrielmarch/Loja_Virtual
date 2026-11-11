@@ -6,11 +6,16 @@ namespace Loja_Virtual.model
 {
     public class Produto
     {
-        public int idProduto { get; set; }
+        public int IdProduto { get; set; }
 
-        public Fornecedor idFornecedor { get; set; } = null!;
+        public int FornecedorId { get; set; }
+
+        public Fornecedor Fornecedor { get; set; } = null!;
 
         public string NomeProduto { get; set; } = string.Empty;
+
+        public decimal Preco { get; set; }
+        public string Unidade { get; set; } = string.Empty;
 
         public int EstoqueProduto { get; set; }
 

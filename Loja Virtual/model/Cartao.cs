@@ -4,18 +4,16 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    public class Cartao
+    public class Cartao : Pagamento
     {
 
-        private Pagamento idPagamento { get; set; }
+        public string NomeTitular { get; set; } = string.Empty;
 
-        private string NomeTitular { get; set; } = string.Empty;
+        public string bandeira { get; set; } = string.Empty;
 
-        private string bandeira { get; set; } = string.Empty;
+        public string numeroCartao { get; set; } = string.Empty;
 
-        private string numeroCartao { get; set; } = string.Empty;
-
-        private int parcelas { get; set; }
+        public int parcelas { get; set; }
 
 
 

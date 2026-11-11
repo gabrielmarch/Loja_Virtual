@@ -7,19 +7,24 @@ namespace Loja_Virtual.model
     public class Pedido
     {
 
-        private int idPedido { get; set; }
+        public int idPedido { get; set; }
 
-        private Cliente idCliente { get; set; }
+        public Cliente idCliente { get; set; }
 
-        private Cupom idCupom { get; set; }
+        public int? CupomId { get; set; }
 
-        private DateTime DataPedido { get; set; }
+        public Cupom? Cupom { get; set; }
 
-        private decimal Subtotal { get; set; }
+        public DateTime DataPedido { get; set; }
 
-        private decimal Desconto { get; set; }
+        public decimal Subtotal { get; set; }
 
-        private string Status { get; set; } = string.Empty;
+        public decimal Desconto { get; set; }
+
+        public string Status { get; set; } = string.Empty;
+        
+        public ICollection<ItemPedido> Itens { get; set; } = new List<ItemPedido>();
+        public ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
 
     }
 }

@@ -4,16 +4,14 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    public class Boleto
-    {
+    public class Boleto : Pagamento
+    {   
 
-        private Pagamento idPagamento { get; set; }
+        public string CodigoBarras { get; set; } = string.Empty;
 
-        private string CodigoBarras { get; set; } = string.Empty;
+        public string linhaDigitavel { get; set; } = string.Empty;
 
-        private string linhaDigitavel { get; set; } = string.Empty;
-
-        private DateTime DataVencimento { get; set; }
+        public DateTime DataVencimento { get; set; }
 
     }
 }

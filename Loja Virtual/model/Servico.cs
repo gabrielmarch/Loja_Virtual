@@ -6,11 +6,13 @@ namespace Loja_Virtual.model
 {
     public class Servico
     {
-        private int idServico { get; set; }
+        public int IdServico { get; set; }
 
-        private string TipoServico { get; set; } = string.Empty;
+        public string TipoServico { get; set; } = string.Empty;
 
-        private int DescricaoServico { get; set; }
+        public string DescricaoServico { get; set; } = string.Empty;
+
+        public decimal Preco { get; set; }
 
 
     }
