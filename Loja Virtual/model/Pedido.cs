@@ -9,7 +9,9 @@ namespace Loja_Virtual.model
 
         public int idPedido { get; set; }
 
-        public Cliente idCliente { get; set; }
+        public int ClienteId { get; set; }
+
+        public Cliente Cliente { get; set; } = null!;
 
         public int? CupomId { get; set; }
 
@@ -24,7 +26,7 @@ namespace Loja_Virtual.model
         public string Status { get; set; } = string.Empty;
         
         public ICollection<ItemPedido> Itens { get; set; } = new List<ItemPedido>();
-        public ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
+        public Pagamento? Pagamento { get; set; }
 
     }
 }

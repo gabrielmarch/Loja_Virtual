@@ -95,6 +95,7 @@ namespace Loja_Virtual.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Desconto")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("ativo")
@@ -156,6 +157,7 @@ namespace Loja_Virtual.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecoUnitario")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("ProdutoId")
@@ -168,6 +170,7 @@ namespace Loja_Virtual.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Subtotal")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -178,7 +181,14 @@ namespace Loja_Virtual.Migrations
 
                     b.HasIndex("ServicoId");
 
-                    b.ToTable("itemPedidos");
+                    b.ToTable("ItensPedido", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_ItensPedido_ProdutoOuServico", "([ProdutoId] IS NOT NULL AND [ServicoId] IS NULL) OR ([ProdutoId] IS NULL AND [ServicoId] IS NOT NULL)");
+
+                            t.HasCheckConstraint("CK_ItensPedido_Quantidade", "Quantidade > 0");
+
+                            t.HasCheckConstraint("CK_ItensPedido_Valores", "PrecoUnitario >= 0 AND Subtotal >= 0");
+                        });
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.Pagamento", b =>
@@ -192,28 +202,31 @@ namespace Loja_Virtual.Migrations
                     b.Property<DateTime>("DataPagamento")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TipoPagamento")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<decimal>("ValorPagamento")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PedidoId");
+                    b.HasIndex("PedidoId")
+                        .IsUnique();
 
-                    b.ToTable("Pagamentos");
+                    b.ToTable("Pagamentos", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Pagamento");
+                    b.HasDiscriminator<string>("TipoPagamento").HasValue("Pagamento");
 
                     b.UseTphMappingStrategy();
                 });
@@ -226,6 +239,9 @@ namespace Loja_Virtual.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idPedido"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CupomId")
                         .HasColumnType("int");
 
@@ -233,25 +249,25 @@ namespace Loja_Virtual.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Desconto")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Subtotal")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("idClienteId")
-                        .HasColumnType("int");
 
                     b.HasKey("idPedido");
 
+                    b.HasIndex("ClienteId");
+
                     b.HasIndex("CupomId");
 
-                    b.HasIndex("idClienteId");
-
-                    b.ToTable("pedidos");
+                    b.ToTable("Pedidos", (string)null);
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.Produto", b =>
@@ -317,18 +333,21 @@ namespace Loja_Virtual.Migrations
 
                     b.Property<string>("DescricaoServico")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal>("Preco")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TipoServico")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("IdServico");
 
-                    b.ToTable("Servicos");
+                    b.ToTable("Servicos", (string)null);
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.PessoaFisica", b =>
@@ -382,14 +401,16 @@ namespace Loja_Virtual.Migrations
 
                     b.Property<string>("CodigoBarras")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("DataVencimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("linhaDigitavel")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasDiscriminator().HasValue("Boleto");
                 });
@@ -400,15 +421,18 @@ namespace Loja_Virtual.Migrations
 
                     b.Property<string>("NomeTitular")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("bandeira")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("numeroCartao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(19)
+                        .HasColumnType("nvarchar(19)");
 
                     b.Property<int>("parcelas")
                         .HasColumnType("int");
@@ -426,11 +450,13 @@ namespace Loja_Virtual.Migrations
 
                     b.HasOne("Loja_Virtual.model.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("ProdutoId");
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Loja_Virtual.model.Servico", "Servico")
                         .WithMany()
-                        .HasForeignKey("ServicoId");
+                        .HasForeignKey("ServicoId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Pedido");
 
@@ -442,9 +468,9 @@ namespace Loja_Virtual.Migrations
             modelBuilder.Entity("Loja_Virtual.model.Pagamento", b =>
                 {
                     b.HasOne("Loja_Virtual.model.Pedido", "Pedido")
-                        .WithMany("Pagamentos")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne("Pagamento")
+                        .HasForeignKey("Loja_Virtual.model.Pagamento", "PedidoId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Pedido");
@@ -452,19 +478,20 @@ namespace Loja_Virtual.Migrations
 
             modelBuilder.Entity("Loja_Virtual.model.Pedido", b =>
                 {
-                    b.HasOne("Loja_Virtual.model.Cupom", "Cupom")
-                        .WithMany()
-                        .HasForeignKey("CupomId");
-
-                    b.HasOne("Loja_Virtual.model.Cliente", "idCliente")
+                    b.HasOne("Loja_Virtual.model.Cliente", "Cliente")
                         .WithMany("Pedidos")
-                        .HasForeignKey("idClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Cupom");
+                    b.HasOne("Loja_Virtual.model.Cupom", "Cupom")
+                        .WithMany()
+                        .HasForeignKey("CupomId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("idCliente");
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Cupom");
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.Produto", b =>
@@ -492,7 +519,7 @@ namespace Loja_Virtual.Migrations
                 {
                     b.Navigation("Itens");
 
-                    b.Navigation("Pagamentos");
+                    b.Navigation("Pagamento");
                 });
 #pragma warning restore 612, 618
         }
