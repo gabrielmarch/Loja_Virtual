@@ -262,9 +262,6 @@ namespace Loja_Virtual.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduto"));
 
-                    b.Property<string>("CaminhoImagem")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CodigoBarras")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -280,6 +277,9 @@ namespace Loja_Virtual.Migrations
 
                     b.Property<int>("FornecedorId")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("ImagemProduto")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("NomeProduto")
                         .IsRequired()

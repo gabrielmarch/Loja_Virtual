@@ -11,7 +11,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
-using System.Windows.Media.Imaging;
 using System.Globalization;
 using Loja_Virtual.controll;
 using Loja_Virtual.model;
@@ -118,23 +117,29 @@ namespace Loja_Virtual.view
                 Peso = 0m
             };
 
-            string? imagemCopiada = null;
 
             try
             {
                 buttonConfirmarCad.IsEnabled = false;
 
-                // Salvar a imagem selecionada na pasta do aplicativo
+                // Converter a imagem selecionada em bytes
                 if (!string.IsNullOrWhiteSpace(caminhoImagemSelecionada))
                 {
-                    imagemCopiada =
-                        ImagemProdutoService.SalvarImagem(caminhoImagemSelecionada);
+                    FileInfo arquivo = new FileInfo(caminhoImagemSelecionada);
 
-                    // O banco guarda o nome do arquivo
-                    produto.CaminhoImagem = imagemCopiada;
+                    // Limite de 5 MB por imagem
+                    if (arquivo.Length > 5 * 1024 * 1024)
+                    {
+                        throw new ArgumentException(
+                            "A imagem deve ter no máximo 5 MB.");
+                    }
+
+                    // Armazena os bytes diretamente na entidade
+                    produto.ImagemProduto =
+                        await File.ReadAllBytesAsync(caminhoImagemSelecionada);
                 }
 
-                // Cadastrar o produto com sua imagem
+                // Salva o produto e sua imagem no SQL Server
                 int idGerado =
                     await produtoController.CadastrarProdutoAsync(produto);
 
@@ -153,19 +158,6 @@ namespace Loja_Virtual.view
             }
             catch (Exception ex)
             {
-                // Limpar a imagem copiada se o cadastro falhou
-                if (imagemCopiada != null)
-                {
-                    try
-                    {
-                        ImagemProdutoService.ExcluirImagem(imagemCopiada);
-                    }
-                    catch
-                    {
-                        // Uma falha de limpeza não substitui o erro principal
-                    }
-                }
-
                 MessageBox.Show(
                     "Não foi possível cadastrar o produto:\n" + ex.Message,
                     "Erro",
@@ -176,6 +168,7 @@ namespace Loja_Virtual.view
             {
                 buttonConfirmarCad.IsEnabled = true;
             }
+
 
         }
 

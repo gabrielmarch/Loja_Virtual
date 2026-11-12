@@ -238,7 +238,7 @@
 
                                                 <!-- FOTO DO PRODUTO -->
                                                 <Image x:Name="ImagemProdutoCard"
-                                                         Source="{Binding CaminhoImagem,
+                                                         Source="{Binding ImagemProduto,
                                                      Converter={StaticResource CaminhoImagemConverter}}"
                                                          Stretch="Uniform"
                                                          Margin="5"/>

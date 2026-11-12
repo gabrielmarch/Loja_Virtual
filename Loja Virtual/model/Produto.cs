@@ -6,7 +6,7 @@ namespace Loja_Virtual.model
 {
     public class Produto
     {
-        public string? CaminhoImagem { get; set; }
+        public byte[]? ImagemProduto { get; set; }
         public int IdProduto { get; set; }
 
         public int FornecedorId { get; set; }

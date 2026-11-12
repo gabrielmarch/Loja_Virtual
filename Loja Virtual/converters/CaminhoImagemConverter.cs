@@ -17,26 +17,19 @@ namespace Loja_Virtual.converters
             object parameter,
             CultureInfo culture)
         {
-            if (value is not string nomeArquivo ||
-                string.IsNullOrWhiteSpace(nomeArquivo))
-            {
-                return null;
-            }
-
-            string caminho =
-                ImagemProdutoService.ObterCaminhoCompleto(nomeArquivo);
-
-            if (!File.Exists(caminho))
+            if (value is not byte[] bytes || bytes.Length == 0)
                 return null;
 
             try
             {
+                using MemoryStream stream = new MemoryStream(bytes);
+
                 BitmapImage imagem = new BitmapImage();
 
                 imagem.BeginInit();
-                imagem.UriSource = new Uri(caminho);
                 imagem.CacheOption = BitmapCacheOption.OnLoad;
                 imagem.DecodePixelWidth = 400;
+                imagem.StreamSource = stream;
                 imagem.EndInit();
                 imagem.Freeze();
 
