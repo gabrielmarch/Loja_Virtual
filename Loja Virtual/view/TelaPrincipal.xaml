@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:components="clr-namespace:Loja_Virtual.components"
+        xmlns:converters="clr-namespace:Loja_Virtual.converters"
         Title="Loja Virtual"
         Height="750"
         Width="1250"
@@ -12,7 +13,8 @@
         Background="#F3F5F9">
 
     <Window.Resources>
-
+        <converters:CaminhoImagemConverter
+                    x:Key="CaminhoImagemConverter"/>
 
         <Style x:Key="BotaoMenu" TargetType="Button">
             <Setter Property="Height" Value="46"/>
@@ -125,7 +127,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
+        
         <components:MenuLateral x:Name="BarraLateral"
                         Grid.Column="0"/>
 
@@ -208,7 +210,7 @@
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
 
-                                <UniformGrid Columns="5"/>
+                                <UniformGrid Columns="4"/>
 
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
@@ -223,27 +225,74 @@
                                     <StackPanel VerticalAlignment="Center">
 
 
-                                        <Border Height="110"
+
+
+                                        <!-- IMAGEM DO PRODUTO -->
+                                        <Border Height="125"
                                                 Background="#F0F3F9"
                                                 CornerRadius="6"
-                                                Margin="0,0,0,12">
+                                                Margin="0,0,0,12"
+                                                ClipToBounds="True">
 
-                                            <TextBlock Text="Imagem do produto"
-                                                       Foreground="#A0A8B7"
-                                                       FontSize="12"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
+                                            <Grid>
+
+                                                <!-- FOTO DO PRODUTO -->
+                                                <Image x:Name="ImagemProdutoCard"
+                                                         Source="{Binding CaminhoImagem,
+                                                     Converter={StaticResource CaminhoImagemConverter}}"
+                                                         Stretch="Uniform"
+                                                         Margin="5"/>
+
+                                                <!-- MENSAGEM QUANDO NÃO HÁ IMAGEM -->
+                                                <TextBlock Text="Imagem do produto"
+                                                           Foreground="#A0A8B7"
+                                                           FontSize="12"
+                                                           TextAlignment="Center"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center">
+
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+
+                                                            <Setter Property="Visibility"
+                                                                    Value="Collapsed"/>
+
+                                                            <Style.Triggers>
+
+                                                                <DataTrigger Binding="{Binding Source,
+                                                                      ElementName=ImagemProdutoCard}"
+                                                                             Value="{x:Null}">
+
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Visible"/>
+
+                                                                </DataTrigger>
+
+                                                            </Style.Triggers>
+
+                                                        </Style>
+                                                    </TextBlock.Style>
+
+                                                </TextBlock>
+
+                                            </Grid>
 
                                         </Border>
 
 
+
+                                        <!-- NOME DO PRODUTO -->
                                         <TextBlock Text="{Binding NomeProduto}"
-                                                   FontSize="16"
+                                                   FontSize="14"
                                                    FontWeight="SemiBold"
                                                    Foreground="#263B60"
-                                                   HorizontalAlignment="Center"
                                                    TextAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Stretch"
+                                                   VerticalAlignment="Center"
+                                                   MinHeight="40"
                                                    Margin="0,0,0,8"/>
+
 
 
                                         <TextBlock Text="{Binding Preco, StringFormat='{}{0:C2}', ConverterCulture=pt-BR}"

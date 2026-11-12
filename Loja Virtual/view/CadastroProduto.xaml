@@ -413,6 +413,7 @@
 
                                 </Grid>
 
+
                                 <!-- IMAGEM DO PRODUTO -->
                                 <StackPanel Grid.Column="1"
                                             VerticalAlignment="Top">
@@ -421,31 +422,51 @@
                                                Style="{StaticResource LabelCampo}"
                                                Margin="0,0,0,10"/>
 
+                                    <!-- ÁREA DE VISUALIZAÇÃO DA IMAGEM -->
                                     <Border Height="155"
                                             Background="#F0F3F9"
                                             BorderBrush="#D5D9E2"
                                             BorderThickness="1"
-                                            CornerRadius="8">
+                                            CornerRadius="8"
+                                            ClipToBounds="True">
 
-                                        <TextBlock Text="Nenhuma imagem&#10;selecionada"
-                                                   Foreground="#8993A5"
-                                                   FontSize="12"
-                                                   TextAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"/>
+                                        <Grid>
+
+                                            <!-- IMAGEM SELECIONADA -->
+                                            <Image x:Name="imgProduto"
+                                                   Stretch="Uniform"
+                                                   Visibility="Collapsed"
+                                                   Margin="5"/>     
+
+                                            <!-- TEXTO PADRÃO -->
+                                            <TextBlock x:Name="txtSemImagem"
+                                                       Text="Nenhuma imagem&#10;selecionada"
+                                                       Foreground="#8993A5"
+                                                       FontSize="12"
+                                                       TextAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+
+                                        </Grid>
+
                                     </Border>
 
+                                    <!-- BOTÃO INSERIR IMAGEM -->
                                     <Button x:Name="buttonInserirImg"
                                             Content="Inserir imagem"
                                             Style="{StaticResource BotaoSecundario}"
-                                            Margin="0,12,0,0"/>
+                                            Margin="0,12,0,0"
+                                            Click="buttonInserirImg_Click"/>
 
+                                    <!-- BOTÃO REMOVER IMAGEM -->
                                     <Button x:Name="buttonLimparImg"
                                             Content="Remover imagem"
                                             Style="{StaticResource BotaoSecundario}"
-                                            Margin="0,8,0,0"/>
+                                            Margin="0,8,0,0"
+                                            Click="buttonLimparImg_Click"/>
 
                                 </StackPanel>
+
 
                             </Grid>
 

@@ -9,15 +9,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows.Media.Imaging;
 using System.Globalization;
 using Loja_Virtual.controll;
 using Loja_Virtual.model;
+using Loja_Virtual.services;
 
 namespace Loja_Virtual.view
 {
     public partial class CadastroProduto : Window
     {
         private bool menuVisivel = true;
+        private string? caminhoImagemSelecionada = null;
 
         private readonly ProdutoController produtoController = new();
 
@@ -113,16 +118,26 @@ namespace Loja_Virtual.view
                 Peso = 0m
             };
 
+            string? imagemCopiada = null;
+
             try
             {
-                // Evita dois cadastros por cliques repetidos
                 buttonConfirmarCad.IsEnabled = false;
 
-                // Salvar no SQL Server
+                // Salvar a imagem selecionada na pasta do aplicativo
+                if (!string.IsNullOrWhiteSpace(caminhoImagemSelecionada))
+                {
+                    imagemCopiada =
+                        ImagemProdutoService.SalvarImagem(caminhoImagemSelecionada);
+
+                    // O banco guarda o nome do arquivo
+                    produto.CaminhoImagem = imagemCopiada;
+                }
+
+                // Cadastrar o produto com sua imagem
                 int idGerado =
                     await produtoController.CadastrarProdutoAsync(produto);
 
-                // Exibir o ID gerado
                 txtIdProduto.Text = idGerado.ToString();
 
                 MessageBox.Show(
@@ -131,25 +146,28 @@ namespace Loja_Virtual.view
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
-                // Abrir o catálogo atualizado
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.Show();
 
                 this.Close();
             }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(
-                    ex.Message,
-                    "Validação",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-            }
             catch (Exception ex)
             {
+                // Limpar a imagem copiada se o cadastro falhou
+                if (imagemCopiada != null)
+                {
+                    try
+                    {
+                        ImagemProdutoService.ExcluirImagem(imagemCopiada);
+                    }
+                    catch
+                    {
+                        // Uma falha de limpeza não substitui o erro principal
+                    }
+                }
+
                 MessageBox.Show(
-                    "Não foi possível cadastrar o produto:\n" +
-                    ex.Message,
+                    "Não foi possível cadastrar o produto:\n" + ex.Message,
                     "Erro",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
@@ -158,6 +176,7 @@ namespace Loja_Virtual.view
             {
                 buttonConfirmarCad.IsEnabled = true;
             }
+
         }
 
         // ABRIR E FECHAR MENU LATERAL
@@ -177,5 +196,80 @@ namespace Loja_Virtual.view
                 ColunaMenu.Width = new GridLength(0);
             }
         }
+
+        private void buttonInserirImg_Click(
+            object sender, RoutedEventArgs e)
+        {
+            // Abre a janela para selecionar uma imagem
+            OpenFileDialog janela = new OpenFileDialog
+            {
+                Title = "Selecionar imagem do produto",
+
+                Filter = "Arquivos de imagem|*.jpg;*.jpeg;*.png;*.bmp",
+
+                Multiselect = false
+            };
+
+            // Verifica se o usuário selecionou um arquivo
+            if (janela.ShowDialog() == true)
+            {
+                try
+                {
+                    // Carrega a imagem na memória
+                    BitmapImage imagem = new BitmapImage();
+
+                    imagem.BeginInit();
+
+                    imagem.UriSource = new Uri(
+                        janela.FileName,
+                        UriKind.Absolute);
+
+                    imagem.CacheOption = BitmapCacheOption.OnLoad;
+
+                    imagem.EndInit();
+
+                    imagem.Freeze();
+
+                    // Exibe a imagem no formulário
+                    imgProduto.Source = imagem;
+
+                    imgProduto.Visibility = Visibility.Visible;
+
+                    // Esconde o texto padrão
+                    txtSemImagem.Visibility = Visibility.Collapsed;
+
+                    // Armazena o caminho selecionado
+                    caminhoImagemSelecionada = janela.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Não foi possível carregar a imagem.\n\n" +
+                        ex.Message,
+                        "Erro",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void buttonLimparImg_Click(
+            object sender, RoutedEventArgs e)
+        {
+            // Remove a imagem da interface
+            imgProduto.Source = null;
+
+            imgProduto.Visibility = Visibility.Collapsed;
+
+            // Exibe novamente o texto padrão
+            txtSemImagem.Visibility = Visibility.Visible;
+
+            // Limpa o caminho da imagem
+            caminhoImagemSelecionada = null;
+        }
+
+
+
+
     }
 }
