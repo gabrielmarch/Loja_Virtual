@@ -1,8 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Loja_Virtual.controll;
 using Loja_Virtual.model;
 
@@ -102,6 +102,37 @@ namespace Loja_Virtual.view
 
             this.Close();
         }
+
+        private void AdicionarCarrinho_Click(
+            object sender, RoutedEventArgs e)
+        {
+            if (sender is not Button botao ||
+                botao.DataContext is not Produto produto)
+                return;
+
+            bool adicionado = CarrinhoServiço.Adicionar(produto);
+
+            if (adicionado)
+            {
+                MessageBox.Show(
+                    $"{produto.NomeProduto} foi adicionado ao carrinho!",
+                    "Carrinho",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Não é possível adicionar mais unidades deste produto.\n" +
+                    "Estoque disponível: " + produto.EstoqueProduto,
+                    "Estoque insuficiente",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+        }
+
+
+
     }
 }
 

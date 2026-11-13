@@ -18,9 +18,19 @@ namespace Loja_Virtual.view
     {
         private bool menuVisivel = true;
 
-        public MetodoPagamento()
+        public decimal ValorCompra { get; private set; }
+
+        public MetodoPagamento() : this(0m)
+        {
+        }
+
+        public MetodoPagamento(decimal valorTotal)
         {
             InitializeComponent();
+
+            ValorCompra = valorTotal;
+
+            ValorCompraTexto.Text = valorTotal.ToString("C2");
         }
 
         private void buttonMenu_Click(object sender, RoutedEventArgs e)
