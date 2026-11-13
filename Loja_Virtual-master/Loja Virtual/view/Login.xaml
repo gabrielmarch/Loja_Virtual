@@ -1,0 +1,143 @@
+﻿<Window x:Class="Loja_Virtual.view.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Loja Virtual - Login"
+        Height="650"
+        Width="1000"
+        MinHeight="550"
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9">
+
+    <Window.Resources>
+
+        <Style x:Key="CampoTexto" TargetType="TextBox">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,6,0,18"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CampoSenha" TargetType="PasswordBox">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,6,0,18"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="BotaoPrincipal" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Background" Value="#3157A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Border Width="760"
+                Height="420"
+                Background="White"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="#E0E4EB"
+                BorderThickness="1">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="3"
+                                  Opacity="0.12"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Área de boas-vindas -->
+                <Border Grid.Column="0"
+                        Background="#F0F3F9"
+                        CornerRadius="12,0,0,12">
+
+                    <StackPanel VerticalAlignment="Center"
+                                Margin="25">
+
+                        <TextBlock Text="Bem-vindo&#10;de volta!"
+                                   FontSize="25"
+                                   FontWeight="Bold"
+                                   Foreground="#263B60"
+                                   Margin="0,0,0,35"/>
+
+                        <TextBlock Text="Não possui um cadastro?"
+                                   FontSize="13"
+                                   Foreground="#555F70"/>
+
+                        <TextBlock Text="Crie agora!"
+                                   FontSize="13"
+                                   Foreground="#555F70"
+                                   Margin="0,5,0,20"/>
+
+                        <Button Content="Criar conta"
+                                Click="BtnCriarConta_Click"
+                                Style="{StaticResource BotaoPrincipal}"
+                                Width="140"
+                                Height="38"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- Formulário de Login -->
+                <StackPanel Grid.Column="1"
+                            Width="300"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <TextBlock Text="Login"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="#263B60"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,35"/>
+
+                    <TextBlock Text="CPF/CNPJ"
+                               FontWeight="SemiBold"
+                               Foreground="#555F70"/>
+
+                    <TextBox x:Name="txtCpfCnpj"
+                             Style="{StaticResource CampoTexto}"
+                             MaxLength="18"/>
+
+                    <TextBlock Text="Senha"
+                               FontWeight="SemiBold"
+                               Foreground="#555F70"/>
+
+                    <PasswordBox x:Name="txtSenha"
+                                 Style="{StaticResource CampoSenha}"/>
+
+                    <Button Content="ENTRAR"
+                            Click="BtnEntrar_Click"
+                            Style="{StaticResource BotaoPrincipal}"
+                            HorizontalAlignment="Center"
+                            Margin="0,5,0,0" FontWeight="Normal"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+
+</Window>

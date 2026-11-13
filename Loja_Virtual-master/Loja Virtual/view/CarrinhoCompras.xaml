@@ -1,0 +1,510 @@
+﻿<Window x:Class="Loja_Virtual.view.CarrinhoCompras"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:components="clr-namespace:Loja_Virtual.components"
+        Title="Meu Carrinho"
+        Height="750"
+        Width="1250"
+        MinHeight="600"
+        MinWidth="950"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9">
+
+    <Window.Resources>
+
+        <!-- BOTÃO PRINCIPAL -->
+        <Style x:Key="BotaoPrincipal" TargetType="Button">
+            <Setter Property="Background" Value="#3157A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- CAMPOS DE TEXTO -->
+        <Style x:Key="CampoTexto" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#263B60"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D5D9E2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- BOTÃO VOLTAR -->
+        <Style x:Key="BotaoVoltar" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#3157A4"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <!-- BOTÕES DA BARRA SUPERIOR -->
+        <Style x:Key="BotaoSuperior" TargetType="Button">
+            <Setter Property="Width" Value="42"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#344563"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="Fundo"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fundo"
+                                        Property="Background"
+                                        Value="#E8EEF9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <!-- ESTRUTURA PRINCIPAL -->
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ColunaMenu" Width="165"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- MENU LATERAL COMPARTILHADO -->
+        <components:MenuLateral x:Name="BarraLateral"
+                                Grid.Column="0"/>
+
+        <!-- ÁREA PRINCIPAL -->
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- ====================================== -->
+            <!-- BARRA SUPERIOR -->
+            <!-- ====================================== -->
+
+            <Border Grid.Row="0"
+                    Background="White"
+                    BorderBrush="#E0E4EB"
+                    BorderThickness="0,0,0,1">
+
+                <Grid Margin="15,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- BOTÃO HAMBÚRGUER -->
+                    <Button x:Name="buttonMenu"
+                            Grid.Column="0"
+                            Style="{StaticResource BotaoSuperior}"
+                            HorizontalAlignment="Left"
+                            Click="buttonMenu_Click">
+
+                        <materialDesign:PackIcon Kind="Menu"
+                                                 Width="24"
+                                                 Height="24"
+                                                 Foreground="#344563"/>
+                    </Button>
+
+                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+
+                        <Button Style="{StaticResource BotaoSuperior}">
+
+                            <materialDesign:PackIcon Kind="CogOutline"
+                                                     Width="23"
+                                                     Height="23"
+                                                     Foreground="#344563"/>
+                        </Button>
+
+                        <Button Style="{StaticResource BotaoSuperior}">
+
+                            <materialDesign:PackIcon Kind="BellOutline"
+                                                     Width="23"
+                                                     Height="23"
+                                                     Foreground="#344563"/>
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+            <!-- ====================================== -->
+            <!-- CONTEÚDO DO CARRINHO -->
+            <!-- ====================================== -->
+
+            <Grid Grid.Row="1"
+                  Margin="30">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- ====================================== -->
+                <!-- CABEÇALHO -->
+                <!-- ====================================== -->
+
+                <Grid Grid.Row="0"
+                      Margin="0,0,0,25">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- BOTÃO VOLTAR -->
+                    <Button x:Name="button_VoltarCarHome"
+                            Grid.Column="0"
+                            Style="{StaticResource BotaoVoltar}"
+                            Click="button_VoltarCarHome_Click">
+
+                        <materialDesign:PackIcon Kind="ArrowLeft"
+                                                 Width="20"
+                                                 Height="20"/>
+                    </Button>
+
+                    <StackPanel Grid.Column="1"
+                                Margin="12,0,0,0"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="Meu carrinho"
+                                   FontSize="27"
+                                   FontWeight="Bold"
+                                   Foreground="#263B60"/>
+
+                        <TextBlock Text="Confira os produtos antes de finalizar sua compra"
+                                   FontSize="13"
+                                   Foreground="#8993A5"
+                                   Margin="0,4,0,0"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- ====================================== -->
+                <!-- CABEÇALHO DA LISTA -->
+                <!-- ====================================== -->
+
+                <Grid Grid.Row="1"
+                      Margin="0,0,0,12">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="PRODUTO"
+                               FontWeight="SemiBold"
+                               Foreground="#8993A5"
+                               FontSize="12"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="PREÇO"
+                               FontWeight="SemiBold"
+                               Foreground="#8993A5"
+                               FontSize="12"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="2"
+                               Text="QUANTIDADE"
+                               FontWeight="SemiBold"
+                               Foreground="#8993A5"
+                               FontSize="12"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="3"
+                               Text="SUBTOTAL"
+                               FontWeight="SemiBold"
+                               Foreground="#8993A5"
+                               FontSize="12"
+                               HorizontalAlignment="Right"/>
+
+                </Grid>
+
+                <!-- ====================================== -->
+                <!-- LISTA DE PRODUTOS -->
+                <!-- ====================================== -->
+
+                <ScrollViewer Grid.Row="2"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+
+                    <ItemsControl x:Name="ListaCarrinho">
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border Background="White"
+                                    CornerRadius="12"
+                                    Padding="18"
+                                    Margin="0,0,0,12"
+                                    BorderBrush="#E0E4EB"
+                                    BorderThickness="1">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="120"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Nome do produto -->
+                                        <StackPanel Grid.Column="0"
+                                            VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding Nome}"
+                                                   FontSize="16"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#263B60"/>
+
+                                            <Button Content="Remover"
+                                                Click="RemoverProduto_Click"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Foreground="#D95360"
+                                                HorizontalAlignment="Left"
+                                                Padding="0,5"
+                                                Cursor="Hand"/>
+                                        </StackPanel>
+
+                                        <!-- Preço unitário -->
+                                        <TextBlock Grid.Column="1"
+                                           Text="{Binding Preco, StringFormat={}{0:C2}}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="#555F70"/>
+
+                                            <!-- Quantidade -->
+                                        <StackPanel Grid.Column="2"
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                            <Button Content="-"
+                                                Width="27"
+                                                Height="27"
+                                                Tag="Diminuir"
+                                                Click="AlterarQuantidade_Click"/>
+
+                                            <TextBlock Text="{Binding Quantidade}"
+                                                   Margin="12,0"
+                                                   VerticalAlignment="Center"
+                                                   FontWeight="SemiBold"/>
+
+                                            <Button Content="+"
+                                                Width="27"
+                                                Height="27"
+                                                Tag="Aumentar"
+                                                Click="AlterarQuantidade_Click"/>
+
+                                        </StackPanel>
+
+                                        <!-- Subtotal -->
+                                        <TextBlock Grid.Column="3"
+                                           Text="{Binding Subtotal, StringFormat={}{0:C2}}"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="SemiBold"
+                                           Foreground="#263B60"/>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+                </ScrollViewer>
+
+                <!-- ====================================== -->
+                <!-- RODAPÉ: CUPOM E RESUMO -->
+                <!-- ====================================== -->
+
+                <Grid Grid.Row="3"
+                      Margin="0,20,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- CUPOM -->
+                    <StackPanel Grid.Column="0"
+                                VerticalAlignment="Top"
+                                Margin="0,0,20,0">
+
+                        <TextBlock Text="Cupom de desconto"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   Margin="0,0,0,12"/>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBox x:Name="Cupom"
+                                     Width="180"
+                                     Style="{StaticResource CampoTexto}"
+                                     ToolTip="Digite seu cupom"/>
+
+                            <Button x:Name="Aplicar"
+                                    Content="Aplicar"
+                                    Style="{StaticResource BotaoPrincipal}"
+                                    Padding="15,8"
+                                    Margin="10,0,0,0"
+                                    Click="AplicarCupom_Click"/>
+
+                        </StackPanel>
+
+                        <TextBlock x:Name="MensagemCupom"
+                                   FontSize="12"
+                                   Margin="0,8,0,0"
+                                   Foreground="#269B70"/>
+
+                    </StackPanel>
+
+                    <!-- RESUMO DO PEDIDO -->
+                    <StackPanel Grid.Column="1">
+
+                        <TextBlock Text="Resumo do pedido"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   Margin="0,0,0,12"/>
+
+                        <Border Background="White"
+                                CornerRadius="12"
+                                Padding="18"
+                                BorderBrush="#E0E4EB"
+                                BorderThickness="1">
+
+                            <StackPanel>
+
+                                <!-- SUBTOTAL -->
+                                <Grid Margin="0,0,0,12">
+
+                                    <TextBlock Text="Subtotal"
+                                               Foreground="#8993A5"
+                                               FontSize="14"/>
+
+                                    <TextBlock x:Name="ValorSubtotal"
+                                               Text="R$ 300,00"
+                                               HorizontalAlignment="Right"
+                                               FontWeight="SemiBold"
+                                               FontSize="14"
+                                               Foreground="#263B60"/>
+
+                                </Grid>
+
+                                <!-- DESCONTO -->
+                                <Grid Margin="0,0,0,12">
+
+                                    <TextBlock Text="Desconto"
+                                               Foreground="#8993A5"
+                                               FontSize="14"/>
+
+                                    <TextBlock x:Name="ValorDesconto"
+                                               Text="R$ 0,00"
+                                               HorizontalAlignment="Right"
+                                               Foreground="#269B70"
+                                               FontSize="14"/>
+
+                                </Grid>
+
+                                <Border Height="1"
+                                        Background="#E0E4EB"
+                                        Margin="0,0,0,12"/>
+
+                                <!-- TOTAL -->
+                                <Grid>
+
+                                    <TextBlock Text="Total"
+                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               Foreground="#263B60"/>
+
+                                    <TextBlock x:Name="ValorTotal"
+                                               Text="R$ 300,00"
+                                               HorizontalAlignment="Right"
+                                               FontWeight="Bold"
+                                               FontSize="18"
+                                               Foreground="#3157A4"/>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PAGAMENTO -->
+                        <Button x:Name="Prosseguir"
+                                Content="Prosseguir para pagamento →"
+                                Style="{StaticResource BotaoPrincipal}"
+                                Margin="0,15,0,0"
+                                Click="Pagamento_Click"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
