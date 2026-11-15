@@ -115,10 +115,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ================================= -->
             <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
-
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -172,10 +169,7 @@
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
             <!-- CONTEÚDO DE PAGAMENTO -->
-            <!-- ================================= -->
-
             <Grid Grid.Row="1"
                   Background="#F3F5F9">
 
@@ -235,11 +229,13 @@
                         <!-- BOTÕES -->
                         <StackPanel>
 
-                            <!-- CARTÃO DE CRÉDITO OU DÉBITO -->
+                            <!-- CARTÃO DE CRÉDITO/DÉBITO -->
                             <Button x:Name="BtnIrParaCartao"
                                     Style="{StaticResource BotaoPagamento}"
-                                    Margin="0,0,0,15"
-                                    Click="BtnIrParaCartao_Click" Height="44" Width="337">
+                                    Height="48"
+                                    Width="340"
+                                    Margin="0,0,0,12"
+                                    Click="BtnIrParaCartao_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
@@ -253,29 +249,31 @@
 
                                     <TextBlock Text="Cartão de Crédito/Débito"
                                                VerticalAlignment="Center"/>
-                                </StackPanel>
 
+                                </StackPanel>
                             </Button>
 
-                            <!-- BOLETO -->
-                            <Button x:Name="BtnIrParaBoleto_Copiar1"
+                            <!-- ADICIONAR CARTÃO -->
+                            <Button x:Name="BtnAdicionarCartao"
                                     Style="{StaticResource BotaoPagamento}"
-                                    Click="BtnIrParaBoleto_Click" Height="45" Width="337">
+                                    Height="48"
+                                    Width="340"
+                                    Click="BtnAdicionarCartao_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
 
                                     <materialDesign:PackIcon
-                                        Kind="Barcode"
+                                        Kind="CreditCardPlusOutline"
                                         Width="22"
                                         Height="22"
                                         Margin="0,0,12,0"
                                         VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="Boleto Bancário"
+                                    <TextBlock Text="Adicionar cartão"
                                                VerticalAlignment="Center"/>
-                                </StackPanel>
 
+                                </StackPanel>
                             </Button>
 
                         </StackPanel>

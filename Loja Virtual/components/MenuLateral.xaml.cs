@@ -64,9 +64,17 @@ namespace Loja_Virtual.components
                     novaTela = new MetodoPagamento();
                     break;
 
-                case "Perfil":
-                case "Anunciar":
                 case "Cupons":
+                    if (janelaAtual is TelaCupons) return;
+                    novaTela = new TelaCupons();
+                    break;
+
+                case "Perfil":
+                    if (janelaAtual is Perfil) return;
+                    novaTela = new Perfil(SessaoUsuario.ClienteId);
+                    break;
+
+                case "Anunciar":
                     MessageBox.Show(
                         $"A interface {destino} ainda não foi configurada.",
                         "Loja Virtual",

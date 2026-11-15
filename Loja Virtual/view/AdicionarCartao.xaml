@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -22,22 +21,17 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="4,0"/>
             <Setter Property="Cursor" Value="Hand"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="Fundo"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="8">
-
-                            <ContentPresenter
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
                         </Border>
-
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver"
-                                     Value="True">
+                            <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Fundo"
                                         Property="Background"
                                         Value="#E8EEF9"/>
@@ -48,7 +42,6 @@
             </Setter>
         </Style>
 
-        <!-- ESTILO DOS CAMPOS -->
         <Style x:Key="CampoTexto" TargetType="TextBox">
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="14"/>
@@ -60,7 +53,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <!-- ESTILO DOS RÓTULOS -->
         <Style x:Key="LabelCampo" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -68,7 +60,6 @@
             <Setter Property="Margin" Value="0,0,0,7"/>
         </Style>
 
-        <!-- BOTÃO PRINCIPAL -->
         <Style x:Key="BotaoPrincipal" TargetType="Button">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Background" Value="#3157A4"/>
@@ -77,27 +68,21 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-
                         <Border x:Name="Fundo"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="8">
-
-                            <ContentPresenter
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
                         </Border>
-
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Fundo"
                                         Property="Background"
                                         Value="#274A90"/>
                             </Trigger>
-
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="Fundo"
                                         Property="Background"
@@ -111,95 +96,68 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ColunaMenu" Width="165"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ================================= -->
             <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
-
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
                     BorderThickness="0,0,0,1">
-
                 <Grid Margin="15,0">
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
                             HorizontalAlignment="Left"
                             Click="buttonMenu_Click">
-
                         <materialDesign:PackIcon Kind="Menu"
                                                  Width="24"
                                                  Height="24"
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
-
                         <Button Style="{StaticResource BotaoSuperior}">
-
                             <materialDesign:PackIcon Kind="CogOutline"
                                                      Width="23"
                                                      Height="23"
                                                      Foreground="#344563"/>
                         </Button>
-
                         <Button Style="{StaticResource BotaoSuperior}">
-
                             <materialDesign:PackIcon Kind="BellOutline"
                                                      Width="23"
                                                      Height="23"
                                                      Foreground="#344563"/>
                         </Button>
-
                     </StackPanel>
-
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
-            <!-- CONTEÚDO DA TELA -->
-            <!-- ================================= -->
-
-            <Grid Grid.Row="1"
-                  Background="#F3F5F9">
-
+            <!-- CONTEÚDO -->
+            <Grid Grid.Row="1" Background="#F3F5F9">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled">
+                    <Grid MinHeight="580" Margin="25">
 
-                    <Grid MinHeight="580"
-                          Margin="25">
-
-                        <!-- CARTÃO DO FORMULÁRIO -->
                         <Border Width="500"
                                 MaxWidth="500"
                                 Background="White"
@@ -225,7 +183,6 @@
                                         Background="#E8EEF9"
                                         HorizontalAlignment="Center"
                                         Margin="0,0,0,17">
-
                                     <materialDesign:PackIcon
                                         Kind="CreditCardOutline"
                                         Width="29"
@@ -249,46 +206,49 @@
                                            TextAlignment="Center"
                                            Margin="0,0,0,30"/>
 
-                                <!-- NÚMERO DO CARTÃO -->
+                                <!-- NÚMERO -->
                                 <TextBlock Text="Número do cartão"
                                            Style="{StaticResource LabelCampo}"/>
 
                                 <TextBox x:Name="TxtNumeroCartao"
                                          Style="{StaticResource CampoTexto}"
-                                         MaxLength="19"
-                                         Margin="0,0,0,18"/>
+                                         MaxLength="8"
+                                         Margin="0,0,0,18"
+                                         PreviewTextInput="TxtNumeroCartao_PreviewTextInput"
+                                         TextChanged="TxtNumeroCartao_TextChanged"/>
 
-                                <!-- NOME NO CARTÃO -->
+                                <!-- NOME -->
                                 <TextBlock Text="Nome no cartão"
                                            Style="{StaticResource LabelCampo}"/>
 
                                 <TextBox x:Name="TxtNomeCartao"
                                          Style="{StaticResource CampoTexto}"
-                                         Margin="0,0,0,18"/>
+                                         MaxLength="70"
+                                         CharacterCasing="Upper"
+                                         Margin="0,0,0,18"
+                                         PreviewTextInput="TxtNomeCartao_PreviewTextInput"
+                                         TextChanged="TxtNomeCartao_TextChanged"/>
 
                                 <!-- VALIDADE E CVV -->
                                 <Grid Margin="0,0,0,28">
-
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="18"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <!-- VALIDADE -->
                                     <StackPanel Grid.Column="0">
-
                                         <TextBlock Text="Validade (MM/AA)"
                                                    Style="{StaticResource LabelCampo}"/>
 
                                         <TextBox x:Name="TxtValidade"
                                                  Style="{StaticResource CampoTexto}"
-                                                 MaxLength="5"/>
+                                                 MaxLength="5"
+                                                 PreviewTextInput="TxtValidade_PreviewTextInput"
+                                                 TextChanged="TxtValidade_TextChanged"/>
                                     </StackPanel>
 
-                                    <!-- CVV -->
                                     <StackPanel Grid.Column="2">
-
                                         <TextBlock Text="CVV"
                                                    Style="{StaticResource LabelCampo}"/>
 
@@ -301,18 +261,19 @@
                                                      BorderBrush="#D5D9E2"
                                                      BorderThickness="1"
                                                      VerticalContentAlignment="Center"
-                                                     MaxLength="4"/>
+                                                     MaxLength="3"
+                                                     PreviewTextInput="TxtCvv_PreviewTextInput"
+                                                     PasswordChanged="TxtCvv_PasswordChanged"/>
                                     </StackPanel>
-
                                 </Grid>
 
                                 <!-- BOTÃO SALVAR -->
                                 <Button x:Name="BtnSalvarCartao"
-                                        Style="{StaticResource BotaoPrincipal}">
+                                        Style="{StaticResource BotaoPrincipal}"
+                                        Click="BtnSalvarCartao_Click">
 
                                     <StackPanel Orientation="Horizontal"
                                                 HorizontalAlignment="Center">
-
                                         <materialDesign:PackIcon
                                             Kind="ContentSaveOutline"
                                             Width="19"
@@ -323,21 +284,13 @@
                                         <TextBlock Text="Salvar Cartão"
                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
-
                                 </Button>
 
                             </StackPanel>
-
                         </Border>
-
                     </Grid>
-
                 </ScrollViewer>
-
             </Grid>
-
         </Grid>
-
     </Grid>
-
 </Window>

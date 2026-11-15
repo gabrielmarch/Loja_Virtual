@@ -18,6 +18,16 @@ namespace Loja_Virtual.view
     {
         private bool menuVisivel = true;
 
+        private void BtnAdicionarCartao_Click(
+        object sender, RoutedEventArgs e)
+            {
+                AdicionarCartao tela = new AdicionarCartao();
+
+                tela.Show();
+
+                this.Close();
+            }
+
         public MetodoPagamento()
         {
             InitializeComponent();

@@ -17,6 +17,8 @@ namespace Loja_Virtual.view
     {
         private readonly int clienteId;
 
+        private bool menuVisivel = true;
+
         public Perfil(int idCliente)
         {
             InitializeComponent();
@@ -46,6 +48,25 @@ namespace Loja_Virtual.view
                     .Count(p => p.ClienteId == clienteId);
 
                 QuantidadePedidos.Text = quantidade.ToString();
+            }
+        }
+
+        // ABRIR E FECHAR MENU LATERAL
+        private void buttonMenu_Click(
+            object sender,
+            RoutedEventArgs e)
+        {
+            menuVisivel = !menuVisivel;
+
+            if (menuVisivel)
+            {
+                BarraLateral.Visibility = Visibility.Visible;
+                ColunaMenu.Width = new GridLength(165);
+            }
+            else
+            {
+                BarraLateral.Visibility = Visibility.Collapsed;
+                ColunaMenu.Width = new GridLength(0);
             }
         }
     }

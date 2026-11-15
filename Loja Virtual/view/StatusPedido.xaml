@@ -119,18 +119,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ====================================== -->
         <!-- MENU LATERAL -->
-        <!-- ====================================== -->
-
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
-                        Grid.Column="0"/>
+                               Grid.Column="0"/>
 
-        <!-- ====================================== -->
         <!-- CONTEÚDO PRINCIPAL -->
-        <!-- ====================================== -->
-
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -207,10 +200,7 @@
                                    Margin="0,6,0,0"/>
                     </StackPanel>
 
-                    <!-- ====================================== -->
                     <!-- ACOMPANHAMENTO DO PEDIDO -->
-                    <!-- ====================================== -->
-
                     <Border Style="{StaticResource CartaoPedido}"
                             Margin="0,0,0,25">
 
@@ -373,82 +363,139 @@
                     </Border>
 
                     <!-- ====================================== -->
-                    <!-- PRODUTOS DO PEDIDO -->
+                    <!-- LISTA DE TODOS OS PEDIDOS -->
                     <!-- ====================================== -->
 
-                    <TextBlock Text="Produtos do pedido"
+                    <TextBlock Text="Meus pedidos"
                                FontSize="20"
                                FontWeight="Bold"
                                Foreground="#263B60"
                                Margin="0,0,0,15"/>
 
-                    <Border Style="{StaticResource CartaoPedido}">
+                    <ItemsControl x:Name="ListaPedidos">
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="85"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-                            <!-- IMAGEM DO PRODUTO -->
-                            <Border Grid.Column="0"
-                                    Width="70"
-                                    Height="70"
-                                    Background="#F0F3F9"
-                                    CornerRadius="8"
-                                    HorizontalAlignment="Left">
+                                <Border Style="{StaticResource CartaoPedido}"
+                                        Margin="0,0,0,18">
 
-                                <materialDesign:PackIcon Kind="PackageVariant"
-                                                         Width="35"
-                                                         Height="35"
-                                                         Foreground="#A0A8B7"
-                                                         HorizontalAlignment="Center"
-                                                         VerticalAlignment="Center"/>
-                            </Border>
+                                    <StackPanel>
 
-                            <!-- INFORMAÇÕES DO PRODUTO -->
-                            <StackPanel Grid.Column="1"
-                                        VerticalAlignment="Center">
+                                        <!-- CABEÇALHO DO PEDIDO -->
+                                        <Grid Margin="0,0,0,12">
 
-                                <TextBlock Text="Produto"
-                                           FontSize="16"
-                                           FontWeight="SemiBold"
-                                           Foreground="#263B60"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="Descrição do produto"
-                                           FontSize="13"
-                                           Foreground="#8993A5"
-                                           Margin="0,5,0,0"/>
+                                            <StackPanel>
 
-                                <TextBlock Text="Quantidade: 1 unidade"
-                                           FontSize="13"
-                                           Foreground="#555F70"
-                                           Margin="0,6,0,0"/>
-                            </StackPanel>
+                                                <TextBlock Text="{Binding NumeroPedido}"
+                                                           FontSize="17"
+                                                           FontWeight="Bold"
+                                                           Foreground="#263B60"/>
 
-                            <!-- PREÇO -->
-                            <StackPanel Grid.Column="2"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Right"
-                                        Margin="15,0,0,0">
+                                                <TextBlock Text="{Binding DataPedido,
+                                                            StringFormat='Data: {0:dd/MM/yyyy HH:mm}'}"
+                                                           FontSize="13"
+                                                           Foreground="#8993A5"
+                                                           Margin="0,5,0,0"/>
 
-                                <TextBlock Text="Preço"
-                                           FontSize="12"
-                                           Foreground="#8993A5"
-                                           HorizontalAlignment="Right"/>
+                                            </StackPanel>
 
-                                <TextBlock Text="R$ 149,90"
-                                           FontSize="19"
-                                           FontWeight="Bold"
-                                           Foreground="#3157A4"
-                                           Margin="0,5,0,0"
-                                           HorizontalAlignment="Right"/>
-                            </StackPanel>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Status}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#3157A4"
+                                                       VerticalAlignment="Center"/>
+                                        </Grid>
 
-                        </Grid>
+                                        <Separator Background="#E0E4EB"
+                                                   Margin="0,0,0,12"/>
 
-                    </Border>
+                                        <!-- PRODUTOS DO PEDIDO -->
+                                        <ItemsControl ItemsSource="{Binding Itens}">
+
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+
+                                                    <Grid Margin="0,6">
+
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <StackPanel>
+
+                                                            <TextBlock Text="{Binding NomeProduto}"
+                                                                       FontSize="15"
+                                                                       FontWeight="SemiBold"
+                                                                       Foreground="#263B60"/>
+
+                                                            <TextBlock Text="{Binding Quantidade,
+                                                                        StringFormat='Quantidade: {0}'}"
+                                                                       FontSize="13"
+                                                                       Foreground="#8993A5"
+                                                                       Margin="0,4,0,0"/>
+
+                                                        </StackPanel>
+
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding Subtotal,
+                                                                          StringFormat='{}{0:C2}'}"
+                                                                   FontSize="15"
+                                                                   FontWeight="SemiBold"
+                                                                   Foreground="#3157A4"
+                                                                   VerticalAlignment="Center"/>
+
+                                                    </Grid>
+
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+
+                                        </ItemsControl>
+
+                                        <Separator Background="#E0E4EB"
+                                                   Margin="0,12,0,12"/>
+
+                                        <!-- TOTAL DO PEDIDO -->
+                                        <Grid>
+
+                                            <TextBlock Text="Total do pedido"
+                                                       FontSize="15"
+                                                       FontWeight="Bold"
+                                                       Foreground="#263B60"/>
+
+                                            <TextBlock Text="{Binding ValorTotal,
+                                                        StringFormat='{}{0:C2}'}"
+                                                       FontSize="18"
+                                                       FontWeight="Bold"
+                                                       Foreground="#3157A4"
+                                                       HorizontalAlignment="Right"/>
+
+                                        </Grid>
+
+                                    </StackPanel>
+
+                                </Border>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+                    <!-- MENSAGEM QUANDO NÃO EXISTIREM PEDIDOS -->
+                    <TextBlock x:Name="MensagemSemPedidos"
+                               Text="Você ainda não realizou nenhum pedido."
+                               FontSize="14"
+                               Foreground="#8993A5"
+                               HorizontalAlignment="Center"
+                               Margin="0,20,0,20"
+                               Visibility="Collapsed"/>
 
                 </StackPanel>
 
