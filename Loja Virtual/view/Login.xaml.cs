@@ -27,6 +27,8 @@ namespace Loja_Virtual.view
         private async void BtnEntrar_Click(
             object sender, RoutedEventArgs e)
         {
+            Button? botao = sender as Button;
+
             try
             {
                 if (string.IsNullOrWhiteSpace(txtCpfCnpj.Text) ||
@@ -41,8 +43,8 @@ namespace Loja_Virtual.view
                     return;
                 }
 
-                
-                if (sender is System.Windows.Controls.Button botao)
+
+                if (botao != null)
                     botao.IsEnabled = false;
 
                 var cliente = await _controller.AutenticarAsync(
@@ -60,11 +62,18 @@ namespace Loja_Virtual.view
                     return;
                 }
 
-                
                 SessaoUsuario.Iniciar(cliente);
 
-                TelaPrincipal principal = new TelaPrincipal();
-                principal.Show();
+                if (SessaoUsuario.EhAdministrador)
+                {
+                    PainelAdmin painel = new PainelAdmin();
+                    painel.Show();
+                }
+                else
+                {
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.Show();
+                }
 
                 this.Close();
             }
@@ -79,7 +88,7 @@ namespace Loja_Virtual.view
             }
             finally
             {
-                if (sender is System.Windows.Controls.Button botao)
+                if (botao != null)
                     botao.IsEnabled = true;
             }
         }
