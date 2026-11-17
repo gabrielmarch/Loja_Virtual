@@ -12,7 +12,7 @@ namespace Loja_Virtual.controll
 {
     public class PedidoController
     {
-        public async Task<int> RegistrarPedidoAsync()
+        public async Task<int> RegistrarPedidoAsync(decimal valorEsperado)
         {
             if (!SessaoUsuario.EstaAutenticado ||
                 SessaoUsuario.ClienteId == null)
@@ -95,18 +95,37 @@ namespace Loja_Virtual.controll
                 subtotal += subtotalItem;
             }
 
-            decimal percentual = CarrinhoServiço.PercentualDesconto;
+            decimal percentual = 0m;
 
-            if (percentual != 0m && percentual != 10m)
+            string? codigoCupom = CarrinhoServiço.CodigoCupom;
+
+            if (!string.IsNullOrWhiteSpace(codigoCupom))
             {
-                throw new InvalidOperationException(
-                    "Desconto inválido.");
+                Cupom? cupom = await CupomService.BuscarValidoAsync(
+                    banco, codigoCupom);
+
+                if (cupom == null)
+                {
+                    throw new InvalidOperationException(
+                        "O cupom aplicado expirou ou foi desativado.");
+                }
+                pedido.CupomId = cupom.idCupom;
+                percentual = cupom.Desconto;
             }
 
             decimal desconto = Math.Round(
                 subtotal * percentual / 100m,
                 2,
                 MidpointRounding.AwayFromZero);
+
+            decimal total = subtotal - desconto;
+
+            if (total != valorEsperado)
+            {
+                throw new InvalidOperationException(
+                    "O valor da compra mudou. " +
+                    "Volte ao carrinho e confira o total.");
+            }
 
             pedido.Subtotal = subtotal;
             pedido.Desconto = desconto;

@@ -83,7 +83,11 @@ namespace Loja_Virtual.view
                 PedidoController controller = new PedidoController();
 
                 int numeroPedido =
-                    await controller.RegistrarPedidoAsync();
+                    await controller.RegistrarPedidoAsync(
+                        Math.Round(
+                            ValorCompra,
+                            2,
+                            MidpointRounding.AwayFromZero));
 
                 CarrinhoServiço.Limpar();
 

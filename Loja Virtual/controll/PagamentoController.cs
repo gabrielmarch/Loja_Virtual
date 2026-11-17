@@ -145,16 +145,6 @@ namespace Loja_Virtual.controll
                 .OrderBy(i => i.IdProduto)
                 .ToList();
 
-            decimal percentualDesconto =
-                CarrinhoServiço.PercentualDesconto;
-
-            if (percentualDesconto != 0m &&
-                percentualDesconto != 10m)
-            {
-                throw new InvalidOperationException(
-                    "Percentual de desconto inválido.");
-            }
-
             using var banco = new LojaVirtualDbContext();
 
             await using var transacao =
@@ -229,6 +219,27 @@ namespace Loja_Virtual.controll
 
                     subtotal += subtotalItem;
                 }
+
+                decimal percentualDesconto = 0m;
+
+                string? codigoCupom = CarrinhoServiço.CodigoCupom;
+
+                if (!string.IsNullOrWhiteSpace(codigoCupom))
+                {
+                    Cupom? cupom = await CupomService.BuscarValidoAsync(
+                        banco, codigoCupom);
+
+                    if (cupom == null)
+                    {
+                        throw new InvalidOperationException(
+                            "O cupom aplicado expirou ou foi desativado.");
+                    }
+
+                    pedido.CupomId = cupom.idCupom;
+
+                    percentualDesconto = cupom.Desconto;
+                }
+
 
                 decimal desconto = Math.Round(
                     subtotal * percentualDesconto / 100m,

@@ -16,14 +16,11 @@ namespace Loja_Virtual.view
         public CarrinhoCompras()
         {
             InitializeComponent();
-
-            // Conectar a lista visual aos itens do carrinho
             ListaCarrinho.ItemsSource = CarrinhoServiço.Itens;
 
             AtualizarResumo();
         }
 
-        // ATUALIZAR VALORES DO CARRINHO
         private void AtualizarResumo()
         {
             var cultura = CultureInfo.GetCultureInfo("pt-BR");
@@ -38,7 +35,6 @@ namespace Loja_Virtual.view
                 CarrinhoServiço.Total.ToString("C2", cultura);
         }
 
-        // REMOVER PRODUTO
         private void RemoverProduto_Click(
             object sender, RoutedEventArgs e)
         {
@@ -50,8 +46,6 @@ namespace Loja_Virtual.view
 
             AtualizarResumo();
         }
-
-        // AUMENTAR OU DIMINUIR QUANTIDADE
 
         private void AlterarQuantidade_Click(
             object sender, RoutedEventArgs e)
@@ -85,31 +79,58 @@ namespace Loja_Virtual.view
             AtualizarResumo();
         }
 
-
-        // APLICAR CUPOM
-        private void AplicarCupom_Click(
+        private async void AplicarCupom_Click(
             object sender, RoutedEventArgs e)
         {
-            bool aplicado =
-                CarrinhoServiço.AplicarCupom(Cupom.Text.Trim());
+            Button? botao = sender as Button;
 
-            if (aplicado)
+            if (botao != null)
+                botao.IsEnabled = false;
+
+            try
             {
-                MensagemCupom.Text =
-                    "Cupom aplicado! 10% de desconto.";
+                bool aplicado =
+                    await CarrinhoServiço.AplicarCupomAsync(
+                        Cupom.Text.Trim());
 
-                MensagemCupom.Foreground = Brushes.Green;
+                if (aplicado)
+                {
+                    MensagemCupom.Text =
+                        $"Cupom aplicado! " +
+                        $"{CarrinhoServiço.PercentualDesconto:0.##}% " +
+                        "de desconto.";
+
+                    MensagemCupom.Foreground = Brushes.Green;
+                }
+                else
+                {
+                    MensagemCupom.Text =
+                        "Cupom inválido, vencido ou inativo.";
+
+                    MensagemCupom.Foreground = Brushes.Red;
+                }
+
+                AtualizarResumo();
             }
-            else
+            catch (Exception)
             {
-                MensagemCupom.Text = "Cupom inválido!";
-                MensagemCupom.Foreground = Brushes.Red;
+                MessageBox.Show(
+                    "Não foi possível consultar os cupons no banco.",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
+            finally
+            {
+                if (botao != null)
+                    botao.IsEnabled = true;
 
-            AtualizarResumo();
+                AtualizarResumo();
+            }
         }
 
-        // PROSSEGUIR PARA PAGAMENTO
+
+
         private void Pagamento_Click(
             object sender, RoutedEventArgs e)
         {
@@ -131,7 +152,6 @@ namespace Loja_Virtual.view
             this.Close();
         }
 
-        // VOLTAR PARA TELA PRINCIPAL
         private void button_VoltarCarHome_Click(
             object sender, RoutedEventArgs e)
         {
@@ -141,7 +161,6 @@ namespace Loja_Virtual.view
             this.Close();
         }
 
-        // ABRIR E FECHAR MENU LATERAL
         private void buttonMenu_Click(
             object sender, RoutedEventArgs e)
         {

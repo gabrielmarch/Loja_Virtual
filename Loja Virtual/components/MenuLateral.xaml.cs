@@ -67,10 +67,14 @@ namespace Loja_Virtual.components
 
                     novaTela = new Perfil();
                     break;
-                case "Anunciar":
                 case "Cupons":
+                    if (janelaAtual is Cupons) return;
+
+                    novaTela = new Cupons();
+                    break;
+                case "Anunciar":
                     MessageBox.Show(
-                        $"A interface {destino} ainda não foi configurada.",
+                        "A interface Anunciar ainda não foi configurada.",
                         "Loja Virtual",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);

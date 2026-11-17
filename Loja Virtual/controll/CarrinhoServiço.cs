@@ -2,6 +2,12 @@
 using Loja_Virtual.model;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Loja_Virtual.data;
+using Loja_Virtual.services;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Loja_Virtual.controll
 {
@@ -10,18 +16,25 @@ namespace Loja_Virtual.controll
         public static ObservableCollection<ItemCarrinho> Itens
         { get; } = new();
 
-        public static decimal PercentualDesconto { get; private set; }
+        public static int? CupomId { get; private set; }
+
+        public static string? CodigoCupom { get; private set; }
+
+        public static decimal PercentualDesconto
+        { get; private set; }
 
         public static decimal Subtotal =>
             Itens.Sum(item => item.Subtotal);
 
         public static decimal Desconto =>
-            Subtotal * PercentualDesconto / 100;
+            Math.Round(
+                Subtotal * PercentualDesconto / 100m,
+                2,
+                MidpointRounding.AwayFromZero);
 
         public static decimal Total =>
             Subtotal - Desconto;
 
-        // ADICIONAR PRODUTO
         public static bool Adicionar(Produto produto)
         {
             if (produto.EstoqueProduto <= 0)
@@ -47,38 +60,41 @@ namespace Loja_Virtual.controll
 
             return true;
         }
-
-        // REMOVER PRODUTO
         public static void Remover(ItemCarrinho item)
         {
             Itens.Remove(item);
         }
-
-        // APLICAR CUPOM FICTÍCIO
-        public static bool AplicarCupom(string codigo)
+        public static async Task<bool> AplicarCupomAsync(
+            string codigo)
         {
-            PercentualDesconto = 0;
+            RemoverCupom();
 
-            if (codigo.Trim().Equals(
-                "DESCONTO10",
-                StringComparison.OrdinalIgnoreCase))
-            {
-                PercentualDesconto = 10;
-                return true;
-            }
+            using var banco = new LojaVirtualDbContext();
 
-            return false;
+            Cupom? cupom = await CupomService.BuscarValidoAsync(
+                banco, codigo);
+
+            if (cupom == null)
+                return false;
+
+            CupomId = cupom.idCupom;
+            CodigoCupom = cupom.CodigoCupom;
+            PercentualDesconto = cupom.Desconto;
+
+            return true;
         }
 
         public static void RemoverCupom()
         {
-            PercentualDesconto = 0;
+            CupomId = null;
+            CodigoCupom = null;
+            PercentualDesconto = 0m;
         }
 
         public static void Limpar()
         {
             Itens.Clear();
-            PercentualDesconto = 0;
+            RemoverCupom();
         }
     }
 }
