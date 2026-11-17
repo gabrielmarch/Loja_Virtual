@@ -1,0 +1,292 @@
+﻿<Window x:Class="Loja_Virtual.view.GerenciarCupons"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Gerenciar Cupons - UVVirtual"
+        Height="750"
+        Width="1250"
+        MinHeight="600"
+        MinWidth="850"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F5F9"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+
+        <Style x:Key="BotaoPrincipal"
+               TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Background" Value="#3157A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <Style x:Key="BotaoSecundario"
+               TargetType="Button"
+               BasedOn="{StaticResource BotaoPrincipal}">
+            <Setter Property="Background" Value="#E8EEF9"/>
+            <Setter Property="Foreground" Value="#3157A4"/>
+        </Style>
+
+        <Style x:Key="CampoTexto"
+               TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D5DCE7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- BARRA SUPERIOR -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#E0E4EB"
+                BorderThickness="0,0,0,1">
+
+            <Grid Margin="25,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <materialDesign:PackIcon
+                        Kind="TicketPercentOutline"
+                        Width="28"
+                        Height="28"
+                        Foreground="#3157A4"
+                        Margin="0,0,12,0"/>
+
+                    <TextBlock Text="Gerenciar Cupons"
+                               FontSize="21"
+                               FontWeight="Bold"
+                               Foreground="#263B60"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Content="Voltar ao Painel"
+                        Style="{StaticResource BotaoSecundario}"
+                        Click="VoltarPainel_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- CONTEÚDO -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Margin="30,25,30,30">
+
+                <TextBlock Text="Administração de Cupons"
+                           FontSize="27"
+                           FontWeight="Bold"
+                           Foreground="#263B60"/>
+
+                <TextBlock
+                    Text="Cadastre, edite, ative ou desative os cupons da loja."
+                    FontSize="14"
+                    Foreground="#8993A5"
+                    Margin="0,7,0,25"/>
+
+                <!-- FORMULÁRIO -->
+                <Border Background="White"
+                        CornerRadius="12"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1"
+                        Padding="24"
+                        Margin="0,0,0,25">
+
+                    <StackPanel>
+
+                        <TextBlock x:Name="TituloFormulario"
+                                   Text="Cadastrar Novo Cupom"
+                                   FontSize="19"
+                                   FontWeight="SemiBold"
+                                   Foreground="#263B60"
+                                   Margin="0,0,0,20"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- CÓDIGO -->
+                            <StackPanel Grid.Column="0"
+                                        Margin="0,0,15,0">
+
+                                <TextBlock Text="Código do Cupom"
+                                           FontWeight="SemiBold"
+                                           Foreground="#344563"
+                                           Margin="0,0,0,7"/>
+
+                                <TextBox x:Name="TxtCodigo"
+                                         Style="{StaticResource CampoTexto}"
+                                         MaxLength="50"/>
+                            </StackPanel>
+
+                            <!-- DESCONTO -->
+                            <StackPanel Grid.Column="1"
+                                        Margin="0,0,15,0">
+
+                                <TextBlock Text="Desconto (%)"
+                                           FontWeight="SemiBold"
+                                           Foreground="#344563"
+                                           Margin="0,0,0,7"/>
+
+                                <TextBox x:Name="TxtDesconto"
+                                         Style="{StaticResource CampoTexto}"
+                                         MaxLength="6"/>
+                            </StackPanel>
+
+                            <!-- VALIDADE -->
+                            <StackPanel Grid.Column="2">
+
+                                <TextBlock Text="Data de Validade"
+                                           FontWeight="SemiBold"
+                                           Foreground="#344563"
+                                           Margin="0,0,0,7"/>
+
+                                <DatePicker x:Name="DpValidade"
+                                            Height="38"
+                                            SelectedDateFormat="Short"
+                                            BorderBrush="#D5DCE7"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- STATUS -->
+                        <CheckBox x:Name="ChkAtivo"
+                                  Content="Cupom ativo"
+                                  IsChecked="True"
+                                  FontSize="14"
+                                  Foreground="#344563"
+                                  Margin="0,22,0,22"/>
+
+                        <!-- BOTÕES -->
+                        <WrapPanel>
+
+                            <Button x:Name="BtnSalvar"
+                                    Content="Cadastrar Cupom"
+                                    Style="{StaticResource BotaoPrincipal}"
+                                    Click="SalvarCupom_Click"/>
+
+                            <Button Content="Novo / Limpar"
+                                    Style="{StaticResource BotaoSecundario}"
+                                    Click="NovoCupom_Click"/>
+
+                        </WrapPanel>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- LISTAGEM -->
+                <Border Background="White"
+                        CornerRadius="12"
+                        BorderBrush="#E0E4EB"
+                        BorderThickness="1"
+                        Padding="24">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,18">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Cupons Cadastrados"
+                                       FontSize="19"
+                                       FontWeight="SemiBold"
+                                       Foreground="#263B60"
+                                       VerticalAlignment="Center"/>
+
+                            <Button Grid.Column="1"
+                                    Content="Atualizar Lista"
+                                    Style="{StaticResource BotaoSecundario}"
+                                    Click="AtualizarLista_Click"/>
+                        </Grid>
+
+                        <DataGrid x:Name="ListaCupons"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  RowHeight="42"
+                                  MinHeight="200"
+                                  Height="260"
+                                  BorderBrush="#E0E4EB"
+                                  GridLinesVisibility="Horizontal"
+                                  SelectionChanged="ListaCupons_SelectionChanged">
+
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn
+                                    Header="ID"
+                                    Binding="{Binding idCupom}"
+                                    Width="65"/>
+
+                                <DataGridTextColumn
+                                    Header="Código"
+                                    Binding="{Binding CodigoCupom}"
+                                    Width="*"/>
+
+                                <DataGridTextColumn
+                                    Header="Desconto (%)"
+                                    Binding="{Binding Desconto, StringFormat={}{0:0.##}}"
+                                    Width="130"/>
+
+                                <DataGridTextColumn
+                                    Header="Validade"
+                                    Binding="{Binding DataValidade, StringFormat={}{0:dd/MM/yyyy}}"
+                                    Width="150"/>
+
+                                <DataGridCheckBoxColumn
+                                    Header="Ativo"
+                                    Binding="{Binding ativo}"
+                                    Width="85"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- OPERAÇÕES -->
+                        <WrapPanel Margin="0,20,0,0">
+
+                            <Button x:Name="BtnAlternarStatus"
+                                    Content="Ativar / Desativar"
+                                    Style="{StaticResource BotaoSecundario}"
+                                    IsEnabled="False"
+                                    Click="AlternarStatus_Click"/>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            Text="Selecione um cupom na tabela para editar seus dados ou alterar seu status."
+                            Foreground="#8993A5"
+                            FontSize="13"
+                            TextWrapping="Wrap"
+                            Margin="0,15,0,0"/>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

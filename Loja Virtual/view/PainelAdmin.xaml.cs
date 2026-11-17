@@ -110,6 +110,7 @@ namespace Loja_Virtual.view
 
             Close();
         }
+
         private void GerenciarCupons_Click(
             object sender, RoutedEventArgs e)
         {
@@ -119,13 +120,12 @@ namespace Loja_Virtual.view
                 return;
             }
 
-            MessageBox.Show(
-                "O gerenciamento de cupons com ADO.NET " +
-                "será implementado na próxima etapa.",
-                "Gerenciar Cupons",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            GerenciarCupons tela = new GerenciarCupons();
+
+            tela.Show();
+            Close();
         }
+
         private void GerenciarProdutos_Click(
             object sender, RoutedEventArgs e)
         {
