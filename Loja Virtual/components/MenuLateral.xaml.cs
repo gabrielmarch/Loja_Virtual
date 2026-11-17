@@ -62,8 +62,11 @@ namespace Loja_Virtual.components
                     if (janelaAtual is MetodoPagamento) return;
                     novaTela = new MetodoPagamento();
                     break;
-
                 case "Perfil":
+                    if (janelaAtual is Perfil) return;
+
+                    novaTela = new Perfil();
+                    break;
                 case "Anunciar":
                 case "Cupons":
                     MessageBox.Show(

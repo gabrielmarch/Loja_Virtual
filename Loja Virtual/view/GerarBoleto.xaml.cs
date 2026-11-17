@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loja_Virtual.controll;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace Loja_Virtual.view
     public partial class GerarBoleto : Window
     {
         private bool menuVisivel = true;
-
+        private bool pedidoConfirmado = false;
 
         public decimal ValorCompra { get; private set; }
 
@@ -56,6 +57,64 @@ namespace Loja_Virtual.view
                 ColunaMenu.Width = new GridLength(0);
             }
         }
+
+
+        private async void BtnConfirmarPedido_Click(
+            object sender, RoutedEventArgs e)
+        {
+            if (pedidoConfirmado)
+                return;
+
+            MessageBoxResult resposta = MessageBox.Show(
+                "Deseja confirmar o pedido com pagamento por boleto?\n\n" +
+                "O pedido ficará aguardando pagamento.",
+                "Confirmar pedido",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resposta != MessageBoxResult.Yes)
+                return;
+
+            pedidoConfirmado = true;
+            BtnConfirmarPedido.IsEnabled = false;
+
+            try
+            {
+                PedidoController controller = new PedidoController();
+
+                int numeroPedido =
+                    await controller.RegistrarPedidoAsync();
+
+                CarrinhoServiço.Limpar();
+
+                MessageBox.Show(
+                    $"Pedido Nº {numeroPedido} registrado com sucesso!\n\n" +
+                    "Status: Aguardando pagamento.\n\n" +
+                    "Este boleto é apenas uma simulação acadêmica.",
+                    "Pedido registrado",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                TelaPrincipal principal = new TelaPrincipal();
+                principal.Show();
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                pedidoConfirmado = false;
+                BtnConfirmarPedido.IsEnabled = true;
+
+                MessageBox.Show(
+                    "Não foi possível registrar o pedido.\n\n" +
+                    ex.Message,
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+
     }
 }
 

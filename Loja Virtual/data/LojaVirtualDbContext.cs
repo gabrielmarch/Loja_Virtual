@@ -55,11 +55,48 @@ namespace Loja_Virtual.data
         {
             base.OnModelCreating(modelBuilder);
 
-            // CHAVE PRIMÁRIA DE PEDIDO
-            modelBuilder.Entity<Pedido>()
-                .HasKey(p => p.idPedido);
+            modelBuilder.Entity<Pedido>(e =>
+            {
+                e.ToTable("pedidos");
 
-            // CHAVE PRIMÁRIA DE SERVIÇO
+                e.HasKey(p => p.idPedido);
+
+                e.Property(p => p.ClienteId)
+                    .HasColumnName("idClienteId");
+
+                e.Property(p => p.Subtotal)
+                    .HasColumnType("decimal(18,2)");
+
+                e.Property(p => p.Desconto)
+                    .HasColumnType("decimal(18,2)");
+
+                e.HasOne(p => p.idCliente)
+                    .WithMany(c => c.Pedidos)
+                    .HasForeignKey(p => p.ClienteId);
+            });
+
+            modelBuilder.Entity<ItemPedido>(e =>
+            {
+                e.ToTable("itemPedidos");
+
+                e.HasKey(i => i.Id);
+
+                e.Property(i => i.PrecoUnitario)
+                    .HasColumnType("decimal(18,2)");
+
+                e.Property(i => i.Subtotal)
+                    .HasColumnType("decimal(18,2)");
+
+                e.HasOne(i => i.Pedido)
+                    .WithMany(p => p.Itens)
+                    .HasForeignKey(i => i.PedidoId);
+
+                e.HasOne(i => i.Produto)
+                    .WithMany()
+                    .HasForeignKey(i => i.ProdutoId);
+            });
+
+
             modelBuilder.Entity<Servico>()
                 .HasKey(s => s.IdServico);
 

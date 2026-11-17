@@ -186,273 +186,125 @@
                 </Grid>
             </Border>
 
-            <!-- CONTEÚDO DA TELA -->
-            <ScrollViewer Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled">
+                <!-- CONTEÚDO DA TELA -->
+                <Grid Grid.Row="1"
+                      Margin="30,25,30,35">
 
-                <StackPanel Margin="30,25,30,35">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
                     <!-- CABEÇALHO -->
-                    <StackPanel Margin="0,0,0,25">
+                    <StackPanel Grid.Row="0"
+                                Margin="0,0,0,25">
 
-                        <TextBlock Text="Meu Pedido"
+                        <TextBlock Text="Meus Pedidos"
                                    FontSize="28"
                                    FontWeight="Bold"
                                    Foreground="#263B60"/>
 
-                        <TextBlock Text="Acompanhe o andamento do seu pedido."
-                                   FontSize="14"
-                                   Foreground="#8993A5"
-                                   Margin="0,6,0,0"/>
+                        <TextBlock
+                    Text="Consulte seus pedidos e simule a confirmação do boleto."
+                    FontSize="14"
+                    Foreground="#8993A5"
+                    Margin="0,6,0,0"/>
+
                     </StackPanel>
 
-                    <!-- ====================================== -->
-                    <!-- ACOMPANHAMENTO DO PEDIDO -->
-                    <!-- ====================================== -->
+                    <!-- LISTA DE PEDIDOS -->
+                    <Border Grid.Row="1"
+                            Background="White"
+                            BorderBrush="#E0E4EB"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            Padding="18">
 
-                    <Border Style="{StaticResource CartaoPedido}"
-                            Margin="0,0,0,25">
+                        <DataGrid x:Name="ListaPedidos"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="None"
+                                  RowHeight="48"
+                                  ColumnHeaderHeight="45"
+                                  Background="White"
+                                  BorderThickness="0">
 
-                        <StackPanel>
+                            <DataGrid.Columns>
 
-                            <Grid Margin="0,0,0,30">
+                                <DataGridTextColumn
+                                            Header="Pedido"
+                                            Binding="{Binding Id}"
+                                            Width="*"/>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                <DataGridTextColumn
+                                            Header="Data"
+                                            Binding="{Binding DataPedido,
+                                                      StringFormat=dd/MM/yyyy HH:mm}"
+                                            Width="2*"/>
 
-                                <!-- LINHA ENTRE AS ETAPAS -->
-                                <Border Grid.ColumnSpan="4"
-                                        Height="3"
-                                        Background="#E0E4EB"
-                                        Margin="65,22,65,0"
-                                        VerticalAlignment="Top"
-                                        Panel.ZIndex="0"/>
+                                <DataGridTextColumn
+                                            Header="Total"
+                                            Binding="{Binding Total,
+                                                      StringFormat={}{0:C2}}"
+                                            Width="*"/>
 
-                                <!-- PROGRESSO ATÉ A SEGUNDA ETAPA -->
-                                <Border Grid.ColumnSpan="4"
-                                        Height="3"
-                                        Background="#3157A4"
-                                        HorizontalAlignment="Left"
-                                        Width="300"
-                                        MaxWidth="300"
-                                        Margin="65,22,0,0"
-                                        VerticalAlignment="Top"
-                                        Panel.ZIndex="1"/>
+                                <DataGridTextColumn
+                                            Header="Status"
+                                            Binding="{Binding Status}"
+                                            Width="2*"/>
 
-                                <!-- ETAPA 1 -->
-                                <StackPanel Grid.Column="0"
-                                            HorizontalAlignment="Center"
-                                            Panel.ZIndex="2">
+                            </DataGrid.Columns>
 
-                                    <Border Width="46"
-                                            Height="46"
-                                            CornerRadius="23"
-                                            Background="#3157A4"
-                                            HorizontalAlignment="Center">
+                        </DataGrid>
 
-                                        <materialDesign:PackIcon Kind="Check"
-                                                                 Width="23"
-                                                                 Height="23"
-                                                                 Foreground="White"
-                                                                 HorizontalAlignment="Center"
-                                                                 VerticalAlignment="Center"/>
-                                    </Border>
+                    </Border>
 
-                                    <TextBlock Text="Pedido feito"
-                                               Style="{StaticResource TextoStatus}"
-                                               Foreground="#3157A4"
-                                               Margin="0,12,0,0"/>
-                                </StackPanel>
+                    <!-- AÇÕES -->
+                    <StackPanel Grid.Row="2"
+                                Margin="0,20,0,0">
 
-                                <!-- ETAPA 2 -->
-                                <StackPanel Grid.Column="1"
-                                            HorizontalAlignment="Center"
-                                            Panel.ZIndex="2">
+                        <TextBlock
+                            Text="Selecione um pedido aguardando pagamento para realizar uma confirmação simulada."
+                            FontSize="13"
+                            Foreground="#8993A5"
+                            TextWrapping="Wrap"
+                            Margin="0,0,0,15"/>
 
-                                    <Border Width="46"
-                                            Height="46"
-                                            CornerRadius="23"
-                                            Background="#3157A4"
-                                            HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
 
-                                        <materialDesign:PackIcon Kind="PackageVariant"
-                                                                 Width="23"
-                                                                 Height="23"
-                                                                 Foreground="White"
-                                                                 HorizontalAlignment="Center"
-                                                                 VerticalAlignment="Center"/>
-                                    </Border>
+                            <Button Content="Atualizar pedidos"
+                                    Width="160"
+                                    Height="42"
+                                    Background="#E8EEF9"
+                                    Foreground="#3157A4"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="0,0,12,0"
+                                    Click="AtualizarPedidos_Click"/>
 
-                                    <TextBlock Text="Pedido enviado"
-                                               Style="{StaticResource TextoStatus}"
-                                               Foreground="#3157A4"
-                                               Margin="0,12,0,0"/>
-                                </StackPanel>
-
-                                <!-- ETAPA 3 -->
-                                <StackPanel Grid.Column="2"
-                                            HorizontalAlignment="Center"
-                                            Panel.ZIndex="2">
-
-                                    <Border Width="46"
-                                            Height="46"
-                                            CornerRadius="23"
-                                            Background="#F0F3F9"
-                                            BorderBrush="#D5D9E2"
-                                            BorderThickness="2"
-                                            HorizontalAlignment="Center">
-
-                                        <materialDesign:PackIcon Kind="TruckDeliveryOutline"
-                                                                 Width="23"
-                                                                 Height="23"
-                                                                 Foreground="#8993A5"
-                                                                 HorizontalAlignment="Center"
-                                                                 VerticalAlignment="Center"/>
-                                    </Border>
-
-                                    <TextBlock Text="Saiu para entrega"
-                                               Style="{StaticResource TextoStatus}"
-                                               Margin="0,12,0,0"/>
-                                </StackPanel>
-
-                                <!-- ETAPA 4 -->
-                                <StackPanel Grid.Column="3"
-                                            HorizontalAlignment="Center"
-                                            Panel.ZIndex="2">
-
-                                    <Border Width="46"
-                                            Height="46"
-                                            CornerRadius="23"
-                                            Background="#F0F3F9"
-                                            BorderBrush="#D5D9E2"
-                                            BorderThickness="2"
-                                            HorizontalAlignment="Center">
-
-                                        <materialDesign:PackIcon Kind="HomeOutline"
-                                                                 Width="23"
-                                                                 Height="23"
-                                                                 Foreground="#8993A5"
-                                                                 HorizontalAlignment="Center"
-                                                                 VerticalAlignment="Center"/>
-                                    </Border>
-
-                                    <TextBlock Text="Entregue"
-                                               Style="{StaticResource TextoStatus}"
-                                               Margin="0,12,0,0"/>
-                                </StackPanel>
-
-                            </Grid>
-
-                            <!-- RESUMO DO STATUS -->
-                            <Border Background="#F0F3F9"
-                                    CornerRadius="8"
-                                    Padding="16">
-
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="InformationOutline"
-                                                             Width="22"
-                                                             Height="22"
-                                                             Foreground="#3157A4"
-                                                             Margin="0,0,10,0"/>
-
-                                    <TextBlock Text="Seu pedido foi enviado e está a caminho."
-                                               FontSize="14"
-                                               Foreground="#263B60"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
+                            <Button x:Name="BtnConfirmarPagamento"
+                                    Content="Simular pagamento"
+                                    Width="190"
+                                    Height="42"
+                                    Background="#3157A4"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="ConfirmarPagamento_Click"/>
 
                         </StackPanel>
 
-                    </Border>
+                    </StackPanel>
 
-                    <!-- ====================================== -->
-                    <!-- PRODUTOS DO PEDIDO -->
-                    <!-- ====================================== -->
-
-                    <TextBlock Text="Produtos do pedido"
-                               FontSize="20"
-                               FontWeight="Bold"
-                               Foreground="#263B60"
-                               Margin="0,0,0,15"/>
-
-                    <Border Style="{StaticResource CartaoPedido}">
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="85"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- IMAGEM DO PRODUTO -->
-                            <Border Grid.Column="0"
-                                    Width="70"
-                                    Height="70"
-                                    Background="#F0F3F9"
-                                    CornerRadius="8"
-                                    HorizontalAlignment="Left">
-
-                                <materialDesign:PackIcon Kind="PackageVariant"
-                                                         Width="35"
-                                                         Height="35"
-                                                         Foreground="#A0A8B7"
-                                                         HorizontalAlignment="Center"
-                                                         VerticalAlignment="Center"/>
-                            </Border>
-
-                            <!-- INFORMAÇÕES DO PRODUTO -->
-                            <StackPanel Grid.Column="1"
-                                        VerticalAlignment="Center">
-
-                                <TextBlock Text="Produto"
-                                           FontSize="16"
-                                           FontWeight="SemiBold"
-                                           Foreground="#263B60"/>
-
-                                <TextBlock Text="Descrição do produto"
-                                           FontSize="13"
-                                           Foreground="#8993A5"
-                                           Margin="0,5,0,0"/>
-
-                                <TextBlock Text="Quantidade: 1 unidade"
-                                           FontSize="13"
-                                           Foreground="#555F70"
-                                           Margin="0,6,0,0"/>
-                            </StackPanel>
-
-                            <!-- PREÇO -->
-                            <StackPanel Grid.Column="2"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Right"
-                                        Margin="15,0,0,0">
-
-                                <TextBlock Text="Preço"
-                                           FontSize="12"
-                                           Foreground="#8993A5"
-                                           HorizontalAlignment="Right"/>
-
-                                <TextBlock Text="R$ 149,90"
-                                           FontSize="19"
-                                           FontWeight="Bold"
-                                           Foreground="#3157A4"
-                                           Margin="0,5,0,0"
-                                           HorizontalAlignment="Right"/>
-                            </StackPanel>
-
-                        </Grid>
-
-                    </Border>
-
-                </StackPanel>
-
-            </ScrollViewer>
+                </Grid>
 
         </Grid>
 

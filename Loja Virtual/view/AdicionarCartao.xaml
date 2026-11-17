@@ -269,67 +269,48 @@
                                 </StackPanel>
 
 
+                                <!-- AVISO DA SIMULAÇÃO -->
+                                <Border Background="#E8EEF9"
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Margin="0,0,0,20">
 
-                                <!-- NÚMERO DO CARTÃO -->
-                                <TextBlock Text="Número do cartão"
-                                           Style="{StaticResource LabelCampo}"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Pagamento simulado"
+                                                   FontSize="15"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#3157A4"
+                                                   Margin="0,0,0,6"/>
 
-                                <TextBox x:Name="TxtNumeroCartao"
-                                         Style="{StaticResource CampoTexto}"
-                                         MaxLength="19"
-                                         Margin="0,0,0,18"/>
+                                        <TextBlock
+                                            Text="Esta operação é apenas para testes acadêmicos. Nenhum valor será cobrado. Não informe dados bancários reais."
+                                            TextWrapping="Wrap"
+                                            FontSize="13"
+                                            Foreground="#555F70"/>
+                                    </StackPanel>
+                                </Border>
 
-                                <!-- NOME NO CARTÃO -->
-                                <TextBlock Text="Nome no cartão"
+                                <!-- IDENTIFICAÇÃO DO TESTE -->
+                                <TextBlock Text="Nome para identificação"
                                            Style="{StaticResource LabelCampo}"/>
 
                                 <TextBox x:Name="TxtNomeCartao"
                                          Style="{StaticResource CampoTexto}"
-                                         Margin="0,0,0,18"/>
+                                         MaxLength="150"
+                                         Margin="0,0,0,20"/>
 
-                                <!-- VALIDADE E CVV -->
-                                <Grid Margin="0,0,0,28">
+                                <TextBlock Text="Forma de pagamento: Cartão (simulação)"
+                                           FontSize="13"
+                                           Foreground="#8993A5"
+                                           Margin="0,0,0,20"/>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="18"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
 
-                                    <!-- VALIDADE -->
-                                    <StackPanel Grid.Column="0">
-
-                                        <TextBlock Text="Validade (MM/AA)"
-                                                   Style="{StaticResource LabelCampo}"/>
-
-                                        <TextBox x:Name="TxtValidade"
-                                                 Style="{StaticResource CampoTexto}"
-                                                 MaxLength="5"/>
-                                    </StackPanel>
-
-                                    <!-- CVV -->
-                                    <StackPanel Grid.Column="2">
-
-                                        <TextBlock Text="CVV"
-                                                   Style="{StaticResource LabelCampo}"/>
-
-                                        <PasswordBox x:Name="TxtCvv"
-                                                     Height="42"
-                                                     FontSize="14"
-                                                     Padding="12,8"
-                                                     Background="White"
-                                                     Foreground="#263B60"
-                                                     BorderBrush="#D5D9E2"
-                                                     BorderThickness="1"
-                                                     VerticalContentAlignment="Center"
-                                                     MaxLength="4"/>
-                                    </StackPanel>
-
-                                </Grid>
+                   
 
                                 <!-- BOTÃO SALVAR -->
                                 <Button x:Name="BtnSalvarCartao"
-                                        Style="{StaticResource BotaoPrincipal}">
+                                        Style="{StaticResource BotaoPrincipal}"
+                                        Click="BtnConfirmarCartao_Click">
 
                                     <StackPanel Orientation="Horizontal"
                                                 HorizontalAlignment="Center">
@@ -341,7 +322,7 @@
                                             Margin="0,0,9,0"
                                             VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Salvar Cartão"
+                                        <TextBlock Text="Confirmar pagamento simulado"
                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
 

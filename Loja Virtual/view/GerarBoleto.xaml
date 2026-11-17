@@ -359,6 +359,7 @@
                             <!-- BOTÃO BAIXAR -->
                             <Button x:Name="BtnBaixarBoleto"
                                     Style="{StaticResource BotaoPrincipal}">
+                            
 
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
@@ -374,6 +375,14 @@
                                 </StackPanel>
 
                             </Button>
+
+                            <!-- CONFIRMAR PEDIDO -->
+                            <Button x:Name="BtnConfirmarPedido"
+                                    Content="Confirmar Pedido"
+                                    Style="{StaticResource BotaoPrincipal}"
+                                    Margin="0,15,0,0"
+                                    Click="BtnConfirmarPedido_Click"/>
+
 
                         </StackPanel>
 
