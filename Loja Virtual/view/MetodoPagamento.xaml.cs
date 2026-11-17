@@ -51,7 +51,7 @@ namespace Loja_Virtual.view
 
         private void BtnIrParaCartao_Click(object sender, RoutedEventArgs e)
         {
-            AdicionarCartao tela = new AdicionarCartao();
+            AdicionarCartao tela = new AdicionarCartao(ValorCompra);
 
             tela.Show();
             this.Close();
@@ -59,7 +59,7 @@ namespace Loja_Virtual.view
 
         private void BtnIrParaBoleto_Click(object sender, RoutedEventArgs e)
         {
-            GerarBoleto tela = new GerarBoleto();
+            GerarBoleto tela = new GerarBoleto(ValorCompra);
 
             tela.Show();
             this.Close();

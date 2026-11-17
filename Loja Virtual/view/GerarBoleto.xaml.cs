@@ -18,10 +18,28 @@ namespace Loja_Virtual.view
     {
         private bool menuVisivel = true;
 
-        public GerarBoleto()
+
+        public decimal ValorCompra { get; private set; }
+
+        public GerarBoleto() : this(0m)
+        {
+        }
+
+        public GerarBoleto(decimal valorCompra)
         {
             InitializeComponent();
+
+            ValorCompra = valorCompra;
+            TxtValor.Text = valorCompra.ToString(
+                "C2",
+                System.Globalization.CultureInfo.GetCultureInfo("pt-BR"));
+            TxtVencimento.Text = DateTime.Today
+                .AddDays(3)
+                .ToString("dd/MM/yyyy");
+            TxtCodigoBarras.Text =
+                "Simulação acadêmica — boleto não emitido.";
         }
+
 
         private void buttonMenu_Click(object sender, RoutedEventArgs e)
         {

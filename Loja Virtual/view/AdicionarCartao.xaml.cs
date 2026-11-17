@@ -17,12 +17,24 @@ namespace Loja_Virtual.view
     {
         private bool menuVisivel = true;
 
-        public AdicionarCartao()
+
+        public decimal ValorCompra { get; private set; }
+
+        public AdicionarCartao() : this(0m)
         {
-            InitializeComponent();
         }
 
-        // ABRIR E FECHAR O MENU HAMBÚRGUER
+        public AdicionarCartao(decimal valorCompra)
+        {
+            InitializeComponent();
+
+            ValorCompra = valorCompra;
+
+            ValorCompraTexto.Text = valorCompra.ToString(
+                "C2",
+                System.Globalization.CultureInfo.GetCultureInfo("pt-BR"));
+        }
+
         private void buttonMenu_Click(object sender, RoutedEventArgs e)
         {
             menuVisivel = !menuVisivel;

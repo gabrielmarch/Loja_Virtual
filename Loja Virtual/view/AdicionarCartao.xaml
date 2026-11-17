@@ -249,6 +249,27 @@
                                            TextAlignment="Center"
                                            Margin="0,0,0,30"/>
 
+
+                                <!-- VALOR DA COMPRA -->
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,20">
+
+                                    <TextBlock Text="Total da compra: "
+                                               FontSize="15"
+                                               FontWeight="SemiBold"
+                                               Foreground="#263B60"/>
+
+                                    <TextBlock x:Name="ValorCompraTexto"
+                                               Text="R$ 0,00"
+                                               FontSize="17"
+                                               FontWeight="Bold"
+                                               Foreground="#3157A4"/>
+
+                                </StackPanel>
+
+
+
                                 <!-- NÚMERO DO CARTÃO -->
                                 <TextBlock Text="Número do cartão"
                                            Style="{StaticResource LabelCampo}"/>

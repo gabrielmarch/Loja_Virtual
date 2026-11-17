@@ -10,46 +10,104 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 namespace Loja_Virtual.view
 {
-
     public partial class Cadastro : Window
     {
-        private readonly CadastroController _controller;
+        private readonly CadastroController _controller = new();
 
         public Cadastro()
         {
             InitializeComponent();
-
-            _controller = new CadastroController();
         }
 
-        private void BtnCadastrar_Click(object sender, RoutedEventArgs e)
+        
+        private void txtCpfCnpj_TextChanged(
+            object sender, TextChangedEventArgs e)
         {
-            bool valido = _controller.ValidarCadastro(
-                txtNome.Text,
-                txtEmail.Text,
-                txtCpfCnpj.Text,
-                txtSenha.Password,
-                txtConfirmarSenha.Password,
-                out string mensagem
-            );
+            string documento = new string(
+                txtCpfCnpj.Text.Where(char.IsDigit).ToArray());
 
-            MessageBox.Show(mensagem);
+            CamposPessoaFisica.Visibility =
+                documento.Length == 11
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
-            if (valido)
+            CamposPessoaJuridica.Visibility =
+                documento.Length == 14
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        
+        private async void BtnCadastrar_Click(
+            object sender, RoutedEventArgs e)
+        {
+            try
             {
-                // Posteriormente salvaremos o cliente no banco.
+                BtnCadastrar.IsEnabled = false;
+
+                int idCliente =
+                    await _controller.CadastrarClienteAsync(
+                        txtNome.Text,
+                        txtEmail.Text,
+                        txtCpfCnpj.Text,
+                        txtTelefone.Text,
+                        txtEndereco.Text,
+                        txtSenha.Password,
+                        txtConfirmarSenha.Password,
+                        dpNascimento.SelectedDate,
+                        txtRazaoSocial.Text,
+                        txtNomeFantasia.Text);
+
+                MessageBox.Show(
+                    $"Cliente cadastrado com sucesso!\nID: {idCliente}",
+                    "Loja Virtual",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                Login login = new Login();
+                login.Show();
+                this.Close();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Validação",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Não foi possível salvar o cliente. " +
+                    "Confira se o CPF/CNPJ ou e-mail já está cadastrado.",
+                    "Erro de cadastro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erro ao cadastrar cliente:\n" + ex.Message,
+                    "Loja Virtual",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            finally
+            {
+                BtnCadastrar.IsEnabled = true;
             }
         }
 
-        private void BtnEntrar_Click(object sender, RoutedEventArgs e)
+        private void BtnEntrar_Click(
+            object sender, RoutedEventArgs e)
         {
             Login login = new Login();
-
             login.Show();
-
             this.Close();
         }
     }

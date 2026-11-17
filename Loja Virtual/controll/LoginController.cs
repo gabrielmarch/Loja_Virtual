@@ -1,30 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Loja_Virtual.data;
+using Loja_Virtual.model;
+using Loja_Virtual.services;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Loja_Virtual.controll
 {
     public class LoginController
     {
-        public bool ValidarLogin(
+        public async Task<Cliente?> AutenticarAsync(
             string cpfCnpj,
-            string senha,
-            out string mensagem)
+            string senha)
         {
-            if (string.IsNullOrWhiteSpace(cpfCnpj))
+            string documento = new string(
+                cpfCnpj.Where(char.IsDigit).ToArray());
+
+            if (documento.Length != 11 &&
+                documento.Length != 14)
             {
-                mensagem = "Informe seu CPF ou CNPJ.";
-                return false;
+                return null;
             }
 
             if (string.IsNullOrWhiteSpace(senha))
+                return null;
+
+            using var banco = new LojaVirtualDbContext();
+
+            Cliente? cliente = null;
+
+            
+            if (documento.Length == 11)
             {
-                mensagem = "Informe sua senha.";
-                return false;
+                cliente = await banco.PessoasFisicas
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(c =>
+                        c.CPF == documento && c.Ativo);
+            }
+            
+            else
+            {
+                cliente = await banco.PessoasJuridicas
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(c =>
+                        c.CNPJ == documento && c.Ativo);
             }
 
-            mensagem = "Dados preenchidos corretamente.";
-            return true;
+            if (cliente == null)
+                return null;
+
+            
+            bool senhaCorreta = SenhaService.VerificarSenha(
+                senha,
+                cliente.SenhaHash);
+
+            return senhaCorreta ? cliente : null;
         }
     }
 }
