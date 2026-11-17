@@ -20,19 +20,22 @@ namespace Loja_Virtual.model
 
         public bool Ativo { get; set; }
 
-        
         public string SenhaHash { get; set; } = string.Empty;
 
-        public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+        public string PerfilAcesso { get; set; } = "Cliente";
+
+        public ICollection<Pedido> Pedidos { get; set; }
+            = new List<Pedido>();
 
         public void AtualizarDados()
         {
-            
+
         }
 
         public void ConsultarPedidos()
         {
-            
+
         }
     }
 }
+

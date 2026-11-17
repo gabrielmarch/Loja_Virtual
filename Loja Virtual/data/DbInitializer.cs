@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Loja_Virtual.model;
+using Loja_Virtual.services;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Loja_Virtual.model;
 using System.Linq;
+using System.Text;
 
 namespace Loja_Virtual.data
 {
@@ -12,7 +13,6 @@ namespace Loja_Virtual.data
         {
             using var banco = new LojaVirtualDbContext();
 
-            // 1. FORNECEDORES DE DEMONSTRAÇÃO
             if (!banco.fornecedores.Any(f =>
                     f.CNPJFornecedor == "00000000000001"))
             {
@@ -39,12 +39,12 @@ namespace Loja_Virtual.data
 
             banco.SaveChanges();
 
-            // Recuperar o fornecedor já cadastrado
+
             var fornecedor = banco.fornecedores
                 .First(f =>
                     f.CNPJFornecedor == "00000000000001");
 
-            // 2. PRODUTOS DE DEMONSTRAÇÃO
+            
             AdicionarProdutoSeNaoExistir(
                 banco,
                 "DEMO-PROD-001",
@@ -69,7 +69,7 @@ namespace Loja_Virtual.data
                 15,
                 fornecedor.idFornecedor);
 
-            // 3. CUPONS DE DEMONSTRAÇÃO
+        
             AdicionarCupomSeNaoExistir(
                 banco, "DESCONTO10", 10m);
 
@@ -80,6 +80,8 @@ namespace Loja_Virtual.data
                 banco, "DESCONTO20", 20m);
 
             banco.SaveChanges();
+
+            CriarAdministradorInicial(banco);
         }
 
         private static void AdicionarProdutoSeNaoExistir(
@@ -130,5 +132,43 @@ namespace Loja_Virtual.data
                 ativo = true
             });
         }
+
+
+        private static void CriarAdministradorInicial(
+            LojaVirtualDbContext banco)
+        {
+            const string cpfAdmin = "12345678900";
+            const string emailAdmin = "admin@lojavirtual.test";
+            const string senhaAdmin = "Admin@12345";
+
+            bool adminExiste = banco.PessoasFisicas.Any(
+                p => p.CPF == cpfAdmin ||
+                     p.Email == emailAdmin);
+
+            if (adminExiste)
+                return;
+
+            var administrador = new PessoaFisica
+            {
+                Nome = "Administrador Demo",
+                Email = emailAdmin,
+                CPF = cpfAdmin,
+                Telefone = "27999999999",
+                Endereco = "Endereço de demonstração",
+                DataNascimento = new DateTime(2000, 1, 1),
+                DataCadastro = DateTime.Now,
+                Ativo = true,
+                PerfilAcesso = "Administrador",
+
+                SenhaHash = SenhaService.GerarHash(senhaAdmin)
+            };
+
+            banco.PessoasFisicas.Add(administrador);
+            banco.SaveChanges();
+        }
+
+
+
+
     }
 }

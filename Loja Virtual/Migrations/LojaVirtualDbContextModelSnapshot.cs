@@ -51,6 +51,13 @@ namespace Loja_Virtual.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("PerfilAcesso")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasDefaultValue("Cliente");
+
                     b.Property<string>("SenhaHash")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -178,7 +185,7 @@ namespace Loja_Virtual.Migrations
 
                     b.HasIndex("ServicoId");
 
-                    b.ToTable("itemPedidos");
+                    b.ToTable("itemPedidos", (string)null);
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.Pagamento", b =>
@@ -226,6 +233,10 @@ namespace Loja_Virtual.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idPedido"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int")
+                        .HasColumnName("idClienteId");
+
                     b.Property<int?>("CupomId")
                         .HasColumnType("int");
 
@@ -242,16 +253,13 @@ namespace Loja_Virtual.Migrations
                     b.Property<decimal>("Subtotal")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("idClienteId")
-                        .HasColumnType("int");
-
                     b.HasKey("idPedido");
+
+                    b.HasIndex("ClienteId");
 
                     b.HasIndex("CupomId");
 
-                    b.HasIndex("idClienteId");
-
-                    b.ToTable("pedidos");
+                    b.ToTable("pedidos", (string)null);
                 });
 
             modelBuilder.Entity("Loja_Virtual.model.Produto", b =>
@@ -452,15 +460,15 @@ namespace Loja_Virtual.Migrations
 
             modelBuilder.Entity("Loja_Virtual.model.Pedido", b =>
                 {
+                    b.HasOne("Loja_Virtual.model.Cliente", "idCliente")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Loja_Virtual.model.Cupom", "Cupom")
                         .WithMany()
                         .HasForeignKey("CupomId");
-
-                    b.HasOne("Loja_Virtual.model.Cliente", "idCliente")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("idClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Cupom");
 

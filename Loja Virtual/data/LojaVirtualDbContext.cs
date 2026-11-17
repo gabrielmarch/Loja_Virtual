@@ -121,7 +121,10 @@ namespace Loja_Virtual.data
             modelBuilder.Entity<Cliente>(e =>
             {
                 e.ToTable("Clientes");
-
+                e.Property(c => c.PerfilAcesso)
+                    .HasMaxLength(20)
+                    .IsRequired()
+                    .HasDefaultValue("Cliente");
                 e.HasDiscriminator<string>("TipoCliente")
                     .HasValue<PessoaFisica>("PessoaFisica")
                     .HasValue<PessoaJuridica>("PessoaJuridica");
