@@ -48,12 +48,6 @@ namespace Loja_Virtual.components
                     if (janelaAtual is StatusPedido) return;
                     novaTela = new StatusPedido();
                     break;
-
-                case "Produtos":
-                    if (janelaAtual is CadastroProduto) return;
-                    novaTela = new CadastroProduto();
-                    break;
-
                 case "Suporte":
                     if (janelaAtual is SuporteCliente) return;
                     novaTela = new SuporteCliente();

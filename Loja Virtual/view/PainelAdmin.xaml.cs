@@ -129,13 +129,18 @@ namespace Loja_Virtual.view
         private void GerenciarProdutos_Click(
             object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                "O gerenciamento administrativo de produtos " +
-                "será configurado posteriormente.",
-                "Produtos",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            if (!SessaoUsuario.EhAdministrador)
+            {
+                NegarAcesso();
+                return;
+            }
+
+            CadastroProduto cadastro = new CadastroProduto();
+            cadastro.Show();
+
+            Close();
         }
+
         private void VisualizarLoja_Click(
             object sender, RoutedEventArgs e)
         {

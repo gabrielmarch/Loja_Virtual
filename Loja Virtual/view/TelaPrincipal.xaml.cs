@@ -31,19 +31,15 @@ namespace Loja_Virtual.view
             await CarregarProdutosAsync();
         }
 
-        // CARREGAR PRODUTOS DO BANCO DE DADOS
         private async Task CarregarProdutosAsync()
         {
             try
             {
-                // Busca os produtos no banco
                 var produtosBanco =
                     await produtoController.ListarProdutosAsync();
 
-                // Limpa a lista atual
                 produtos.Clear();
 
-                // Adiciona os produtos encontrados
                 foreach (var produto in produtosBanco)
                 {
                     produtos.Add(produto);
@@ -97,10 +93,21 @@ namespace Loja_Virtual.view
         private void buttonCriarProdutos_Click(
             object sender, RoutedEventArgs e)
         {
-            CadastroProduto cadastroProdutos = new CadastroProduto();
-            cadastroProdutos.Show();
+            if (!Loja_Virtual.services.SessaoUsuario.EhAdministrador)
+            {
+                MessageBox.Show(
+                    "Apenas administradores podem cadastrar produtos.",
+                    "Acesso negado",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
 
-            this.Close();
+                return;
+            }
+
+            CadastroProduto cadastro = new CadastroProduto();
+            cadastro.Show();
+
+            Close();
         }
 
         private void AdicionarCarrinho_Click(

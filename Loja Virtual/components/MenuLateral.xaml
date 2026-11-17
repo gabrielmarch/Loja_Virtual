@@ -190,23 +190,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- PRODUTOS -->
-                    <Button Style="{StaticResource BotaoMenu}"
-                            Tag="Produtos"
-                            Click="NavegarMenu_Click">
-
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="PackageVariant"
-                                                     Width="22"
-                                                     Height="22"
-                                                     Margin="0,0,6,0"
-                                                     Foreground="#344563"/>
-
-                            <TextBlock Text="Produtos"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-
                     <!-- PAGAMENTO -->
                     <Button Style="{StaticResource BotaoMenu}"
                             Tag="Pagamento"

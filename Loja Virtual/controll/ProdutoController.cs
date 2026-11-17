@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Loja_Virtual.data;
+using Loja_Virtual.model;
+using Loja_Virtual.services;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
-
-using Loja_Virtual.data;
-using Loja_Virtual.model;
-using Microsoft.EntityFrameworkCore;
 
 namespace Loja_Virtual.controll
 {
     public class ProdutoController
     {
-        // LISTAR PRODUTOS DISPONÍVEIS
         public async Task<List<Produto>> ListarProdutosAsync()
         {
             using var banco = new LojaVirtualDbContext();
@@ -22,7 +21,6 @@ namespace Loja_Virtual.controll
                 .ToListAsync();
         }
 
-        // LISTAR FORNECEDORES
         public async Task<List<Fornecedor>> ListarFornecedoresAsync()
         {
             using var banco = new LojaVirtualDbContext();
@@ -33,10 +31,34 @@ namespace Loja_Virtual.controll
                 .ToListAsync();
         }
 
-        // CADASTRAR PRODUTO
         public async Task<int> CadastrarProdutoAsync(Produto produto)
         {
-            // Validações
+
+            if (!SessaoUsuario.EhAdministrador ||
+                SessaoUsuario.ClienteId == null)
+            {
+                throw new UnauthorizedAccessException(
+                    "Apenas administradores podem cadastrar produtos.");
+            }
+
+            using (var bancoPermissao = new LojaVirtualDbContext())
+            {
+                int usuarioId = SessaoUsuario.ClienteId.Value;
+
+                bool autorizado = await bancoPermissao.Clientes
+                    .AsNoTracking()
+                    .AnyAsync(c =>
+                        c.Id == usuarioId &&
+                        c.Ativo &&
+                        c.PerfilAcesso == "Administrador");
+
+                if (!autorizado)
+                {
+                    throw new UnauthorizedAccessException(
+                        "Sua conta não possui permissão administrativa.");
+                }
+            }
+
             if (string.IsNullOrWhiteSpace(produto.NomeProduto))
                 throw new ArgumentException("Informe o nome do produto.");
 
@@ -69,7 +91,6 @@ namespace Loja_Virtual.controll
 
             using var banco = new LojaVirtualDbContext();
 
-            // Verificar se o código de barras já existe
             bool codigoExiste = await banco.produtos
                 .AnyAsync(p => p.CodigoBarras == produto.CodigoBarras);
 
@@ -77,7 +98,6 @@ namespace Loja_Virtual.controll
                 throw new ArgumentException(
                     "Já existe um produto com esse código de barras.");
 
-            // Verificar fornecedor
             bool fornecedorExiste = await banco.fornecedores
                 .AnyAsync(f => f.idFornecedor == produto.FornecedorId);
 
@@ -85,12 +105,10 @@ namespace Loja_Virtual.controll
                 throw new ArgumentException(
                     "O fornecedor selecionado não existe.");
 
-            // SALVAR NO BANCO
             banco.produtos.Add(produto);
 
             await banco.SaveChangesAsync();
 
-            // Retorna o ID gerado pelo SQL Server
             return produto.IdProduto;
         }
     }

@@ -20,7 +20,6 @@ namespace Loja_Virtual.view
 {
     public partial class CadastroProduto : Window
     {
-        private bool menuVisivel = true;
         private string? caminhoImagemSelecionada = null;
 
         private readonly ProdutoController produtoController = new();
@@ -32,10 +31,33 @@ namespace Loja_Virtual.view
             Loaded += CadastroProduto_Loaded;
         }
 
-        // CARREGAR FORNECEDORES
         private async void CadastroProduto_Loaded(
             object sender, RoutedEventArgs e)
         {
+            if (!SessaoUsuario.EhAdministrador)
+            {
+                MessageBox.Show(
+                    "Apenas administradores podem acessar " +
+                    "o cadastro de produtos.",
+                    "Acesso negado",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                if (SessaoUsuario.EstaAutenticado)
+                {
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.Show();
+                }
+                else
+                {
+                    Login login = new Login();
+                    login.Show();
+                }
+
+                Close();
+                return;
+            }
+
             try
             {
                 var fornecedores =
@@ -63,11 +85,9 @@ namespace Loja_Virtual.view
             }
         }
 
-        // CONFIRMAR CADASTRO
         private async void buttonConfirmarCad_Click(
             object sender, RoutedEventArgs e)
         {
-            // Validar nome
             if (string.IsNullOrWhiteSpace(txtNomeProduto.Text))
             {
                 MessageBox.Show("Informe o nome do produto.");
@@ -75,7 +95,6 @@ namespace Loja_Virtual.view
                 return;
             }
 
-            // Validar preço
             if (!decimal.TryParse(
                 txtPrecoProduto.Text,
                 NumberStyles.Currency,
@@ -87,7 +106,6 @@ namespace Loja_Virtual.view
                 return;
             }
 
-            // Validar estoque
             if (!int.TryParse(txtEstoqueProduto.Text, out int estoque)
                 || estoque < 0)
             {
@@ -96,7 +114,6 @@ namespace Loja_Virtual.view
                 return;
             }
 
-            // Validar fornecedor
             if (cmbFornecedor.SelectedValue is not int fornecedorId)
             {
                 MessageBox.Show("Selecione um fornecedor.");
@@ -104,7 +121,6 @@ namespace Loja_Virtual.view
                 return;
             }
 
-            // Criar o produto com os dados do formulário
             Produto produto = new Produto
             {
                 NomeProduto = txtNomeProduto.Text.Trim(),
@@ -122,24 +138,20 @@ namespace Loja_Virtual.view
             {
                 buttonConfirmarCad.IsEnabled = false;
 
-                // Converter a imagem selecionada em bytes
                 if (!string.IsNullOrWhiteSpace(caminhoImagemSelecionada))
                 {
                     FileInfo arquivo = new FileInfo(caminhoImagemSelecionada);
 
-                    // Limite de 5 MB por imagem
                     if (arquivo.Length > 5 * 1024 * 1024)
                     {
                         throw new ArgumentException(
                             "A imagem deve ter no máximo 5 MB.");
                     }
 
-                    // Armazena os bytes diretamente na entidade
                     produto.ImagemProduto =
                         await File.ReadAllBytesAsync(caminhoImagemSelecionada);
                 }
 
-                // Salva o produto e sua imagem no SQL Server
                 int idGerado =
                     await produtoController.CadastrarProdutoAsync(produto);
 
@@ -151,8 +163,8 @@ namespace Loja_Virtual.view
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
-                TelaPrincipal principal = new TelaPrincipal();
-                principal.Show();
+                PainelAdmin painel = new PainelAdmin();
+                painel.Show();
 
                 this.Close();
             }
@@ -172,28 +184,10 @@ namespace Loja_Virtual.view
 
         }
 
-        // ABRIR E FECHAR MENU LATERAL
-        private void buttonMenu_Click(
-            object sender, RoutedEventArgs e)
-        {
-            menuVisivel = !menuVisivel;
-
-            if (menuVisivel)
-            {
-                BarraLateral.Visibility = Visibility.Visible;
-                ColunaMenu.Width = new GridLength(165);
-            }
-            else
-            {
-                BarraLateral.Visibility = Visibility.Collapsed;
-                ColunaMenu.Width = new GridLength(0);
-            }
-        }
-
         private void buttonInserirImg_Click(
             object sender, RoutedEventArgs e)
         {
-            // Abre a janela para selecionar uma imagem
+
             OpenFileDialog janela = new OpenFileDialog
             {
                 Title = "Selecionar imagem do produto",
@@ -203,12 +197,10 @@ namespace Loja_Virtual.view
                 Multiselect = false
             };
 
-            // Verifica se o usuário selecionou um arquivo
             if (janela.ShowDialog() == true)
             {
                 try
                 {
-                    // Carrega a imagem na memória
                     BitmapImage imagem = new BitmapImage();
 
                     imagem.BeginInit();
@@ -223,15 +215,12 @@ namespace Loja_Virtual.view
 
                     imagem.Freeze();
 
-                    // Exibe a imagem no formulário
                     imgProduto.Source = imagem;
 
                     imgProduto.Visibility = Visibility.Visible;
 
-                    // Esconde o texto padrão
                     txtSemImagem.Visibility = Visibility.Collapsed;
 
-                    // Armazena o caminho selecionado
                     caminhoImagemSelecionada = janela.FileName;
                 }
                 catch (Exception ex)
@@ -249,18 +238,34 @@ namespace Loja_Virtual.view
         private void buttonLimparImg_Click(
             object sender, RoutedEventArgs e)
         {
-            // Remove a imagem da interface
             imgProduto.Source = null;
 
             imgProduto.Visibility = Visibility.Collapsed;
 
-            // Exibe novamente o texto padrão
             txtSemImagem.Visibility = Visibility.Visible;
 
-            // Limpa o caminho da imagem
             caminhoImagemSelecionada = null;
         }
 
+        private void VoltarPainel_Click(
+            object sender, RoutedEventArgs e)
+        {
+            if (!SessaoUsuario.EhAdministrador)
+            {
+                MessageBox.Show(
+                    "Acesso permitido apenas para administradores.",
+                    "Acesso negado",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                return;
+            }
+
+            PainelAdmin painel = new PainelAdmin();
+            painel.Show();
+
+            Close();
+        }
 
 
 
