@@ -122,10 +122,11 @@ namespace Loja_Virtual.view
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
-                StatusPedido pedidos = new StatusPedido();
+                MeusPagamentos pagamentos = new MeusPagamentos();
 
-                pedidos.Show();
+                pagamentos.Show();
                 Close();
+
             }
 
             catch (Exception ex)

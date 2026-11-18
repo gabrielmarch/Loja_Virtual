@@ -53,8 +53,10 @@ namespace Loja_Virtual.components
                     novaTela = new SuporteCliente();
                     break;
                 case "Pagamento":
-                    if (janelaAtual is MetodoPagamento) return;
-                    novaTela = new MetodoPagamento();
+                    if (janelaAtual is MeusPagamentos)
+                        return;
+
+                    novaTela = new MeusPagamentos();
                     break;
                 case "Perfil":
                     if (janelaAtual is Perfil) return;
