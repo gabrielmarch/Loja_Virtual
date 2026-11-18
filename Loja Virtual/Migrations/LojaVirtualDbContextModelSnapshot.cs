@@ -246,6 +246,10 @@ namespace Loja_Virtual.Migrations
                     b.Property<decimal>("Desconto")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("EtapaPedido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

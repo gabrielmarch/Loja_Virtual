@@ -8,7 +8,7 @@ namespace Loja_Virtual.model
     {
         public int idPedido { get; set; }
         public int ClienteId { get; set; }
-
+        public string EtapaPedido { get; set; } = "PedidoFeito";
         public Cliente idCliente { get; set; } = null!;
         public int? CupomId { get; set; }
 

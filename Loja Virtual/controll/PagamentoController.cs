@@ -167,7 +167,8 @@ namespace Loja_Virtual.controll
                 {
                     ClienteId = clienteId,
                     DataPedido = DateTime.Now,
-                    Status = "Pago"
+                    Status = "Pago",
+                    EtapaPedido = "PedidoFeito"
                 };
 
                 decimal subtotal = 0m;
