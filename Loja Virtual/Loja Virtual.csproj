@@ -10,6 +10,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ImagensProdutos\gabinete.png" />
+    <None Remove="ImagensProdutos\headset.png" />
+    <None Remove="ImagensProdutos\mouse-gamer.png" />
+    <None Remove="ImagensProdutos\mouse-usb.png" />
+    <None Remove="ImagensProdutos\pc-ryzen5.png" />
+    <None Remove="ImagensProdutos\pc-ryzen7.png" />
+    <None Remove="ImagensProdutos\teclado-usb.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ImagensProdutos\gabinete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\headset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\mouse-gamer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\mouse-usb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\pc-ryzen5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\pc-ryzen7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImagensProdutos\teclado-usb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14">

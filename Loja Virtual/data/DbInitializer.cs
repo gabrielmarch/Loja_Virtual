@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Loja_Virtual.data
 {
@@ -44,37 +45,75 @@ namespace Loja_Virtual.data
                 .First(f =>
                     f.CNPJFornecedor == "00000000000001");
 
-            
             AdicionarProdutoSeNaoExistir(
                 banco,
-                "DEMO-PROD-001",
-                "Mouse USB Demonstracao",
+                "7891234567891",
+                "Mouse USB UVV",
                 49.90m,
-                30,
-                fornecedor.idFornecedor);
+                20,
+                fornecedor.idFornecedor,
+                "mouse-usb.png");
 
             AdicionarProdutoSeNaoExistir(
                 banco,
-                "DEMO-PROD-002",
-                "Teclado USB Demonstracao",
+                "7891234568892",
+                "Teclado USB",
                 89.90m,
                 20,
-                fornecedor.idFornecedor);
+                fornecedor.idFornecedor,
+                "teclado-usb.png");
 
             AdicionarProdutoSeNaoExistir(
                 banco,
-                "DEMO-PROD-003",
-                "Headset Demonstracao",
+                "7891234598593",
+                "Headset Sem Fio",
                 159.90m,
                 15,
-                fornecedor.idFornecedor);
+                fornecedor.idFornecedor,
+                "headset.png");
 
-        
+            AdicionarProdutoSeNaoExistir(
+                banco,
+                "7891234598573",
+                "Mouse Gamer Sem Fio",
+                109.90m,
+                12,
+                fornecedor.idFornecedor,
+                "mouse-gamer.png");
+
+            AdicionarProdutoSeNaoExistir(
+                banco,
+                "7891235555579",
+                "PC Gamer Completo Ryzen 7",
+                1959.90m,
+                5,
+                fornecedor.idFornecedor,
+                "pc-ryzen7.png");
+
+            AdicionarProdutoSeNaoExistir(
+                banco,
+                "7891235052578",
+                "PC Gamer Completo Ryzen 5",
+                1059.90m,
+                4,
+                fornecedor.idFornecedor,
+                "pc-ryzen5.png");
+
+            AdicionarProdutoSeNaoExistir(
+                banco,
+                "7891235252579",
+                "Gabinete UVVirtual edição limitada",
+                505.90m,
+                2,
+                fornecedor.idFornecedor,
+                "gabinete.png");
+
+
             AdicionarCupomSeNaoExistir(
                 banco, "DESCONTO10", 10m);
 
             AdicionarCupomSeNaoExistir(
-                banco, "DESCONTO15", 15m);
+                banco, "UVV15", 15m);
 
             AdicionarCupomSeNaoExistir(
                 banco, "DESCONTO20", 20m);
@@ -90,11 +129,33 @@ namespace Loja_Virtual.data
             string nome,
             decimal preco,
             int estoque,
-            int fornecedorId)
+            int fornecedorId,
+            string nomeImagem)
         {
-            if (banco.produtos.Any(p =>
-                    p.CodigoBarras == codigo))
+            var produtoExistente = banco.produtos
+                .FirstOrDefault(p => p.CodigoBarras == codigo);
+
+            string caminhoImagem = Path.Combine(
+                AppContext.BaseDirectory,
+                "ImagensProdutos",
+                nomeImagem);
+
+            if (!File.Exists(caminhoImagem))
             {
+                throw new FileNotFoundException(
+                    $"Imagem não encontrada: {caminhoImagem}");
+            }
+
+            byte[] imagem = File.ReadAllBytes(caminhoImagem);
+
+            if (produtoExistente != null)
+            {
+                if (produtoExistente.ImagemProduto == null ||
+                    produtoExistente.ImagemProduto.Length == 0)
+                {
+                    produtoExistente.ImagemProduto = imagem;
+                }
+
                 return;
             }
 
@@ -105,13 +166,14 @@ namespace Loja_Virtual.data
                 Preco = preco,
                 EstoqueProduto = estoque,
                 FornecedorId = fornecedorId,
-                Unidade = "Unidade",
+                Unidade = "UN",
                 Peso = 0.300m,
                 DescricaoProduto =
                     "Produto fictício para testes acadêmicos.",
-                ImagemProduto = null
+                ImagemProduto = imagem
             });
         }
+
 
         private static void AdicionarCupomSeNaoExistir(
             LojaVirtualDbContext banco,
@@ -150,7 +212,7 @@ namespace Loja_Virtual.data
 
             var administrador = new PessoaFisica
             {
-                Nome = "Administrador Demo",
+                Nome = "Administrador 01",
                 Email = emailAdmin,
                 CPF = cpfAdmin,
                 Telefone = "27999999999",

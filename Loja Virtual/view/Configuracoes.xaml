@@ -1,0 +1,112 @@
+﻿<Window x:Class="Loja_Virtual.view.Configuracoes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Configurações - UVVirtual"
+        Height="410"
+        Width="394"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        Background="#F3F5F9"
+        ShowInTaskbar="False">
+
+    <Border Background="White"
+            CornerRadius="12"
+            BorderBrush="#E0E4EB"
+            BorderThickness="1"
+            Margin="15"
+            Padding="25">
+
+        <StackPanel>
+
+            <!-- TÍTULO -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,25">
+
+                <materialDesign:PackIcon
+                    Kind="CogOutline"
+                    Width="26"
+                    Height="26"
+                    Foreground="#3157A4"
+                    Margin="0,0,10,0"/>
+
+                <TextBlock Text="Configurações"
+                           FontSize="23"
+                           FontWeight="Bold"
+                           Foreground="#263B60"/>
+            </StackPanel>
+
+            <!-- MINHA CONTA -->
+            <Button Height="55"
+                    Background="#F3F5F9"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="MinhaConta_Click"
+                    Margin="0,0,0,12">
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="15,0">
+
+                    <materialDesign:PackIcon
+                        Kind="AccountOutline"
+                        Width="22"
+                        Height="22"
+                        Foreground="#3157A4"
+                        Margin="0,0,12,0"/>
+
+                    <TextBlock Text="Minha conta"
+                               FontSize="15"
+                               Foreground="#263B60"
+                               VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Button>
+
+            <!-- SAIR DA CONTA -->
+            <Button Height="55"
+                    Background="#F3F5F9"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="SairConta_Click">
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="15,0">
+
+                    <materialDesign:PackIcon
+                        Kind="Logout"
+                        Width="22"
+                        Height="22"
+                        Foreground="#C0392B"
+                        Margin="0,0,12,0"/>
+
+                    <TextBlock Text="Sair da conta"
+                               FontSize="15"
+                               Foreground="#C0392B"
+                               VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Button>
+
+            <!-- INFORMAÇÕES FIXAS -->
+            <Separator Margin="0,25,0,20"/>
+
+            <StackPanel HorizontalAlignment="Center">
+
+                <TextBlock Text="Sobre a UVVirtual"
+                           FontSize="15"
+                           FontWeight="SemiBold"
+                           Foreground="#263B60"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Versão 1.0"
+                           FontSize="13"
+                           Foreground="#8993A5"
+                           HorizontalAlignment="Center"
+                           Margin="0,6,0,0"/>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
+</Window>

@@ -165,10 +165,12 @@
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
 
-                        <Button Style="{StaticResource BotaoSuperior}">
+                        <Button x:Name="BtnConfiguracoes"
+                                Style="{StaticResource BotaoSuperior}"
+                                Click="Configuracoes_Click">
                             <materialDesign:PackIcon Kind="CogOutline"
                              Width="23"
-                             Height="23"
+                             Height="23"                 
                              Foreground="#344563"/>
                         </Button>
 

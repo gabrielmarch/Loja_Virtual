@@ -6,6 +6,7 @@ using Loja_Virtual.model;
 using Loja_Virtual.services;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Loja_Virtual.controll
 {
@@ -15,43 +16,62 @@ namespace Loja_Virtual.controll
             string cpfCnpj,
             string senha)
         {
-            string documento = new string(
-                cpfCnpj.Where(char.IsDigit).ToArray());
-
-            if (documento.Length != 11 &&
-                documento.Length != 14)
+            if (string.IsNullOrWhiteSpace(cpfCnpj) ||
+                string.IsNullOrWhiteSpace(senha))
             {
                 return null;
             }
 
-            if (string.IsNullOrWhiteSpace(senha))
-                return null;
+            string login = cpfCnpj.Trim();
 
             using var banco = new LojaVirtualDbContext();
 
             Cliente? cliente = null;
 
-            
-            if (documento.Length == 11)
+            if (string.Equals(
+                login,
+                "admin",
+                StringComparison.OrdinalIgnoreCase))
             {
-                cliente = await banco.PessoasFisicas
+                cliente = await banco.Clientes
                     .AsNoTracking()
                     .FirstOrDefaultAsync(c =>
-                        c.CPF == documento && c.Ativo);
+                        c.Email == "admin@lojavirtual.test" &&
+                        c.PerfilAcesso == "Administrador" &&
+                        c.Ativo);
             }
-            
             else
             {
-                cliente = await banco.PessoasJuridicas
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(c =>
-                        c.CNPJ == documento && c.Ativo);
+                string documento = new string(
+                    login.Where(char.IsDigit).ToArray());
+
+                if (documento.Length != 11 &&
+                    documento.Length != 14)
+                {
+                    return null;
+                }
+
+                if (documento.Length == 11)
+                {
+                    cliente = await banco.PessoasFisicas
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(c =>
+                            c.CPF == documento &&
+                            c.Ativo);
+                }
+                else
+                {
+                    cliente = await banco.PessoasJuridicas
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(c =>
+                            c.CNPJ == documento &&
+                            c.Ativo);
+                }
             }
 
             if (cliente == null)
                 return null;
 
-            
             bool senhaCorreta = SenhaService.VerificarSenha(
                 senha,
                 cliente.SenhaHash);
@@ -60,3 +80,4 @@ namespace Loja_Virtual.controll
         }
     }
 }
+

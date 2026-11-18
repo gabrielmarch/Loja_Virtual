@@ -427,6 +427,41 @@
                         </StackPanel>
                     </Border>
 
+                    <!-- GERENCIAMENTO DE PEDIDOS -->
+                    <Border Background="White"
+                            CornerRadius="12"
+                            Padding="22"
+                            BorderBrush="#E0E4EB"
+                            BorderThickness="1"
+                            Margin="0,15,0,0">
+
+                        <StackPanel>
+
+                            <TextBlock Text="Gerenciamento de Pedidos"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Foreground="#263B60"/>
+
+                            <TextBlock
+                                        Text="Consulte os pedidos e atualize suas etapas de andamento."
+                                        Foreground="#8993A5"
+                                        FontSize="14"
+                                        Margin="0,8,0,20"/>
+
+                            <Button Content="Gerenciar Pedidos"
+                                    Width="190"
+                                    Height="42"
+                                    HorizontalAlignment="Left"
+                                    Background="#3157A4"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="GerenciarPedidos_Click"/>
+
+                        </StackPanel>
+                    </Border>
+
+
                 </StackPanel>
             </ScrollViewer>
 

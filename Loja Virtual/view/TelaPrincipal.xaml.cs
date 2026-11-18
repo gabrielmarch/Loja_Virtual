@@ -137,8 +137,11 @@ namespace Loja_Virtual.view
                     MessageBoxImage.Warning);
             }
         }
-
-
+        private void Configuracoes_Click(
+            object sender, RoutedEventArgs e)
+        {
+            Configuracoes.Abrir(this, BtnConfiguracoes);
+        }
 
     }
 }
