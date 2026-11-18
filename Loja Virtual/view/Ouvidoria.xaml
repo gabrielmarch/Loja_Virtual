@@ -289,7 +289,8 @@
                                     <!-- ENVIAR -->
                                     <Button x:Name="BtnEnviarMensagem"
                                             Style="{StaticResource BotaoPrincipal}"
-                                            Margin="0,8,0,0">
+                                            Margin="0,8,0,0"
+                                            Click="BtnEnviarMensagem_Click">
 
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Center">
@@ -335,7 +336,7 @@
                                                                  Margin="0,0,10,0"
                                                                  VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Telefone: (XX) XXXX-XXXX"
+                                        <TextBlock Text="Telefone: (27) 34707070"
                                                    FontSize="13"
                                                    Foreground="#263B60"
                                                    VerticalAlignment="Center"/>
@@ -351,7 +352,7 @@
                                                                  Margin="0,0,10,0"
                                                                  VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Email: ouvidoria@empresa.com"
+                                        <TextBlock Text="Email: ouvidoria@uvvirtual.com"
                                                    FontSize="13"
                                                    Foreground="#263B60"
                                                    VerticalAlignment="Center"/>

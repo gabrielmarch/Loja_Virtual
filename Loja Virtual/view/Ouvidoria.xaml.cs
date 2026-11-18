@@ -22,7 +22,6 @@ namespace Loja_Virtual.view
             InitializeComponent();
         }
 
-        // ABRIR E FECHAR MENU HAMBÚRGUER
         private void buttonMenu_Click(object sender, RoutedEventArgs e)
         {
             menuVisivel = !menuVisivel;
@@ -38,14 +37,41 @@ namespace Loja_Virtual.view
                 ColunaMenu.Width = new GridLength(0);
             }
         }
-
-        // VOLTAR PARA A TELA DE SUPORTE
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             SuporteCliente suporte = new SuporteCliente();
             suporte.Show();
             this.Close();
         }
+
+        private void BtnEnviarMensagem_Click(
+            object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TxtNome.Text) ||
+                string.IsNullOrWhiteSpace(TxtEmail.Text) ||
+                string.IsNullOrWhiteSpace(TxtMensagem.Text))
+            {
+                MessageBox.Show(
+                    "Preencha todos os campos antes de enviar.",
+                    "Campos obrigatórios",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                return;
+            }
+
+            MessageBox.Show(
+                "Mensagem enviada",
+                "Ouvidoria",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+
+            TxtNome.Clear();
+            TxtEmail.Clear();
+            TxtMensagem.Clear();
+        }
+
+
     }
 }
 

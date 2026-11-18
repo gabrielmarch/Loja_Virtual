@@ -223,49 +223,34 @@
                                   VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled">
 
+
                         <StackPanel x:Name="PainelMensagens"
                                     Margin="20,0">
 
-                            <!-- MENSAGEM DO CHATBOT -->
+                            <!-- MENSAGEM FIXA DO CHATBOT -->
                             <Border Style="{StaticResource MensagemBot}"
-                                    Margin="0,0,0,30">
+                                    Margin="0,15,0,15">
 
-                                <TextBlock Text="Olá! Como posso ajudar você hoje?"
-                                           FontSize="15"
-                                           Foreground="#263B60"
-                                           TextWrapping="Wrap"/>
-                            </Border>
+                                <StackPanel>
 
-                            <!-- MENSAGEM DO CLIENTE -->
-                            <Border Style="{StaticResource MensagemCliente}"
-                                    Margin="0,0,0,30">
+                                    <TextBlock Text="Assistente Virtual"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="#3157A4"
+                                               Margin="0,0,0,8"/>
 
-                                <TextBlock Text="Tenho uma dúvida sobre minha fatura."
-                                           FontSize="15"
-                                           Foreground="#263B60"
-                                           TextWrapping="Wrap"/>
-                            </Border>
+                                    <TextBlock
+                                                Text="Olá! 👋 Nosso chat de suporte ainda está em desenvolvimento. Em breve, você poderá conversar com nosso assistente virtual. Agradecemos pela compreensão!"
+                                                FontSize="14"
+                                                Foreground="#263B60"
+                                                TextWrapping="Wrap"/>
 
-                            <!-- MENSAGEM DO CHATBOT -->
-                            <Border Style="{StaticResource MensagemBot}"
-                                    Margin="0,0,0,30">
+                                </StackPanel>
 
-                                <TextBlock Text="Por favor, digite o número da sua fatura para que eu possa verificar."
-                                           FontSize="15"
-                                           Foreground="#263B60"
-                                           TextWrapping="Wrap"/>
-                            </Border>
-
-                            <!-- MENSAGEM DO CLIENTE -->
-                            <Border Style="{StaticResource MensagemCliente}">
-
-                                <TextBlock Text="Minha fatura é 12345."
-                                           FontSize="15"
-                                           Foreground="#263B60"
-                                           TextWrapping="Wrap"/>
                             </Border>
 
                         </StackPanel>
+
 
                     </ScrollViewer>
 
@@ -293,6 +278,7 @@
                                  BorderBrush="#D5D9E2"
                                  BorderThickness="1"
                                  MaxLength="500"
+                                 IsEnabled="False"
                                  ToolTip="Digite sua mensagem"/>
 
                         <!-- ENVIAR -->
@@ -300,6 +286,7 @@
                                 Grid.Column="1"
                                 Style="{StaticResource BotaoEnviar}"
                                 Margin="10,0,0,0"
+                                IsEnabled="False"
                                 ToolTip="Enviar mensagem">
 
                             <materialDesign:PackIcon Kind="Send"

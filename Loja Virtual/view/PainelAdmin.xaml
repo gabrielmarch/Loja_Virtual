@@ -156,6 +156,27 @@
                         </StackPanel>
                     </Button>
 
+
+                    <!-- GERENCIAR PEDIDOS -->
+                    <Button Style="{StaticResource BotaoMenuAdmin}"
+                            Click="GerenciarPedidos_Click">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                        Kind="ClipboardListOutline"
+                                        Width="22"
+                                        Height="22"
+                                        Foreground="#3157A4"
+                                        Margin="0,0,12,0"/>
+
+                            <TextBlock Text="Gerenciar Pedidos"
+                                       VerticalAlignment="Center"/>
+
+                        </StackPanel>
+                    </Button>
+
+
                     <!-- VISUALIZAR LOJA -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Click="VisualizarLoja_Click">

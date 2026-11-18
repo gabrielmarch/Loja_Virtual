@@ -189,5 +189,22 @@ namespace Loja_Virtual.view
 
             Close();
         }
+
+        private void GerenciarPedidos_Click(
+            object sender, RoutedEventArgs e)
+        {
+            if (!SessaoUsuario.EhAdministrador)
+            {
+                NegarAcesso();
+                return;
+            }
+
+            GerenciarPedidos tela = new GerenciarPedidos();
+
+            tela.Show();
+            Close();
+        }
+
+
     }
 }
