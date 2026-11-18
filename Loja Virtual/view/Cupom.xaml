@@ -41,7 +41,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
@@ -51,7 +50,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- BARRA SUPERIOR -->
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -79,13 +77,11 @@
                 </StackPanel>
             </Border>
 
-            <!-- CONTEÚDO -->
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto">
 
                 <StackPanel Margin="30,25,30,35">
 
-                    <!-- CABEÇALHO -->
                     <TextBlock Text="Cupons de Desconto"
                                FontSize="28"
                                FontWeight="Bold"
@@ -97,7 +93,6 @@
                         Foreground="#8993A5"
                         Margin="0,6,0,25"/>
 
-                    <!-- AVISO -->
                     <Border Background="#E8EEF9"
                             CornerRadius="10"
                             Padding="18"
@@ -121,7 +116,6 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- LISTA DINÂMICA DE CUPONS -->
                     <ItemsControl x:Name="ListaCupons">
 
                         <ItemsControl.ItemsPanel>

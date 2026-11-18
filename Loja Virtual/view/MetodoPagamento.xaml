@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -48,7 +47,6 @@
             </Setter>
         </Style>
 
-        <!-- BOTÕES DE PAGAMENTO -->
         <Style x:Key="BotaoPagamento" TargetType="Button">
             <Setter Property="Height" Value="55"/>
             <Setter Property="Background" Value="#3157A4"/>
@@ -95,7 +93,6 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -103,21 +100,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <!-- ================================= -->
-            <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
 
             <Border Grid.Row="0"
                     Background="White"
@@ -131,7 +122,6 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -144,7 +134,6 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -172,14 +161,9 @@
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
-            <!-- CONTEÚDO DE PAGAMENTO -->
-            <!-- ================================= -->
-
             <Grid Grid.Row="1"
                   Background="#F3F5F9">
 
-                <!-- CARTÃO CENTRAL -->
                 <Border Width="500"
                         MaxWidth="500"
                         Background="White"
@@ -198,7 +182,6 @@
 
                     <StackPanel>
 
-                        <!-- ÍCONE DE PAGAMENTO -->
                         <Border Width="60"
                                 Height="60"
                                 Background="#E8EEF9"
@@ -215,7 +198,6 @@
                                 VerticalAlignment="Center"/>
                         </Border>
 
-                        <!-- TÍTULO -->
                         <TextBlock Text="Métodos de Pagamento"
                                    FontSize="24"
                                    FontWeight="Bold"
@@ -224,7 +206,6 @@
                                    TextAlignment="Center"
                                    Margin="0,0,0,10"/>
 
-                        <!-- DESCRIÇÃO -->
                         <TextBlock Text="Escolha como deseja realizar o pagamento da sua compra."
                                    FontSize="13"
                                    Foreground="#8993A5"
@@ -232,7 +213,6 @@
                                    TextAlignment="Center"
                                    Margin="0,0,0,30"/>
 
-                        <!-- VALOR TOTAL DA COMPRA -->
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     Margin="0,15,0,20">
@@ -250,11 +230,8 @@
 
                         </StackPanel>
 
-
-                        <!-- BOTÕES -->
                         <StackPanel>
 
-                            <!-- CARTÃO DE CRÉDITO OU DÉBITO -->
                             <Button x:Name="BtnIrParaCartao"
                                     Style="{StaticResource BotaoPagamento}"
                                     Margin="0,0,0,15"
@@ -276,7 +253,6 @@
 
                             </Button>
 
-                            <!-- BOLETO -->
                             <Button x:Name="BtnIrParaBoleto_Copiar1"
                                     Style="{StaticResource BotaoPagamento}"
                                     Click="BtnIrParaBoleto_Click" Height="45" Width="337">

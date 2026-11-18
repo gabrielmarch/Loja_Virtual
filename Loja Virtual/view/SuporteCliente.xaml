@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÃO PRINCIPAL -->
         <Style x:Key="BotaoPrincipal" TargetType="Button">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Width" Value="230"/>
@@ -39,7 +38,6 @@
             </Setter>
         </Style>
 
-        <!-- BOTÃO SECUNDÁRIO -->
         <Style x:Key="BotaoSecundario"
                TargetType="Button"
                BasedOn="{StaticResource BotaoPrincipal}">
@@ -47,7 +45,6 @@
             <Setter Property="Foreground" Value="#263B60"/>
         </Style>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -84,7 +81,6 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -92,11 +88,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -104,7 +98,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- BARRA SUPERIOR -->
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -117,7 +110,6 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -130,7 +122,6 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -156,7 +147,6 @@
                 </Grid>
             </Border>
 
-            <!-- ÁREA DE SUPORTE -->
             <Grid Grid.Row="1"
                   Background="#F3F5F9">
 
@@ -172,7 +162,6 @@
 
                     <StackPanel VerticalAlignment="Center">
 
-                        <!-- TÍTULO -->
                         <TextBlock Text="Suporte ao Cliente"
                                    FontSize="22"
                                    FontWeight="Bold"
@@ -180,7 +169,6 @@
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,35"/>
 
-                        <!-- DESCRIÇÃO -->
                         <TextBlock Text="A tela de suporte ao cliente oferece opções para os usuários tirarem dúvidas, seja por meio de um chatbot ou entrando em contato com a ouvidoria."
                                    FontSize="14"
                                    Foreground="#555F70"
@@ -191,7 +179,6 @@
                                    LineHeight="21"
                                    Margin="0,0,0,30"/>
 
-                        <!-- BOTÃO INICIAR CHAT -->
                         <Button x:Name="button_IniciarChat"
                                 Style="{StaticResource BotaoPrincipal}"
                                 HorizontalAlignment="Center"
@@ -213,7 +200,6 @@
                             </StackPanel>
                         </Button>
 
-                        <!-- BOTÃO ACESSAR OUVIDORIA -->
                         <Button x:Name="button_AcessarOuvidoria"
                                 Style="{StaticResource BotaoSecundario}"
                                 HorizontalAlignment="Center"

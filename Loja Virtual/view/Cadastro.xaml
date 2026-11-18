@@ -68,7 +68,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Área de boas-vindas -->
+                
                 <Border Grid.Column="0"
                         Background="#F0F3F9"
                         CornerRadius="12,0,0,12">
@@ -98,7 +98,7 @@
 
                 </Border>
 
-                <!-- FORMULÁRIO DE CADASTRO -->
+                
                 <ScrollViewer Grid.Column="1"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled"
@@ -115,9 +115,6 @@
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,18"/>
 
-
-
-                        <!-- NOME -->
                         <TextBlock Text="Nome completo ou nome da empresa"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -126,7 +123,6 @@
                         <TextBox x:Name="txtNome"
                                  Style="{StaticResource CampoTexto}"/>
 
-                        <!-- EMAIL -->
                         <TextBlock Text="E-mail"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -135,7 +131,6 @@
                         <TextBox x:Name="txtEmail"
                                  Style="{StaticResource CampoTexto}"/>
 
-                        <!-- CPF OU CNPJ -->
                         <TextBlock Text="CPF ou CNPJ"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -146,7 +141,7 @@
                                  MaxLength="18"
                                  TextChanged="txtCpfCnpj_TextChanged"/>
 
-                        <!-- CAMPOS PESSOA FÍSICA -->
+
                         <StackPanel x:Name="CamposPessoaFisica"
                                     Visibility="Collapsed">
 
@@ -161,7 +156,7 @@
 
                         </StackPanel>
 
-                        <!-- CAMPOS PESSOA JURÍDICA -->
+                        
                         <StackPanel x:Name="CamposPessoaJuridica"
                                     Visibility="Collapsed">
 
@@ -183,7 +178,6 @@
 
                         </StackPanel>
 
-                        <!-- TELEFONE -->
                         <TextBlock Text="Telefone"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -192,7 +186,6 @@
                         <TextBox x:Name="txtTelefone"
                                  Style="{StaticResource CampoTexto}"/>
 
-                        <!-- ENDEREÇO -->
                         <TextBlock Text="Endereço"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -201,7 +194,6 @@
                         <TextBox x:Name="txtEndereco"
                                  Style="{StaticResource CampoTexto}"/>
 
-                        <!-- SENHA -->
                         <TextBlock Text="Senha (mínimo de 8 caracteres)"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -210,7 +202,6 @@
                         <PasswordBox x:Name="txtSenha"
                                      Style="{StaticResource CampoSenha}"/>
 
-                        <!-- CONFIRMAR SENHA -->
                         <TextBlock Text="Confirmar senha"
                                    Foreground="#555F70"
                                    FontSize="13"
@@ -218,7 +209,6 @@
 
                         <PasswordBox x:Name="txtConfirmarSenha"
                                      Style="{StaticResource CampoSenha}"/>
-
 
 
                         <Button x:Name="BtnCadastrar"

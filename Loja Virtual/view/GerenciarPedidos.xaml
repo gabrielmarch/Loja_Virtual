@@ -47,7 +47,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- BARRA SUPERIOR -->
         <Border Grid.Row="0"
                 Background="White"
                 BorderBrush="#E0E4EB"
@@ -84,7 +83,6 @@
             </Grid>
         </Border>
 
-        <!-- CONTEÚDO -->
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto">
 
@@ -101,7 +99,6 @@
                     Foreground="#8993A5"
                     Margin="0,6,0,25"/>
 
-                <!-- TABELA DE PEDIDOS -->
                 <Border Style="{StaticResource CartaoBranco}"
                         Margin="0,0,0,20">
 
@@ -174,7 +171,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- ALTERAÇÃO DO PEDIDO -->
                 <Border Style="{StaticResource CartaoBranco}">
 
                     <StackPanel>

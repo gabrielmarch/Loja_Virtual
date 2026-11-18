@@ -13,7 +13,7 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
+        
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -49,7 +49,7 @@
             </Setter>
         </Style>
 
-        <!-- MENSAGENS DO CLIENTE -->
+        
         <Style x:Key="MensagemCliente" TargetType="Border">
             <Setter Property="Background" Value="#DCE8FF"/>
             <Setter Property="CornerRadius" Value="8"/>
@@ -59,7 +59,7 @@
             <Setter Property="Margin" Value="0,8,0,8"/>
         </Style>
 
-        <!-- MENSAGENS DO CHATBOT -->
+        
         <Style x:Key="MensagemBot" TargetType="Border">
             <Setter Property="Background" Value="#E8EBF1"/>
             <Setter Property="CornerRadius" Value="8"/>
@@ -69,7 +69,7 @@
             <Setter Property="Margin" Value="0,8,0,8"/>
         </Style>
 
-        <!-- BOTÃO ENVIAR -->
+        
         <Style x:Key="BotaoEnviar" TargetType="Button">
             <Setter Property="Width" Value="44"/>
             <Setter Property="Height" Value="42"/>
@@ -104,7 +104,7 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -112,21 +112,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <!-- ================================= -->
-            <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
 
             <Border Grid.Row="0"
                     Background="White"
@@ -140,7 +134,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
+                    
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -153,7 +147,6 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -177,10 +170,6 @@
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
-            <!-- CONTEÚDO DO CHAT -->
-            <!-- ================================= -->
-
             <Border Grid.Row="1"
                     Margin="20,20,20,20"
                     Background="White"
@@ -197,7 +186,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- TÍTULO -->
+                    
                     <StackPanel Grid.Row="0"
                                 Margin="0,0,0,20">
 
@@ -214,10 +203,6 @@
                                    Margin="0,6,0,0"/>
                     </StackPanel>
 
-                    <!-- ================================= -->
-                    <!-- CONVERSA -->
-                    <!-- ================================= -->
-
                     <ScrollViewer x:Name="ScrollConversa"
                                   Grid.Row="1"
                                   VerticalScrollBarVisibility="Auto"
@@ -227,7 +212,7 @@
                         <StackPanel x:Name="PainelMensagens"
                                     Margin="20,0">
 
-                            <!-- MENSAGEM FIXA DO CHATBOT -->
+                            
                             <Border Style="{StaticResource MensagemBot}"
                                     Margin="0,15,0,15">
 
@@ -254,10 +239,6 @@
 
                     </ScrollViewer>
 
-                    <!-- ================================= -->
-                    <!-- CAMPO DE ENVIO -->
-                    <!-- ================================= -->
-
                     <Grid Grid.Row="2"
                           Margin="20,20,20,0">
 
@@ -266,7 +247,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- DIGITAR MENSAGEM -->
+                       
                         <TextBox x:Name="TxtMensagem"
                                  Grid.Column="0"
                                  Height="42"
@@ -281,7 +262,7 @@
                                  IsEnabled="False"
                                  ToolTip="Digite sua mensagem"/>
 
-                        <!-- ENVIAR -->
+                        
                         <Button x:Name="BtnEnviar"
                                 Grid.Column="1"
                                 Style="{StaticResource BotaoEnviar}"

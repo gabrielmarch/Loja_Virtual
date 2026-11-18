@@ -19,7 +19,6 @@
 
         <StackPanel>
 
-            <!-- TÍTULO -->
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,25">
@@ -37,7 +36,6 @@
                            Foreground="#263B60"/>
             </StackPanel>
 
-            <!-- MINHA CONTA -->
             <Button Height="55"
                     Background="#F3F5F9"
                     BorderThickness="0"
@@ -63,7 +61,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- SAIR DA CONTA -->
             <Button Height="55"
                     Background="#F3F5F9"
                     BorderThickness="0"
@@ -88,7 +85,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- INFORMAÇÕES FIXAS -->
             <Separator Margin="0,25,0,20"/>
 
             <StackPanel HorizontalAlignment="Center">

@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -47,7 +46,6 @@
             </Setter>
         </Style>
 
-        <!-- CAMPOS DO FORMULÁRIO -->
         <Style x:Key="InputForm" TargetType="TextBox">
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="14"/>
@@ -60,7 +58,6 @@
             <Setter Property="Margin" Value="0,0,0,12"/>
         </Style>
 
-        <!-- BOTÃO PRINCIPAL -->
         <Style x:Key="BotaoPrincipal" TargetType="Button">
             <Setter Property="Height" Value="42"/>
             <Setter Property="Background" Value="#3157A4"/>
@@ -96,7 +93,6 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -104,11 +100,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -116,7 +110,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- BARRA SUPERIOR -->
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -129,7 +122,6 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -142,7 +134,6 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -165,7 +156,6 @@
                 </Grid>
             </Border>
 
-            <!-- CONTEÚDO DA OUVIDORIA -->
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
@@ -188,7 +178,6 @@
 
                         <StackPanel>
 
-                            <!-- CABEÇALHO -->
                             <Grid Margin="0,0,0,25">
 
                                 <Grid.ColumnDefinitions>
@@ -197,7 +186,6 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- VOLTAR -->
                                 <Button Grid.Column="0"
                                         Style="{StaticResource BotaoSuperior}"
                                         Click="Voltar_Click">
@@ -216,14 +204,12 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"/>
 
-                                <!-- ESPAÇO PARA CENTRALIZAR O TÍTULO -->
                                 <Border Grid.Column="2"
                                         Width="50"
                                         Background="Transparent"/>
 
                             </Grid>
 
-                            <!-- FORMULÁRIO -->
                             <Border Background="#F8FAFC"
                                     BorderBrush="#E0E4EB"
                                     BorderThickness="1"
@@ -248,7 +234,6 @@
                                                TextAlignment="Center"
                                                Margin="0,0,0,20"/>
 
-                                    <!-- NOME -->
                                     <TextBlock Text="Seu nome"
                                                FontSize="13"
                                                FontWeight="SemiBold"
@@ -259,7 +244,6 @@
                                              Style="{StaticResource InputForm}"
                                              MaxLength="100"/>
 
-                                    <!-- EMAIL -->
                                     <TextBlock Text="Seu email"
                                                FontSize="13"
                                                FontWeight="SemiBold"
@@ -270,7 +254,6 @@
                                              Style="{StaticResource InputForm}"
                                              MaxLength="150"/>
 
-                                    <!-- MENSAGEM -->
                                     <TextBlock Text="Sua mensagem"
                                                FontSize="13"
                                                FontWeight="SemiBold"
@@ -286,7 +269,6 @@
                                              VerticalContentAlignment="Top"
                                              VerticalScrollBarVisibility="Auto"/>
 
-                                    <!-- ENVIAR -->
                                     <Button x:Name="BtnEnviarMensagem"
                                             Style="{StaticResource BotaoPrincipal}"
                                             Margin="0,8,0,0"
@@ -310,7 +292,6 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- OUTRAS FORMAS DE CONTATO -->
                             <Border Background="#F8FAFC"
                                     BorderBrush="#E0E4EB"
                                     BorderThickness="1"
@@ -325,7 +306,6 @@
                                                Foreground="#263B60"
                                                Margin="0,0,0,14"/>
 
-                                    <!-- TELEFONE -->
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,0,0,12">
 
@@ -342,7 +322,6 @@
                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
 
-                                    <!-- EMAIL -->
                                     <StackPanel Orientation="Horizontal">
 
                                         <materialDesign:PackIcon Kind="Email"

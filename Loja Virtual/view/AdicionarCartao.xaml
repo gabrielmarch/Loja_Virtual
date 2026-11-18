@@ -13,7 +13,7 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
+        
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -48,7 +48,7 @@
             </Setter>
         </Style>
 
-        <!-- ESTILO DOS CAMPOS -->
+        
         <Style x:Key="CampoTexto" TargetType="TextBox">
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="14"/>
@@ -60,7 +60,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <!-- ESTILO DOS RÓTULOS -->
+        
         <Style x:Key="LabelCampo" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -68,7 +68,7 @@
             <Setter Property="Margin" Value="0,0,0,7"/>
         </Style>
 
-        <!-- BOTÃO PRINCIPAL -->
+        
         <Style x:Key="BotaoPrincipal" TargetType="Button">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Background" Value="#3157A4"/>
@@ -111,7 +111,7 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -119,11 +119,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
+        
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
+        
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -131,9 +131,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ================================= -->
-            <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
 
             <Border Grid.Row="0"
                     Background="White"
@@ -147,7 +144,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
+                    
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -160,7 +157,7 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
+                    
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -186,10 +183,6 @@
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
-            <!-- CONTEÚDO DA TELA -->
-            <!-- ================================= -->
-
             <Grid Grid.Row="1"
                   Background="#F3F5F9">
 
@@ -199,7 +192,7 @@
                     <Grid MinHeight="580"
                           Margin="25">
 
-                        <!-- CARTÃO DO FORMULÁRIO -->
+                        
                         <Border Width="500"
                                 MaxWidth="500"
                                 Background="White"
@@ -218,7 +211,6 @@
 
                             <StackPanel>
 
-                                <!-- ÍCONE -->
                                 <Border Width="56"
                                         Height="56"
                                         CornerRadius="12"
@@ -235,7 +227,7 @@
                                         VerticalAlignment="Center"/>
                                 </Border>
 
-                                <!-- TÍTULO -->
+                                
                                 <TextBlock Text="Adicionar Cartão"
                                            FontSize="24"
                                            FontWeight="Bold"
@@ -250,7 +242,7 @@
                                            Margin="0,0,0,30"/>
 
 
-                                <!-- VALOR DA COMPRA -->
+                                
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,20">
@@ -268,8 +260,6 @@
 
                                 </StackPanel>
 
-
-                                <!-- AVISO DA SIMULAÇÃO -->
                                 <Border Background="#E8EEF9"
                                         CornerRadius="8"
                                         Padding="15"
@@ -290,7 +280,7 @@
                                     </StackPanel>
                                 </Border>
 
-                                <!-- IDENTIFICAÇÃO DO TESTE -->
+                                
                                 <TextBlock Text="Nome para identificação"
                                            Style="{StaticResource LabelCampo}"/>
 
@@ -304,10 +294,6 @@
                                            Foreground="#8993A5"
                                            Margin="0,0,0,20"/>
 
-
-                   
-
-                                <!-- BOTÃO SALVAR -->
                                 <Button x:Name="BtnSalvarCartao"
                                         Style="{StaticResource BotaoPrincipal}"
                                         Click="BtnConfirmarCartao_Click">

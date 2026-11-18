@@ -88,18 +88,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- BARRA SUPERIOR -->
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -144,14 +141,12 @@
                 </Grid>
             </Border>
 
-            <!-- ÁREA DA TELA -->
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
 
                 <StackPanel Margin="30,25,30,35">
 
-                    <!-- CABEÇALHO -->
                     <StackPanel Margin="0,0,0,20">
                         <TextBlock Text="Status do Pedido"
                                    FontSize="28"
@@ -164,7 +159,6 @@
                                    Margin="0,6,0,0"/>
                     </StackPanel>
 
-                    <!-- SELEÇÃO DE PEDIDO -->
                     <Border Style="{StaticResource CartaoBranco}"
                             Margin="0,0,0,18">
 
@@ -219,7 +213,6 @@
                         </Grid>
                     </Border>
 
-                    <!-- STATUS VISUAL -->
                     <Border Style="{StaticResource CartaoBranco}"
                             Margin="0,0,0,18">
 
@@ -241,7 +234,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- ETAPA 1 -->
+                                
                                 <StackPanel Grid.Column="0">
                                     <Border x:Name="CirculoEtapa1"
                                             Style="{StaticResource CirculoEtapa}"/>
@@ -257,7 +250,7 @@
                                         Grid.Column="1"
                                         Style="{StaticResource LinhaEtapa}"/>
 
-                                <!-- ETAPA 2 -->
+                                
                                 <StackPanel Grid.Column="2">
                                     <Border x:Name="CirculoEtapa2"
                                             Style="{StaticResource CirculoEtapa}"/>
@@ -273,7 +266,7 @@
                                         Grid.Column="3"
                                         Style="{StaticResource LinhaEtapa}"/>
 
-                                <!-- ETAPA 3 -->
+                               
                                 <StackPanel Grid.Column="4">
                                     <Border x:Name="CirculoEtapa3"
                                             Style="{StaticResource CirculoEtapa}"/>
@@ -289,7 +282,7 @@
                                         Grid.Column="5"
                                         Style="{StaticResource LinhaEtapa}"/>
 
-                                <!-- ETAPA 4 -->
+                                
                                 <StackPanel Grid.Column="6">
                                     <Border x:Name="CirculoEtapa4"
                                             Style="{StaticResource CirculoEtapa}"/>
@@ -304,7 +297,6 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- PRODUTOS DO PEDIDO -->
                     <Border Style="{StaticResource CartaoBranco}">
                         <StackPanel>
                             <TextBlock Text="Produtos do pedido"
@@ -330,7 +322,6 @@
                                                     <ColumnDefinition Width="130"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <!-- Caixa da imagem -->
                                                 <Border Grid.Column="0"
                                                         Width="55"
                                                         Height="55"
@@ -345,7 +336,6 @@
                                                                              VerticalAlignment="Center"/>
                                                 </Border>
 
-                                                <!-- Dados -->
                                                 <StackPanel Grid.Column="1"
                                                             VerticalAlignment="Center">
                                                     <TextBlock Text="{Binding NomeProduto}"

@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DO MENU -->
         <Style x:Key="BotaoMenuAdmin"
                TargetType="Button">
             <Setter Property="Height" Value="48"/>
@@ -53,7 +52,6 @@
             </Setter>
         </Style>
 
-        <!-- CARDS DO DASHBOARD -->
         <Style x:Key="CardDashboard"
                TargetType="Border">
             <Setter Property="Background" Value="White"/>
@@ -73,7 +71,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU ADMINISTRATIVO -->
         <Border x:Name="BarraLateral"
                 Grid.Column="0"
                 Background="White"
@@ -107,7 +104,6 @@
                 <StackPanel Grid.Row="1"
                             Margin="0,18,0,0">
 
-                    <!-- DASHBOARD -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Background="#E8EEF9"
                             IsEnabled="False">
@@ -124,7 +120,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- CUPONS -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Click="GerenciarCupons_Click">
                         <StackPanel Orientation="Horizontal">
@@ -140,7 +135,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- PRODUTOS -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Click="GerenciarProdutos_Click">
                         <StackPanel Orientation="Horizontal">
@@ -156,8 +150,6 @@
                         </StackPanel>
                     </Button>
 
-
-                    <!-- GERENCIAR PEDIDOS -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Click="GerenciarPedidos_Click">
 
@@ -176,8 +168,6 @@
                         </StackPanel>
                     </Button>
 
-
-                    <!-- VISUALIZAR LOJA -->
                     <Button Style="{StaticResource BotaoMenuAdmin}"
                             Click="VisualizarLoja_Click">
                         <StackPanel Orientation="Horizontal">
@@ -195,7 +185,6 @@
 
                 </StackPanel>
 
-                <!-- SAIR -->
                 <Button Grid.Row="2"
                         Style="{StaticResource BotaoMenuAdmin}"
                         Click="Sair_Click">
@@ -215,7 +204,6 @@
             </Grid>
         </Border>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -223,7 +211,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- BARRA SUPERIOR -->
             <Border Grid.Row="0"
                     Background="White"
                     BorderBrush="#E0E4EB"
@@ -278,7 +265,6 @@
                 </Grid>
             </Border>
 
-            <!-- CONTEÚDO DO DASHBOARD -->
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto">
 
@@ -295,11 +281,9 @@
                         Foreground="#8993A5"
                         Margin="0,6,0,30"/>
 
-                    <!-- INDICADORES -->
                     <UniformGrid Columns="2"
                                  Margin="0,0,0,15">
 
-                        <!-- PRODUTOS -->
                         <Border Style="{StaticResource CardDashboard}">
                             <StackPanel>
                                 <materialDesign:PackIcon
@@ -321,7 +305,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- CLIENTES -->
                         <Border Style="{StaticResource CardDashboard}">
                             <StackPanel>
                                 <materialDesign:PackIcon
@@ -343,7 +326,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- PEDIDOS -->
                         <Border Style="{StaticResource CardDashboard}">
                             <StackPanel>
                                 <materialDesign:PackIcon
@@ -365,7 +347,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- CUPONS -->
                         <Border Style="{StaticResource CardDashboard}">
                             <StackPanel>
                                 <materialDesign:PackIcon
@@ -389,7 +370,6 @@
 
                     </UniformGrid>
 
-                    <!-- ACESSO RÁPIDO -->
                     <TextBlock Text="Gerenciamento"
                                FontSize="22"
                                FontWeight="Bold"
@@ -427,7 +407,6 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- GERENCIAMENTO DE PEDIDOS -->
                     <Border Background="White"
                             CornerRadius="12"
                             Padding="22"

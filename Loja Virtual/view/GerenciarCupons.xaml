@@ -50,7 +50,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- BARRA SUPERIOR -->
         <Border Grid.Row="0"
                 Background="White"
                 BorderBrush="#E0E4EB"
@@ -86,7 +85,6 @@
             </Grid>
         </Border>
 
-        <!-- CONTEÚDO -->
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto">
 
@@ -103,7 +101,6 @@
                     Foreground="#8993A5"
                     Margin="0,7,0,25"/>
 
-                <!-- FORMULÁRIO -->
                 <Border Background="White"
                         CornerRadius="12"
                         BorderBrush="#E0E4EB"
@@ -127,7 +124,6 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- CÓDIGO -->
                             <StackPanel Grid.Column="0"
                                         Margin="0,0,15,0">
 
@@ -141,7 +137,6 @@
                                          MaxLength="50"/>
                             </StackPanel>
 
-                            <!-- DESCONTO -->
                             <StackPanel Grid.Column="1"
                                         Margin="0,0,15,0">
 
@@ -155,7 +150,6 @@
                                          MaxLength="6"/>
                             </StackPanel>
 
-                            <!-- VALIDADE -->
                             <StackPanel Grid.Column="2">
 
                                 <TextBlock Text="Data de Validade"
@@ -170,7 +164,6 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- STATUS -->
                         <CheckBox x:Name="ChkAtivo"
                                   Content="Cupom ativo"
                                   IsChecked="True"
@@ -178,7 +171,6 @@
                                   Foreground="#344563"
                                   Margin="0,22,0,22"/>
 
-                        <!-- BOTÕES -->
                         <WrapPanel>
 
                             <Button x:Name="BtnSalvar"
@@ -195,7 +187,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- LISTAGEM -->
                 <Border Background="White"
                         CornerRadius="12"
                         BorderBrush="#E0E4EB"
@@ -265,7 +256,6 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <!-- OPERAÇÕES -->
                         <WrapPanel Margin="0,20,0,0">
 
                             <Button x:Name="BtnAlternarStatus"

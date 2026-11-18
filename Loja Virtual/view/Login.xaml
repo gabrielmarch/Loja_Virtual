@@ -99,7 +99,6 @@
 
                 </Border>
 
-                <!-- Formulário de Login -->
                 <StackPanel Grid.Column="1"
                             Width="300"
                             VerticalAlignment="Center"

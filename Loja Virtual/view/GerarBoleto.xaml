@@ -13,7 +13,6 @@
 
     <Window.Resources>
 
-        <!-- BOTÕES DA BARRA SUPERIOR -->
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="42"/>
@@ -49,7 +48,6 @@
             </Setter>
         </Style>
 
-        <!-- BOTÃO PRINCIPAL -->
         <Style x:Key="BotaoPrincipal" TargetType="Button">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Background" Value="#3157A4"/>
@@ -91,7 +89,6 @@
             </Setter>
         </Style>
 
-        <!-- BOTÃO SECUNDÁRIO -->
         <Style x:Key="BotaoSecundario"
                TargetType="Button"
                BasedOn="{StaticResource BotaoPrincipal}">
@@ -127,7 +124,6 @@
 
     </Window.Resources>
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -135,21 +131,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENU LATERAL COMPARTILHADO -->
         <components:MenuLateral x:Name="BarraLateral"
                                 Grid.Column="0"/>
 
-        <!-- ÁREA PRINCIPAL -->
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <!-- ================================= -->
-            <!-- BARRA SUPERIOR -->
-            <!-- ================================= -->
 
             <Border Grid.Row="0"
                     Background="White"
@@ -163,7 +153,6 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- BOTÃO HAMBÚRGUER -->
                     <Button x:Name="buttonMenu"
                             Grid.Column="0"
                             Style="{StaticResource BotaoSuperior}"
@@ -176,7 +165,6 @@
                                                  Foreground="#344563"/>
                     </Button>
 
-                    <!-- CONFIGURAÇÕES E NOTIFICAÇÕES -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
@@ -202,10 +190,6 @@
                 </Grid>
             </Border>
 
-            <!-- ================================= -->
-            <!-- CONTEÚDO DO BOLETO -->
-            <!-- ================================= -->
-
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
@@ -213,7 +197,6 @@
                 <Grid Margin="25"
                       MinHeight="550">
 
-                    <!-- CARTÃO CENTRAL -->
                     <Border Width="550"
                             MaxWidth="550"
                             Background="White"
@@ -232,7 +215,6 @@
 
                         <StackPanel>
 
-                            <!-- ÍCONE DO BOLETO -->
                             <Border Width="60"
                                     Height="60"
                                     Background="#E8EEF9"
@@ -249,7 +231,6 @@
                                     VerticalAlignment="Center"/>
                             </Border>
 
-                            <!-- TÍTULO -->
                             <TextBlock Text="Gerar Boleto"
                                        FontSize="25"
                                        FontWeight="Bold"
@@ -264,7 +245,6 @@
                                        TextWrapping="Wrap"
                                        Margin="0,0,0,30"/>
 
-                            <!-- INFORMAÇÕES -->
                             <Border Background="#F8FAFC"
                                     BorderBrush="#E0E4EB"
                                     BorderThickness="1"
@@ -274,7 +254,6 @@
 
                                 <StackPanel>
 
-                                    <!-- VALOR -->
                                     <Grid Margin="0,0,0,20">
 
                                         <TextBlock Text="Valor"
@@ -290,7 +269,6 @@
                                                    HorizontalAlignment="Right"/>
                                     </Grid>
 
-                                    <!-- VENCIMENTO -->
                                     <Grid Margin="0,0,0,20">
 
                                         <TextBlock Text="Vencimento"
@@ -306,12 +284,10 @@
                                                    HorizontalAlignment="Right"/>
                                     </Grid>
 
-                                    <!-- SEPARADOR -->
                                     <Border Height="1"
                                             Background="#E0E4EB"
                                             Margin="0,0,0,20"/>
 
-                                    <!-- CÓDIGO -->
                                     <TextBlock Text="Linha digitável do boleto"
                                                FontSize="14"
                                                FontWeight="SemiBold"
@@ -336,7 +312,6 @@
 
                             </Border>
 
-                            <!-- BOTÃO COPIAR -->
                             <Button x:Name="BtnCopiarCodigo"
                                     Style="{StaticResource BotaoSecundario}"
                                     Margin="0,0,0,12">
@@ -356,7 +331,6 @@
 
                             </Button>
 
-                            <!-- BOTÃO BAIXAR -->
                             <Button x:Name="BtnBaixarBoleto"
                                     Style="{StaticResource BotaoPrincipal}">
                             
@@ -376,7 +350,6 @@
 
                             </Button>
 
-                            <!-- CONFIRMAR PEDIDO -->
                             <Button x:Name="BtnConfirmarPedido"
                                     Content="Confirmar Pedido"
                                     Style="{StaticResource BotaoPrincipal}"

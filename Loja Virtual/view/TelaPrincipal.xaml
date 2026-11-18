@@ -65,8 +65,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
+ 
 
         <Style x:Key="BotaoSuperior" TargetType="Button">
             <Setter Property="Width" Value="42"/>
@@ -105,8 +104,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
 
         <Style x:Key="CartaoProduto" TargetType="Border">
             <Setter Property="Background" Value="White"/>
@@ -226,10 +223,6 @@
 
                                     <StackPanel VerticalAlignment="Center">
 
-
-
-
-                                        <!-- IMAGEM DO PRODUTO -->
                                         <Border Height="125"
                                                 Background="#F0F3F9"
                                                 CornerRadius="6"
@@ -238,14 +231,12 @@
 
                                             <Grid>
 
-                                                <!-- FOTO DO PRODUTO -->
                                                 <Image x:Name="ImagemProdutoCard"
                                                          Source="{Binding ImagemProduto,
                                                      Converter={StaticResource CaminhoImagemConverter}}"
                                                          Stretch="Uniform"
                                                          Margin="5"/>
 
-                                                <!-- MENSAGEM QUANDO NÃO HÁ IMAGEM -->
                                                 <TextBlock Text="Imagem do produto"
                                                            Foreground="#A0A8B7"
                                                            FontSize="12"
@@ -281,9 +272,6 @@
 
                                         </Border>
 
-
-
-                                        <!-- NOME DO PRODUTO -->
                                         <TextBlock Text="{Binding NomeProduto}"
                                                    FontSize="14"
                                                    FontWeight="SemiBold"
@@ -303,7 +291,7 @@
                                                    Foreground="#3157A4"
                                                    HorizontalAlignment="Center"/>
 
-                                        <!-- BOTÃO ADICIONAR AO CARRINHO -->
+                                        
                                         <Button Content="Adicionar ao Carrinho"
                                                 Height="35"
                                                 Margin="0,12,0,0"
