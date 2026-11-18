@@ -216,18 +216,17 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
-                            Width="40"
                             Height="40"
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            Click="buttonMenu_Click">
+                            Click="buttonMenu_Click" Margin="0,12,913,12" Grid.ColumnSpan="2">
 
                         <materialDesign:PackIcon
                             Kind="Menu"
                             Width="25"
                             Height="25"
-                            Foreground="#344563"/>
+                            Foreground="#344563" VerticalAlignment="Center"/>
                     </Button>
 
                     <TextBlock Grid.Column="1"
@@ -235,8 +234,8 @@
                                FontSize="20"
                                FontWeight="SemiBold"
                                Foreground="#263B60"
-                               VerticalAlignment="Center"
-                               Margin="15,0,0,0"/>
+                               VerticalAlignment="Top"
+                               Margin="62,17,-13,0" Grid.ColumnSpan="2"/>
 
                     <StackPanel Grid.Column="2"
                                 Orientation="Horizontal"
