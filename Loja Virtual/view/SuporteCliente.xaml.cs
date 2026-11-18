@@ -21,8 +21,6 @@ namespace Loja_Virtual.view
         {
             InitializeComponent();
         }
-
-        // ABRIR E FECHAR O MENU
         private void buttonMenu_Click(object sender, RoutedEventArgs e)
         {
             menuVisivel = !menuVisivel;
@@ -39,7 +37,6 @@ namespace Loja_Virtual.view
             }
         }
 
-        // ABRIR O CHAT DE SUPORTE
         private void button_IniciarChat_Click(
             object sender, RoutedEventArgs e)
         {
@@ -48,7 +45,6 @@ namespace Loja_Virtual.view
             this.Close();
         }
 
-        // ACESSAR OUVIDORIA
         private void button_AcessarOuvidoria_Click(
             object sender, RoutedEventArgs e)
         {
