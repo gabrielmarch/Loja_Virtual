@@ -11,7 +11,17 @@ namespace Loja_Virtual.controll
 {
     public class CupomController
     {
-        private readonly CupomRepositoryAdo _repositorio = new();
+        private readonly ICupomRepository _repositorio;
+
+        public CupomController() : this(new CupomRepositoryAdo())
+        {
+        }
+
+        public CupomController(ICupomRepository repositorio)
+        {
+            _repositorio = repositorio;
+        }
+
         private static async Task VerificarAdministradorAsync()
         {
             if (!SessaoUsuario.EhAdministrador ||

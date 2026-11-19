@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Loja_Virtual.model
 {
-    public abstract class Pagamento
+    public abstract class Pagamento : IPagamento
     {
         public int Id { get; set; }
         public int PedidoId { get; set; }

@@ -263,16 +263,6 @@ namespace Loja_Virtual.controll
 
                 pedido.Subtotal = subtotal;
                 pedido.Desconto = desconto;
-
-
-                if (total <= 0)
-                {
-                    throw new InvalidOperationException(
-                        "O valor da compra deve ser positivo.");
-                }
-
-                pedido.Subtotal = subtotal;
-                pedido.Desconto = desconto;
                 pedido.Pagamentos.Add(new Cartao
                 {
                     NomeTitular = nomeTitular,

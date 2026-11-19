@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Loja_Virtual.data
 {
-    public class CupomRepositoryAdo
+    public class CupomRepositoryAdo : ICupomRepository
     {
         private readonly string _conexao =
             @"Server=(localdb)\MSSQLLocalDB;
