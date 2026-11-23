@@ -1,4 +1,4 @@
-# Loja Virtual
+
 # 🛒 UVVirtual — Sistema de Loja Virtual
 
 A **UVVirtual** é uma aplicação desktop de loja virtual desenvolvida como projeto acadêmico da disciplina de Programação Orientada a Objetos II, do curso de Ciência da Computação.
